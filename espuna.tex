@@ -110,56 +110,305 @@ Fourier-analytic and ergodic approaches}
 \setcounter{theorem}{0}
 
 \begin{abstract}
-% Write the abstract here.
+Jamneshan and Tao prove an inverse theorem for the $U^3$ Gowers norm that
+applies uniformly to every finite abelian group.  Their quantitative
+Fourier-analytic theorem shows that a bounded function with large $U^3$ norm
+correlates locally with quadratic structure, extending earlier results for
+groups of odd order and for vector spaces over $\mathbb{F}_2$.  They also give
+a nilmanifold formulation and a qualitative inverse theorem by ergodic
+methods.  We overview only the Fourier-analytic argument, emphasizing the new
+step that lifts a locally bilinear form to a global form on a larger group,
+integrates it there, and descends the resulting quadratic phase.
 \end{abstract}
 
 \subsection{Introduction}
 
-% Introduce the problem and state the goal of the summary. Cite the main
-% reference as \cite{JamneshanTaoFE}. Append FE to every new citation key
-% and to every \label used below.
+The preceding talks connected uniformity and additive structure to arithmetic
+progressions: Talk~1 concerned Roth's theorem, Talks~8 and~9 returned to
+three-term progressions, and Talk~10 presented Gowers's argument for
+four-term progressions \cite{GowersFourAPFE}.  In the usual non-degenerate
+settings, repeated applications of the Cauchy--Schwarz inequality bound the
+four-term progression-counting operator by a $U^3$ norm.  Thus a function
+with small $U^3$ norm behaves pseudorandomly for this count, whereas a large
+$U^3$ norm is an obstruction whose structure one would like to identify.
+
+The main theorem of \cite{JamneshanTaoFE} identifies that obstruction.  If a
+$1$-bounded function $f$ on a finite abelian group $G$ has noticeably large
+$U^3(G)$ norm, then on translates of one controlled Bohr neighbourhood it
+correlates with a fixed locally quadratic phase, up to a linear phase that
+may depend on the translate.  Both the rank and radius of the Bohr set, and
+the size of the correlation, depend only on the lower bound for the $U^3$
+norm and not on the group $G$.
+
+This conclusion had essentially been obtained by Green and Tao when $|G|$
+is odd \cite[Theorem~2.7]{GreenTaoFE}, and by Samorodnitsky when
+$G=\mathbb{F}_2^n$ \cite[Theorem~2.3]{SamorodnitskyFE}.  Both proofs use
+quadratic Fourier analysis, but a crucial integration step exploits the
+special form of the group.  In odd order one can divide by two and integrate
+a symmetric bilinear form $B$ by evaluating $B(x,\frac12x)$; over
+$\mathbb{F}_2^n$ one can choose a basis and take an upper-triangular part of
+the matrix of $B$.  Neither construction is uniform over arbitrary finite
+abelian groups.
+
+\medskip
+\noindent\textbf{Example 2.3 (the cyclic lifting model).}
+Let $G=\mathbb{Z}/N\mathbb{Z}$, let $0<\rho<1/4$, and consider the character
+$\psi([n])=n/N\pmod 1$.  Every element $x$ of
+$\operatorname{Bohr}(\{\psi\},\rho)$ has a unique integer representative
+$\widetilde{x}$ satisfying $|\widetilde{x}|<\rho N$.  For $\alpha\in\mathbb{R}$,
+the map
+\[
+ B(x,y)=\alpha\widetilde{x}\widetilde{y}
+\]
+is locally bilinear on this Bohr set, but in general it cannot be extended to
+a globally bilinear map on $G$: reduction modulo $N$ has discarded the carry
+information.  Instead consider the infinite cyclic group
+\[
+ G_{\{\psi\}}
+ =\left\{\left([n],\frac{n}{N}\right):n\in\mathbb{Z}\right\}
+ \leq \mathbb{Z}/N\mathbb{Z}\times\mathbb{R}.
+\]
+The formula
+\[
+ \widetilde{B}\left(\left([n],\frac{n}{N}\right),
+                     \left([m],\frac{m}{N}\right)\right)=\alpha nm
+\]
+is globally bilinear and agrees with $B$ on the small-coordinate region.
+The extra real coordinate records every carry rather than losing it.  This is
+the model for the new argument: Lemma~2.2 globalises a local form on a lift
+$G_S$, Lemma~2.4 integrates it on that lift and descends it, while
+Lemmas~2.5 and~2.6 supply the locally linear frequency map and the symmetric
+locally bilinear form to which this mechanism is applied.
 
 \subsection{Preliminaries}
 
-% Add only the definitions and notation needed for Theorem 1.6 and its proof.
+For a function $f$ on a finite non-empty set $A$, write
+\[
+ \mathbb{E}_{x\in A}f(x)=\frac{1}{|A|}\sum_{x\in A}f(x).
+\]
+Let $G=(G,+)$ be a finite abelian group.  Given $d\geq 0$ and functions
+$f_\omega:G\to\mathbb{C}$ indexed by $\omega\in\{0,1\}^d$, their
+\emph{Gowers inner product} is
+\begin{equation}\label{eq:gowers-inner-productFE}
+ \left\langle(f_\omega)_{\omega\in\{0,1\}^d}\right\rangle_{U^d(G)}
+ =\mathbb{E}_{x,h_1,\ldots,h_d\in G}
+  \prod_{\omega\in\{0,1\}^d}
+  \mathcal{C}^{|\omega|}f_\omega
+  \bigl(x+\omega\cdot(h_1,\ldots,h_d)\bigr),
+\end{equation}
+where $\mathcal{C}z=\overline z$, $|\omega|=\omega_1+\cdots+\omega_d$, and
+$\omega\cdot(h_1,\ldots,h_d)=\omega_1h_1+\cdots+\omega_dh_d$.  For $d\geq1$,
+the \emph{Gowers uniformity norm} is
+\begin{equation}\label{eq:gowers-normFE}
+ \|f\|_{U^d(G)}
+ =\left\langle(f)_{\omega\in\{0,1\}^d}\right\rangle_{U^d(G)}^{1/2^d}.
+\end{equation}
+A function is \emph{$1$-bounded} when $|f(x)|\leq1$ for every $x\in G$.
 
-\subsection{Black-box results and Example 2.3}
+The dual group $\widehat G$ consists of the homomorphisms
+$\xi:G\to\mathbb{R}/\mathbb{Z}$; we write $\xi\cdot x$ for $\xi(x)$ and
+$e(\theta)=e^{2\pi i\theta}$.  For a finite set $S\subset\widehat G$, put
+\[
+ \|x\|_S=\sup_{\xi\in S}\|\xi\cdot x\|_{\mathbb{R}/\mathbb{Z}},
+ \qquad
+ \operatorname{Bohr}(S,\rho)=\{x\in G:\|x\|_S<\rho\}.
+\]
+The Bohr set is \emph{regular} if, whenever
+$|\kappa|\leq1/(100|S|)$,
+\[
+ \begin{split}
+ (1-100|S||\kappa|)|\operatorname{Bohr}(S,\rho)|
+ &\leq |\operatorname{Bohr}(S,(1+\kappa)\rho)|\\
+ &\leq(1+100|S||\kappa|)|\operatorname{Bohr}(S,\rho)|.
+ \end{split}
+\]
 
-% State Lemmas 2.2 and 2.4 without proof, and illustrate them using
-% Example 2.3, as required in the assignment.
+For a map $\phi:U\to H$, where $U$ lies in an additive group, define its
+additive derivative on its natural domain by
+\[
+ \partial_h\phi(x)=\phi(x)-\phi(x-h).
+\]
+The map is \emph{locally linear} if every second derivative vanishes, and
+\emph{locally quadratic} if every third derivative
+$\partial_h\partial_k\partial_l\phi$ vanishes.
+
+We can now state the quantitative result that will be proved.
+
+\begin{theorem}[Locally quadratic inverse theorem, Theorem~1.6 of
+\cite{JamneshanTaoFE}]\label{thm:inverse-u3FE}
+Let $G$ be a finite abelian group, let $0<\eta\leq1/2$, and let
+$f:G\to\mathbb{C}$ be $1$-bounded with $\|f\|_{U^3(G)}\geq\eta$.  Then there
+are a regular Bohr set $\operatorname{Bohr}(S,\rho)$ satisfying
+\[
+ |S|\ll\eta^{-O(1)},
+ \qquad
+ \exp\bigl(-\eta^{-O(1)}\bigr)\ll\rho\leq\frac{1}{100},
+\]
+a locally quadratic map
+$\phi:\operatorname{Bohr}(S,\rho)\to\mathbb{R}/\mathbb{Z}$, and a map
+$\xi:G\to\widehat G$ such that
+\[
+ \mathbb{E}_{x\in G}
+ \left|
+  \mathbb{E}_{h\in\operatorname{Bohr}(S,\rho)}
+  f(x+h)e\bigl(-\phi(h)-\xi(x)\cdot h\bigr)
+ \right|
+ \gg\eta^{O(1)}.
+\]
+\end{theorem}
+
+Here and below, the constants implicit in $O(1)$ and in Vinogradov notation
+are absolute.
+
+\subsection{Globalising and integrating locally bilinear forms}
+
+Let $U$ be a subset of an additive group and let $H$ be another additive
+group.  A map $B:U\times U\to H$ is \emph{locally bilinear} if
+$B(x_1+x_2,y)=B(x_1,y)+B(x_2,y)$ whenever all four arguments belong to $U$,
+and likewise in the second variable.  It is \emph{symmetric} if
+$B(x,y)=B(y,x)$.  For
+$S\subset\widehat G$, define the lifted group
+\[
+ G_S=\left\{(x,\theta)\in G\times\mathbb{R}^S:
+       (\xi\cdot x)_{\xi\in S}=\theta\pmod{\mathbb{Z}^S}\right\},
+ \qquad
+ \|\theta\|_{\mathbb{R}^S}=\sup_{\xi\in S}|\theta_\xi|.
+\]
+It fits into the short exact sequence
+$0\to\mathbb{Z}^S\to G_S\to G\to0$.  The following two results from
+\cite{JamneshanTaoFE} will be used as black boxes.
+
+\begin{lemma}[Globalising a locally bilinear form; Lemma~2.2]
+\label{lem:globalisingFE}
+Let $G$ be a finite abelian group, $S\subset\widehat G$, and
+$0<\rho<1/2$.  If $B:\operatorname{Bohr}(S,\rho)^2\to H$ is locally
+bilinear, then there is a globally bilinear map
+$\widetilde B:G_S^2\to H$ such that
+$\widetilde B((x,\theta),(y,\sigma))=B(x,y)$ whenever
+$\|\theta\|_{\mathbb{R}^S},\|\sigma\|_{\mathbb{R}^S}
+ \leq\exp(-C|S|^C)\rho$ for some absolute $C>0$.  If $B$ is symmetric,
+$\widetilde B$ may also be chosen symmetric.
+\end{lemma}
+
+\begin{lemma}[Integrating a symmetric bilinear form; Lemma~2.4]
+\label{lem:integratingFE}
+Let $G$ be a finitely generated abelian group.
+\begin{enumerate}
+ \item[(i)] If $B:G\times G\to\mathbb{R}/\mathbb{Z}$ is symmetric and
+ globally bilinear, there is a globally quadratic map
+ $\phi:G\to\mathbb{R}/\mathbb{Z}$ satisfying
+ $\phi(x+y)=\phi(x)+\phi(y)+B(x,y)$ for every $x,y\in G$.
+ \item[(ii)] Suppose in addition that $G$ is finite, $S\subset\widehat G$,
+ and $\rho>0$.  If
+ \[
+  B:\operatorname{Bohr}(S,\rho)^2\longrightarrow\mathbb{R}/\mathbb{Z}
+ \]
+ is symmetric and locally bilinear, then there is a radius $\rho'$ satisfying
+ \linebreak
+ $\exp(-|S|^{O(1)})\rho\ll\rho'\leq\rho$,
+ and a locally quadratic map
+ $\phi:\operatorname{Bohr}(S,\rho')\to\mathbb{R}/\mathbb{Z}$ for which
+ $\phi(x+y)=\phi(x)+\phi(y)+B(x,y)$ whenever
+ $x,y\in\operatorname{Bohr}(S,\rho'/2)$.  Moreover, $\phi$ has a
+ globally quadratic lift $\widetilde\phi:G_S\to\mathbb{R}/\mathbb{Z}$ such
+ that $\widetilde\phi(x,\theta)=\phi(x)$ whenever
+ $\|\theta\|_{\mathbb{R}^S}<\rho'$.
+\end{enumerate}
+\end{lemma}
 
 \subsection{Proof of Lemma 2.5}
 
-% Prove Lemma 2.5. The additive-combinatorial input covered in Talks 3--5
-% may be used as a black box. The finite-field model is discussed in
-% \cite{GreenFE}.
+For the remainder of the argument, $G$, $f$, and $\eta$ are as in
+Theorem~\ref{thm:inverse-u3FE}.  Following the paper, $b(\,cdot\,)$ denotes
+an arbitrary $1$-bounded function of the displayed variables and may change
+from one occurrence to the next.
+
+\begin{lemma}[Lemma~2.5]\label{lem:frequency-mapFE}
+There are a regular Bohr set $\operatorname{Bohr}(S,\rho)$ with
+$|S|\ll\eta^{-O(1)}$ and $1\ll\rho\leq1/8$, and a locally linear map
+$M:\operatorname{Bohr}(S,2\rho)\to\widehat G$, such that
+\[
+ \left|
+ \mathbb{E}_{\substack{x\in G\\h\in\operatorname{Bohr}(S,\rho)}}
+ b(h)b(x)f(x+h)e\bigl(-M(h)\cdot x\bigr)
+ \right|
+ \gg\eta^{O(1)}.
+\]
+\end{lemma}
+
+The additive-combinatorial input to this lemma---the
+Balog--Szemer\'edi--Gowers theorem, Pl\"unnecke inequalities, and the
+Bogolyubov lemma---was covered in Talks 3, 4, and 5 and will be used as a
+black box.
+The finite-field model of the argument can be found in \cite{GreenFE}.
+
+% Proof to be added.
 
 \subsection{Proof of Lemma 2.6}
 
-% Prove Lemma 2.6 here.
+\begin{lemma}[Lemma~2.6]\label{lem:symmetric-formFE}
+There are a regular Bohr set $\operatorname{Bohr}(S,\rho)$ with
+$|S|\ll\eta^{-O(1)}$ and $\eta^{O(1)}\ll\rho\leq1/8$, and a symmetric
+locally bilinear map
+\[
+ B:\operatorname{Bohr}(S,2\rho)\times
+   \operatorname{Bohr}(S,2\rho)\longrightarrow\mathbb{R}/\mathbb{Z}
+\]
+such that
+\[
+ \left|
+ \mathbb{E}_{\substack{x\in G\\h,k\in\operatorname{Bohr}(S,\rho)}}
+ b(x,h)b(x,k)f(x+h+k)e\bigl(-B(h,k)\bigr)
+ \right|
+ \gg\eta^{O(1)}.
+\]
+\end{lemma}
 
-\subsection{Proof of Theorem 1.6}
+% Proof to be added.
 
-% Deduce Theorem 1.6 from the preceding lemmas.
+% The proof of Theorem 1.6 will be added here after the proofs of Lemmas 2.5
+% and 2.6 are completed.
 
-\begin{thebibliography}{JT}
+\footnotesize
+\begin{thebibliography}{GT}
+
+\bibitem[Go]{GowersFourAPFE}
+W.~T. Gowers,
+\emph{A new proof of Szemer\'edi's theorem for arithmetic progressions of
+length four},
+\href{https://doi.org/10.1007/s000390050065}{Geom. Funct. Anal.}
+\textbf{8} (1998), no.~3, 529--551.
 
 \bibitem[G]{GreenFE}
 B. Green,
-\emph{Montr\'eal lecture notes on quadratic Fourier analysis},
+\href{https://arxiv.org/abs/math/0604089}{\emph{Montr\'eal lecture notes on
+quadratic Fourier analysis}},
 in \emph{Additive Combinatorics}, CRM Proceedings \& Lecture Notes,
 vol.~43, American Mathematical Society, 2007, pp.~69--102.
-\url{https://arxiv.org/abs/math/0604089}
+
+\bibitem[GT]{GreenTaoFE}
+B. Green and T. Tao,
+\emph{An inverse theorem for the Gowers $U^3(G)$ norm},
+\href{https://doi.org/10.1017/S0013091505000325}{Proc. Edinb. Math. Soc. (2)}
+\textbf{51} (2008), no.~1, 73--153.
 
 \bibitem[JT]{JamneshanTaoFE}
 A. Jamneshan and T. Tao,
 \emph{The inverse theorem for the $U^3$ Gowers uniformity norm on arbitrary
 finite abelian groups: Fourier-analytic and ergodic approaches},
-Discrete Analysis 2023:11 (2023), 48 pp.
-\url{https://doi.org/10.19086/da.84268}
+\href{https://doi.org/10.19086/da.84268}{Discrete Analysis 2023:11}
+(2023), 48 pp.
+
+\bibitem[S]{SamorodnitskyFE}
+A. Samorodnitsky,
+\emph{Low-degree tests at large distances},
+in \emph{STOC'07---Proceedings of the 39th Annual ACM Symposium on Theory of
+Computing}, \href{https://doi.org/10.1145/1250790.1250864}{ACM}, New York,
+2007, pp.~506--515.
 
 \end{thebibliography}
 
+\normalsize
 \noindent \textsc{Ferran Espuña, UAM--ICMAT}\\
 \textit{email:} \texttt{ferranespuna@gmail.com}
 
