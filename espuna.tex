@@ -1,0 +1,237 @@
+% LaTeX template for Summer Schools
+%
+% !!!!!!!!!!!!   INSTRUCTIONS  !!!!!!!!!!!!!!
+
+% 0) Submit your work in tex format (not pdf). It will be pasted into the proceedings file.
+%
+% 1) please name your file yourlastname.tex, e.g. thiele.tex.
+%
+% As several files will be concatenated, please 
+% use some discipline as to the following:
+%
+% 2) Whenever you use \label{} to get automatic cross references
+% through \ref{} (this is the preferred option for cross references)
+% please add your initials to the label such as 
+% \label{SLEct} for the Stochastic Loewner equation
+% with initials of author Christoph Thiele
+% Same with other citations such as in bibitem.
+%
+% 3) Please STRONGLY avoid using \def or \newcommand unless really necessary.
+% We do have macros for black board bold. If you use your favorite
+% macros while preparing your summary, please expand them
+% (replace by the original definition) everywhere in your file.
+% This will save me the work of doing the very same thing.
+% Thank you! If you have to use \def, please also add your
+% initials to the definition.
+%
+% 4) if you want to compile the header of the document, 
+% uncomment remove the corresponding paragraph signs below
+%
+% 5) There is a sample lecture below. For the header 
+% it is best to keep most of the
+% commands and just change the name, title, text. etc
+%
+% 6) Please follow the conventions below in terms of capitalization of 
+% headings etc:
+% Only the beginning of a sentence and names are capitalized.
+
+
+\documentclass[12pt]{article}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{esint}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{comment}
+\usepackage{bbm,dsfont}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\newcommand{\talktitle}[1]{\section{#1}}
+\newcommand{\talkafter}[1]{\textbf{After #1} \addcontentsline{toc}{subsection}{after #1}}
+\newcommand{\talkspeaker}[2]{\begin{center}
+\textit{A summary written by #1}
+\end{center}
+\addcontentsline{toc}{subsection}{#1, #2}
+}
+
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand*{\Z}{\mathbb{Z}}
+\newcommand*{\Q}{\mathbb{Q}}
+\def\C{\mathbb{C}}
+\newcommand*{\N}{\mathbb{N}}
+\newcommand*{\R}{\mathbb{R}}
+
+% Absolute values and norms using mathtools.
+% \\[lr][vV]ert produces correct spacing, as opposed to | and \|.
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
+
+\title{Nodal Domains and Landscape Functions}
+
+% \author{Summer School, Kopp}
+% \thanks{supported by Hausdorff Center for Mathematics, Bonn}
+
+% \date{October 2022}
+
+
+
+\begin{document}
+
+% \maketitle
+
+% {
+% \center{Organizers:}
+% \center{
+% Christoph Thiele, Universit\"at Bonn}
+% \center{
+% Olli Saari, Universit\"at Bonn}
+% \center{$\ $}
+% }
+% \newpage
+% \tableofcontents
+
+% \newpage
+
+
+\talktitle{Gaps and bands for Schr\"odinger operators}
+\talkafter{J. Garnett and E. Trubowitz \cite{gtkc}}
+\talkspeaker{Kaihua Cai}{Caltech}
+
+\setcounter{equation}{0}
+\setcounter{theorem}{0}
+
+\begin{abstract}
+{ We give a simple necessary and sufficient condition on
+the length of the gaps corresponding to one dimensional periodic
+Schr\"odinger operators. }
+\end{abstract}
+
+Macros demonstration:
+\[
+\R,\Z,\C,\Q,\N,\abs{x},\abs*{\sum x},\norm{f}, \norm*{\sum f}.
+\]
+
+\subsection{Introduction}
+
+Let $q(x)$ be the periodic extension to the whole line of a real
+valued function in $L^2_R [0,1]$. The spectrum of $- (d^2/dx^2)
++q(x)$ acting on $L^2(R)$ is the union of purely absolutely
+continuous bands $B_n(q), n \geq 1$. It is well known that the
+bands may touch but never overlap. We assume that the bottom of
+the first band is at $0$. The complement of the spectral band in
+$(0,+\infty) $ is a sequence of open intervals, called the gaps.
+To each set of bands $B_n(q), n \geq 1$, we associate the sequence
+of nonnegative numbers
+
+$$ \gamma_1(q), \gamma_2(q),\cdots $$
+
+\noindent where $  \gamma_n(q)$ is the distance between the top of
+the n-th band and the bottom of the next. The main theorems of
+this paper is to describe the set of all possible configurations
+of bands by understanding the distribution of gaps.
+
+
+
+\begin{theorem}
+
+Let $\gamma_n, n \geq 1,$ be any nonnegative sequence satisfying $
+\Sigma _{n \geq 1 } \gamma_n^2  < \infty  $. Then, there is a way
+of placing the sequence of open tiles of lengths $\gamma_n$, in
+order on the positive axis $ (0, \infty)$ so that the compliment
+is the set of bands for a function $q$ in $L^2_R [0,1]$. In other
+words, the map
+
+$$q \rightarrow \gamma (q)= (\gamma_n(q), n \geq 1), $$
+
+\noindent  from $L^2_{\R} [0,1]$ to $(l^2)^+ $, is onto.
+\end{theorem}
+
+It is natural to ask how many different ways a sequence of open
+tiles, whose lengths are $\gamma_n, n \geq 1$, can be placed so
+that the complement is a set of bands. This is answered by the
+following theorem:
+
+\begin{theorem}
+
+There is just one way to place a sequence of open tiles,
+satisfying the hypothesis of Theorem 1, on the positive real axis
+so that they are genuine gaps.
+
+\end{theorem}
+
+To prove these two theorems, we use a characterization of bands
+due to Marcenko and Ostrovskii. They identify band configurations
+with slit quarter planes.
+
+Let $\mu_n (q), n \geq 1, $ and $\nu_n(q), n \geq 0,$ be the
+Dirichlet  and Neumann spectrum of $q$ in $L_R^2[0,1]$, that is,
+the spectra of
+
+\begin{equation} -y''+q(x)y= \lambda y  \label{eq:mainkc}
+\end{equation}
+
+\noindent for the boundary condition $ y(0)=0, y(1)=0 $  and $
+y'(0)=0, y'(1)=0 $ respectively. If $q$ is an even function, then
+$ \gamma_n (q)= |\mu_n (q)-\nu_n(q) |$. We define the signed gap
+lengths of $q$ in $E_0$, the subspace of even functions in
+$L_R^2[0,1]$ with mean $0$, to be the sequence $(\mu_n
+(q)-\nu_n(q)), n \geq 1$. We have the following:
+
+\begin{theorem}
+The map from $q$ to its signed gap lengths is a real analytic
+isomorphism between $E_0$ and $l^2$.
+
+\end{theorem}
+
+In fact, we obtain three real analytic isomorphisms between the
+three spaces $E_0$,  $l^2$ and $l^2_1$, the space of real
+sequences $ \{h_n \} $, satisfying $ \Sigma n^2 h_n ^2 < \infty $.
+
+\subsection{Preliminaries}
+
+\subsubsection{More levels}
+
+Some people need more levels, which can be generated with subsubsection
+
+\subsubsection{Here we go} 
+
+Let $y_1(x,\lambda, q )$ and $y_2(x,\lambda, q )$ be the solutions
+of \eqref{eq:mainkc} satisfying
+
+$$y_1(0,\lambda )=y'_2(0,\lambda )=1, \quad \quad y'_1(0,\lambda )=y_2(0,\lambda )=0 $$
+
+\begin{thebibliography}{03}
+
+\bibitem[GT]{gtkc} Garnett, J. and Trubowitz, E.,
+\emph{ Gaps and bands of one dimensional
+periodic Schr\"odinger operators.} 
+Comment. Math. Helv. {\bf 62} (1987), no.~1, 18--37;
+
+
+\bibitem[MO]{MOkc} Marcenko, V. A. and Ostrovshii, I. V.,
+\emph{ A Characterization of the spectrum of Hill's operator.}
+Math. USSR-Sbornik, 97 (1975), pp. 493-554.
+
+
+
+
+\end{thebibliography}
+
+\noindent \textsc{Kaihua Cai, Caltech}\\
+\textit{email:} \texttt{cai@caltech.edu}
+
+
+%\newpage
+
+\end{document}
