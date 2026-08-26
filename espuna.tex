@@ -119,26 +119,27 @@ step that lifts a locally bilinear form to a global form on a larger group,
 integrates it there, and descends the resulting quadratic phase.
 \end{abstract}
 
-\subsection{Introduction}
+\subsection{Introduction}\label{sec:introductionFE}
 
-The preceding talks connected uniformity and additive structure to arithmetic
-progressions: Talk~1 concerned Roth's theorem, Talks~8 and~9 returned to
-three-term progressions, and Talk~10 presented Gowers's argument for
-four-term progressions \cite{GowersFourAPFE}.
-Usually, repeated applications of the Cauchy--Schwarz inequality upper bound the
-four-term progression-counting operator by a $U^3$ norm.
-That is, if we are provided a dense set with no 4-term arithmetic progressions, 
-we can obtain a function with large $U^3$ norm from from it.
-Identifying the structure of functions with large $U^3$ norm 
-is what allows us to find a density increment and iterate the argument.
+The preceding talks highlighted the connection between additive structure
+and arithmetic progressions: Talk~1 concerned Roth's theorem, Talks~8 and~9
+returned to three-term progressions, and Talk~10 presented Gowers's argument
+for four-term progressions \cite{GowersFourAPFE}.
+For four-term progressions in the standard non-degenerate setting, repeated
+applications of the Cauchy--Schwarz inequality control the progression-counting
+operator by a $U^3$ norm.  Consequently, if a dense set $A$ of density $\alpha$
+contains no non-trivial four-term arithmetic progressions, then its balanced
+function $1_A-\alpha$ has large $U^3$ norm.  Identifying the structure behind
+this largeness provides a key input to a density-increment iteration.
 
-The main theorem of \cite{JamneshanTaoFE} does precisely that.  If a
+The main theorem of \cite{JamneshanTaoFE} provides precisely this structural
+input.  If a
 $1$-bounded function $f$ on a finite abelian group $G$ has large
-$U^3(G)$ norm, then on translates of one controlled Bohr set it
-correlates with a fixed locally quadratic phase, up to a linear phase that
-may depend on the translate.  Both the rank and radius of the Bohr set, and
-the size of the correlation, depend only on the lower bound for the $U^3$
-norm and not on the group $G$.
+$U^3(G)$ norm, then, averaged over base points $x$, the function
+$h\mapsto f(x+h)$ on one controlled Bohr set correlates with a fixed locally
+quadratic phase, up to a linear frequency $\xi(x)$ depending on $x$.  All
+quantitative parameters depend only on the lower bound for the $U^3$ norm and
+not on the group $G$.
 
 This conclusion had essentially been obtained by Green and Tao when $|G|$
 is odd \cite[Theorem~2.7]{GreenTaoFE}, and by Samorodnitsky when
@@ -146,94 +147,25 @@ $G=\mathbb{F}_2^n$ \cite[Theorem~2.3]{SamorodnitskyFE}.  Both proofs use
 quadratic Fourier analysis, but a crucial integration step exploits the
 special form of the group.
 
-\medskip
-\noindent\textbf{Example 2.3 (the cyclic lifting model).}
-Let $G=\mathbb{Z}/N\mathbb{Z}$, let $0<\rho<1/4$, and consider the character
-$\psi([n])=n/N\pmod 1$.  Every element $x$ of
-$\operatorname{Bohr}(\{\psi\},\rho)$ has a unique integer representative
-$\widetilde{x}$ satisfying $|\widetilde{x}|<\rho N$.  For $\alpha\in\mathbb{R}$,
-the map
-\[
- B(x,y)=\alpha\widetilde{x}\widetilde{y}
-\]
-is locally bilinear on this Bohr set, but in general it cannot be extended to
-a globally bilinear map on $G$: reduction modulo $N$ has discarded the carry
-information.  Instead consider the infinite cyclic group
-\[
- G_{\{\psi\}}
- =\left\{\left([n],\frac{n}{N}\right):n\in\mathbb{Z}\right\}
- \leq \mathbb{Z}/N\mathbb{Z}\times\mathbb{R}.
-\]
-The formula
-\[
- \widetilde{B}\left(\left([n],\frac{n}{N}\right),
-                     \left([m],\frac{m}{N}\right)\right)=\alpha nm
-\]
-is globally bilinear and agrees with $B$ on the small-coordinate region.
-The extra real coordinate records every carry rather than losing it.  This is
-the model for the new argument: Lemma~2.2 globalises a local form on a lift
-$G_S$, Lemma~2.4 integrates it on that lift and descends it, while
-Lemmas~2.5 and~2.6 supply the locally linear frequency map and the symmetric
-locally bilinear form to which this mechanism is applied.
-
-\subsection{Preliminaries}
-
-For a function $f$ on a finite non-empty set $A$, write
-\[
- \mathbb{E}_{x\in A}f(x)=\frac{1}{|A|}\sum_{x\in A}f(x).
-\]
-Let $G=(G,+)$ be a finite abelian group.  Given $d\geq 0$ and functions
-$f_\omega:G\to\mathbb{C}$ indexed by $\omega\in\{0,1\}^d$, their
-\emph{Gowers inner product} is
-\begin{equation}\label{eq:gowers-inner-productFE}
- \left\langle(f_\omega)_{\omega\in\{0,1\}^d}\right\rangle_{U^d(G)}
- =\mathbb{E}_{x,h_1,\ldots,h_d\in G}
-  \prod_{\omega\in\{0,1\}^d}
-  \mathcal{C}^{|\omega|}f_\omega
-  \bigl(x+\omega\cdot(h_1,\ldots,h_d)\bigr),
-\end{equation}
-where $\mathcal{C}z=\overline z$, $|\omega|=\omega_1+\cdots+\omega_d$, and
-$\omega\cdot(h_1,\ldots,h_d)=\omega_1h_1+\cdots+\omega_dh_d$.  For $d\geq1$,
-the \emph{Gowers uniformity norm} is
-\begin{equation}\label{eq:gowers-normFE}
- \|f\|_{U^d(G)}
- =\left\langle(f)_{\omega\in\{0,1\}^d}\right\rangle_{U^d(G)}^{1/2^d}.
-\end{equation}
-A function is \emph{$1$-bounded} when $|f(x)|\leq1$ for every $x\in G$.
-
-The dual group $\widehat G$ consists of the homomorphisms
-$\xi:G\to\mathbb{R}/\mathbb{Z}$; we write $\xi\cdot x$ for $\xi(x)$ and
-$e(\theta)=e^{2\pi i\theta}$.  For a finite set $S\subset\widehat G$, put
+We retain the notation for $U^3(G)$ and normalized averages from the preceding
+talk.  Write $\widehat G=\operatorname{Hom}(G,\mathbb{R}/\mathbb{Z})$,
+$\xi\cdot x=\xi(x)$, and $e(\theta)=e^{2\pi i\theta}$.  For a finite
+$S\subset\widehat G$, put
 \[
  \|x\|_S=\sup_{\xi\in S}\|\xi\cdot x\|_{\mathbb{R}/\mathbb{Z}},
  \qquad
  \operatorname{Bohr}(S,\rho)=\{x\in G:\|x\|_S<\rho\}.
 \]
-The Bohr set is \emph{regular} if, whenever
-$|\kappa|\leq1/(100|S|)$,
-\[
- \begin{split}
- (1-100|S||\kappa|)|\operatorname{Bohr}(S,\rho)|
- &\leq |\operatorname{Bohr}(S,(1+\kappa)\rho)|\\
- &\leq(1+100|S||\kappa|)|\operatorname{Bohr}(S,\rho)|.
- \end{split}
-\]
-
 For a map $\phi:U\to H$, where $U$ lies in an additive group, define its
-additive derivative on its natural domain by
-\[
- \partial_h\phi(x)=\phi(x)-\phi(x-h).
-\]
-The map is \emph{locally linear} if every second derivative vanishes, and
-\emph{locally quadratic} if every third derivative
-$\partial_h\partial_k\partial_l\phi$ vanishes.
-
-We can now state the quantitative result that will be proved.
+additive derivative by $\partial_h\phi(x)=\phi(x)-\phi(x-h)$ whenever both
+terms are defined.  The map is \emph{locally linear} if every second
+derivative vanishes on its natural domain, and \emph{locally quadratic} if
+every third derivative does.
 
 \begin{theorem}[Locally quadratic inverse theorem, Theorem~1.6 of
 \cite{JamneshanTaoFE}]\label{thm:inverse-u3FE}
 Let $G$ be a finite abelian group, let $0<\eta\leq1/2$, and let
-$f:G\to\mathbb{C}$ be $1$-bounded with $\|f\|_{U^3(G)}\geq\eta$.  Then there
+$f:G\to\mathbb{C}$ satisfy $|f|\leq1$ and $\|f\|_{U^3(G)}\geq\eta$.  Then there
 are a regular Bohr set $\operatorname{Bohr}(S,\rho)$ satisfying
 \[
  |S|\ll\eta^{-O(1)},
@@ -256,7 +188,23 @@ $\xi:G\to\widehat G$ such that
 Here and below, the constants implicit in $O(1)$ and in Vinogradov notation
 are absolute.
 
+The Fourier-analytic proof is organised as follows.  The structural results
+in Lemmas~\ref{lem:globalisingFE} and~\ref{lem:integratingFE}, collected in
+Section~\ref{sec:bilinear-formsFE}, are used as black boxes and illustrated by
+the cyclic lifting model.  Starting from the large $U^3$ norm,
+Section~\ref{sec:lemma-2-5FE} uses Fourier analysis and additive-combinatorial
+input to construct a frequency map $M$ that is locally linear on a controlled
+Bohr set.  Section~\ref{sec:lemma-2-6FE} replaces the locally bilinear form
+$(h,x)\mapsto M(h)\cdot x$ by a symmetric locally bilinear form $B$ while
+preserving a quantitative correlation with $f$.  Finally,
+Section~\ref{sec:theorem-1-6FE} globalises and integrates $B$.  The resulting
+identity $B(y,z)=\phi(y+z)-\phi(y)-\phi(z)$ converts the bilinear phase into a
+locally quadratic one, after which local Fourier analysis selects the
+base-point-dependent frequency $\xi(x)$ in
+Theorem~\ref{thm:inverse-u3FE}.
+
 \subsection{Globalising and integrating locally bilinear forms}
+\label{sec:bilinear-formsFE}
 
 Let $U$ be a subset of an additive group and let $H$ be another additive
 group.  A map $B:U\times U\to H$ is \emph{locally bilinear} if
@@ -286,6 +234,36 @@ $\|\theta\|_{\mathbb{R}^S},\|\sigma\|_{\mathbb{R}^S}
 $\widetilde B$ may also be chosen symmetric.
 \end{lemma}
 
+\medskip
+\noindent\textbf{The cyclic lifting model
+\cite[Example~2.3]{JamneshanTaoFE}.}
+Let $G=\mathbb{Z}/N\mathbb{Z}$, let $0<\rho<1/4$, and consider the character
+$\psi([n])=n/N\pmod{1}$.  Set $S=\{\psi\}$.  Every element $x$ of
+$\operatorname{Bohr}(S,\rho)$ has a unique integer representative
+$\widetilde{x}$ satisfying $|\widetilde{x}|<\rho N$.  For
+$\alpha\in\mathbb{R}$, the map
+\[
+ B:\operatorname{Bohr}(S,\rho)^2\longrightarrow\mathbb{R},
+ \qquad B(x,y)=\alpha\widetilde{x}\widetilde{y},
+\]
+is locally bilinear, but in general it cannot be extended to a globally
+bilinear map on $G$: reduction modulo $N$ has discarded the carry information.
+Instead consider the infinite cyclic group
+\[
+ G_S
+ =\left\{\left([n],\frac{n}{N}\right):n\in\mathbb{Z}\right\}
+ \leq \mathbb{Z}/N\mathbb{Z}\times\mathbb{R}.
+\]
+The formula
+\[
+ \widetilde{B}\left(\left([n],\frac{n}{N}\right),
+                     \left([m],\frac{m}{N}\right)\right)=\alpha nm
+\]
+is globally bilinear and agrees with $B$ whenever
+$|n|,|m|<\rho N$.  The extra real coordinate records every carry rather than
+losing it, illustrating why the proof passes to $G_S$ instead of trying to
+extend $B$ inside the original finite group.
+
 \begin{lemma}[Integrating a symmetric bilinear form; Lemma~2.4]
 \label{lem:integratingFE}
 Let $G$ be a finitely generated abelian group.
@@ -312,7 +290,7 @@ Let $G$ be a finitely generated abelian group.
 \end{enumerate}
 \end{lemma}
 
-\subsection{Proof of Lemma 2.5}
+\subsection{Proof of Lemma 2.5}\label{sec:lemma-2-5FE}
 
 For the remainder of the argument, $G$, $f$, and $\eta$ are as in
 Theorem~\ref{thm:inverse-u3FE}.  Following the paper, $b(\,cdot\,)$ denotes
@@ -340,7 +318,7 @@ The finite-field model of the argument can be found in \cite{GreenFE}.
 
 % Proof to be added.
 
-\subsection{Proof of Lemma 2.6}
+\subsection{Proof of Lemma 2.6}\label{sec:lemma-2-6FE}
 
 \begin{lemma}[Lemma~2.6]\label{lem:symmetric-formFE}
 There are a regular Bohr set $\operatorname{Bohr}(S,\rho)$ with
@@ -362,10 +340,10 @@ such that
 
 % Proof to be added.
 
-% The proof of Theorem 1.6 will be added here after the proofs of Lemmas 2.5
-% and 2.6 are completed.
+\subsection{Proof of Theorem 1.6}\label{sec:theorem-1-6FE}
 
-\footnotesize
+% Deduce Theorem 1.6 from Lemmas 2.2, 2.4, 2.5, and 2.6.
+
 \begin{thebibliography}{GT}
 
 \bibitem[Go]{GowersFourAPFE}
@@ -404,7 +382,6 @@ Computing}, \href{https://doi.org/10.1145/1250790.1250864}{ACM}, New York,
 
 \end{thebibliography}
 
-\normalsize
 \noindent \textsc{Ferran Espuña, UAM--ICMAT}\\
 \textit{email:} \texttt{ferranespuna@gmail.com}
 
