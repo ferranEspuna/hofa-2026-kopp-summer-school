@@ -76,8 +76,7 @@
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
 
-\title{The inverse theorem for the $U^3$ Gowers uniformity norm on arbitrary
-finite abelian groups: Fourier-analytic and ergodic approaches}
+\title{The inverse theorem for the $U^3$ Gowers uniformity norm on arbitrary finite abelian groups: Fourier-analytic approach}
 \author{Ferran Espuña Bertomeu}
 \date{October 4--9, 2026}
 
@@ -101,8 +100,7 @@ finite abelian groups: Fourier-analytic and ergodic approaches}
 
 
 \talktitle{The inverse theorem for the \texorpdfstring{$U^3$}{U3} Gowers
-uniformity norm\texorpdfstring{\\}{} on arbitrary finite abelian groups:
-Fourier-analytic and ergodic approaches}
+uniformity norm\texorpdfstring{\\}{} on arbitrary finite abelian groups: Fourier-analytic approach}
 \talkafter{A. Jamneshan and T. Tao}~\cite{JamneshanTaoFE}
 \talkspeaker{Ferran Espuña}{UAM--ICMAT}
 
@@ -126,15 +124,17 @@ integrates it there, and descends the resulting quadratic phase.
 The preceding talks connected uniformity and additive structure to arithmetic
 progressions: Talk~1 concerned Roth's theorem, Talks~8 and~9 returned to
 three-term progressions, and Talk~10 presented Gowers's argument for
-four-term progressions \cite{GowersFourAPFE}.  In the usual non-degenerate
-settings, repeated applications of the Cauchy--Schwarz inequality bound the
-four-term progression-counting operator by a $U^3$ norm.  Thus a function
-with small $U^3$ norm behaves pseudorandomly for this count, whereas a large
-$U^3$ norm is an obstruction whose structure one would like to identify.
+four-term progressions \cite{GowersFourAPFE}.
+Usually, repeated applications of the Cauchy--Schwarz inequality upper bound the
+four-term progression-counting operator by a $U^3$ norm.
+That is, if we are provided a dense set with no 4-term arithmetic progressions, 
+we can obtain a function with large $U^3$ norm from from it.
+Identifying the structure of functions with large $U^3$ norm 
+is what allows us to find a density increment and iterate the argument.
 
-The main theorem of \cite{JamneshanTaoFE} identifies that obstruction.  If a
-$1$-bounded function $f$ on a finite abelian group $G$ has noticeably large
-$U^3(G)$ norm, then on translates of one controlled Bohr neighbourhood it
+The main theorem of \cite{JamneshanTaoFE} does precisely that.  If a
+$1$-bounded function $f$ on a finite abelian group $G$ has large
+$U^3(G)$ norm, then on translates of one controlled Bohr set it
 correlates with a fixed locally quadratic phase, up to a linear phase that
 may depend on the translate.  Both the rank and radius of the Bohr set, and
 the size of the correlation, depend only on the lower bound for the $U^3$
@@ -144,11 +144,7 @@ This conclusion had essentially been obtained by Green and Tao when $|G|$
 is odd \cite[Theorem~2.7]{GreenTaoFE}, and by Samorodnitsky when
 $G=\mathbb{F}_2^n$ \cite[Theorem~2.3]{SamorodnitskyFE}.  Both proofs use
 quadratic Fourier analysis, but a crucial integration step exploits the
-special form of the group.  In odd order one can divide by two and integrate
-a symmetric bilinear form $B$ by evaluating $B(x,\frac12x)$; over
-$\mathbb{F}_2^n$ one can choose a basis and take an upper-triangular part of
-the matrix of $B$.  Neither construction is uniform over arbitrary finite
-abelian groups.
+special form of the group.
 
 \medskip
 \noindent\textbf{Example 2.3 (the cyclic lifting model).}
