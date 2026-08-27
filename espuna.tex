@@ -108,43 +108,24 @@ uniformity norm\texorpdfstring{\\}{} on arbitrary finite abelian groups: Fourier
 \setcounter{theorem}{0}
 
 \begin{abstract}
-Jamneshan and Tao prove an inverse theorem for the $U^3$ Gowers norm that
-applies uniformly to every finite abelian group.  Their quantitative
-Fourier-analytic theorem shows that a bounded function with large $U^3$ norm
-correlates locally with quadratic structure, extending earlier results for
-groups of odd order and for vector spaces over $\mathbb{F}_2$.  They also give
-a nilmanifold formulation and a qualitative inverse theorem by ergodic
-methods.  We overview only the Fourier-analytic argument, emphasizing the new
-step that lifts a locally bilinear form to a global form on a larger group,
-integrates it there, and descends the resulting quadratic phase.
+We outline Jamneshan and Tao's quantitative $U^3$ inverse theorem for
+arbitrary finite abelian groups.  Their Fourier-analytic proof lifts a local
+bilinear form to a covering group before integrating it to a local quadratic
+phase.
 \end{abstract}
 
 \subsection{Introduction}\label{sec:introductionFE}
 
-The preceding talks highlighted the connection between additive structure
-and arithmetic progressions: Talk~1 concerned Roth's theorem, Talks~8 and~9
-returned to three-term progressions, and Talk~10 presented Gowers's argument
-for four-term progressions \cite{GowersFourAPFE}.
-For four-term progressions in the standard non-degenerate setting, repeated
-applications of the Cauchy--Schwarz inequality control the progression-counting
-operator by a $U^3$ norm.  Consequently, if a dense set $A$ of density $\alpha$
-contains no non-trivial four-term arithmetic progressions, then its balanced
-function $1_A-\alpha$ has large $U^3$ norm.
-Identifying the structure of functions with 
-large $U^3$ norm provides a key input to a density-increment iteration.
+The preceding talks connected Gowers norms with arithmetic progressions; in
+particular, Talk~10 showed that repeated Cauchy--Schwarz controls four-term
+progression counts by the $U^3$ norm \cite{GowersFourAPFE}.  Thus a set with
+too few such progressions has a balanced function with large $U^3$ norm, and
+an inverse theorem identifies the structure needed for a density increment.
 
-The main theorem of \cite{JamneshanTaoFE} provides precisely this structural input.
-If a $1$-bounded function $f$ on a finite abelian group $G$ has large
-$U^3(G)$ norm, then, averaged over base points $x$, the function
-$h\mapsto f(x+h)$ on one controlled Bohr set correlates with a fixed locally
-quadratic phase, up to a linear frequency $\xi(x)$ depending on $x$.  All
-quantitative parameters depend only on the lower bound for the $U^3$ norm and
-not on the group $G$.
-This conclusion had essentially been obtained by Green and Tao when $|G|$
-is odd \cite[Theorem~2.7]{GreenTaoFE}, and by Samorodnitsky when
-$G=\mathbb{F}_2^n$ \cite[Theorem~2.3]{SamorodnitskyFE}.  Both proofs use
-quadratic Fourier analysis, but a crucial integration step exploits the
-special form of the group.
+The theorem below is uniform in $G$.  Earlier proofs covered odd-order groups
+\cite[Theorem~2.7]{GreenTaoFE} and $G=\mathbb{F}_2^n$
+\cite[Theorem~2.3]{SamorodnitskyFE}, but relied on features unavailable in
+arbitrary torsion.
 
 Write $\widehat G=\operatorname{Hom}(G,\mathbb{R}/\mathbb{Z})$,
 $\xi\cdot x=\xi(x)$, and $e(\theta)=e^{2\pi i\theta}$.  For a finite
@@ -187,31 +168,18 @@ $\xi:G\to\widehat G$ such that
 \]
 \end{theorem}
 
-The Fourier-analytic proof is organised as follows.  The structural results
-in Lemmas~\ref{lem:globalisingFE} and~\ref{lem:integratingFE}, collected in
-Section~\ref{sec:bilinear-formsFE}, are used as black boxes and illustrated by
-the cyclic lifting model.  Starting from the large $U^3$ norm,
-Section~\ref{sec:lemma-2-5FE} uses Fourier analysis and additive-combinatorial
-input to construct a frequency map $M$ that is locally linear on a controlled
-Bohr set.  Section~\ref{sec:lemma-2-6FE} replaces the locally bilinear form
-$(h,x)\mapsto M(h)\cdot x$ by a symmetric locally bilinear form $B$ while
-preserving a quantitative correlation with $f$.  Finally,
-Section~\ref{sec:theorem-1-6FE} globalises and integrates $B$.  The resulting
-identity $B(y,z)=\phi(y+z)-\phi(y)-\phi(z)$ converts the bilinear phase into a
-locally quadratic one, after which local Fourier analysis selects the
-base-point-dependent frequency $\xi(x)$ in
-Theorem~\ref{thm:inverse-u3FE}.
+Section~\ref{sec:bilinear-formsFE} gives the lifting and integration tools.
+Section~\ref{sec:lemma-2-5FE} extracts a locally linear frequency map $M$,
+Section~\ref{sec:lemma-2-6FE} symmetrises $(h,x)\mapsto M(h)\cdot x$, and
+Section~\ref{sec:theorem-1-6FE} integrates the resulting form and extracts the
+remaining linear frequency.
 
 \subsection{Globalising and integrating locally bilinear forms}
 \label{sec:bilinear-formsFE}
 
-The symmetry argument below produces a bilinear form defined only locally on
-a Bohr set, whereas the usual integration of a bilinear form is a global
-algebraic operation.  The two results in this section bridge that gap: first
-the group and the form are lifted to a larger group $G_S$, where bilinearity
-is global, and then the symmetric global form is integrated and restricted
-back to a smaller Bohr set.  They are the structural input used in the final
-step of the proof.
+The form constructed below is only local.  The results here lift it to
+$G_S$, integrate it globally, and restrict the resulting quadratic map back
+to a smaller Bohr set.
 
 Let $U$ be a subset of an additive group and let $H$ be another additive
 group.  A map $B:U\times U\to H$ is \emph{locally bilinear} if
@@ -240,39 +208,9 @@ $\|\theta\|_{\mathbb{R}^S},\|\sigma\|_{\mathbb{R}^S}
 $\widetilde B$ may also be chosen symmetric.
 \end{lemma}
 
-\medskip
-\noindent\textbf{The cyclic lifting model
-\cite[Example~2.3]{JamneshanTaoFE}.}
-Let $G=\mathbb{Z}/N\mathbb{Z}$, let $0<\rho<1/4$, and consider the character
-$\psi([n])=n/N\pmod{1}$.  Set $S=\{\psi\}$.  Every element $x$ of
-$\operatorname{Bohr}(S,\rho)$ has a unique integer representative
-$\widetilde{x}$ satisfying $|\widetilde{x}|<\rho N$.  For
-$\alpha\in\mathbb{R}$, the map
-\[
- B:\operatorname{Bohr}(S,\rho)^2\longrightarrow\mathbb{R},
- \qquad B(x,y)=\alpha\widetilde{x}\widetilde{y},
-\]
-is locally bilinear, but in general it cannot be extended to a globally
-bilinear map on $G$: reduction modulo $N$ has discarded the carry information.
-Instead consider the infinite cyclic group
-\[
- G_S
- =\left\{\left([n],\frac{n}{N}\right):n\in\mathbb{Z}\right\}
- \leq \mathbb{Z}/N\mathbb{Z}\times\mathbb{R}.
-\]
-The formula
-\[
- \widetilde{B}\left(\left([n],\frac{n}{N}\right),
-                     \left([m],\frac{m}{N}\right)\right)=\alpha nm
-\]
-is globally bilinear and agrees with $B$ whenever
-$|n|,|m|<\rho N$.  The extra real coordinate records every carry rather than
-losing it, illustrating why the proof passes to $G_S$ instead of trying to
-extend $B$ inside the original finite group.
-
-Thus the lift removes the obstruction to global extension.  The next result
-integrates the lifted symmetric form to a quadratic map and then descends it
-to the original group.
+The lift is genuinely needed: already for a cyclic group there are locally
+bilinear forms on a Bohr set that do not extend to all of $G$
+\cite[Example~2.3]{JamneshanTaoFE}.
 
 \begin{lemma}[Integrating a symmetric bilinear form; Lemma~2.4]
 \label{lem:integratingFE}
@@ -288,7 +226,6 @@ Let $G$ be a finitely generated abelian group.
   B:\operatorname{Bohr}(S,\rho)^2\longrightarrow\mathbb{R}/\mathbb{Z}
  \]
  is symmetric and locally bilinear, then there is a radius $\rho'$ satisfying
- \linebreak
  $\exp(-|S|^{O(1)})\rho\ll\rho'\leq\rho$,
  and a locally quadratic map
  $\phi:\operatorname{Bohr}(S,\rho')\to\mathbb{R}/\mathbb{Z}$ for which
@@ -300,31 +237,24 @@ Let $G$ be a finitely generated abelian group.
 \end{enumerate}
 \end{lemma}
 
-In Section~\ref{sec:theorem-1-6FE}, part~(ii) will be applied to the symmetric
-form produced in Section~\ref{sec:lemma-2-6FE}.  Its proof uses
-Lemma~\ref{lem:globalisingFE} to pass to $G_S$, part~(i) to integrate there,
-and then restricts the resulting quadratic map back to $G$.
-
 \subsection{Extracting a locally linear frequency map}
 \label{sec:lemma-2-5FE}
 
-For the remainder of the argument, $G$, $f$, and $\eta$ are as in
-Theorem~\ref{thm:inverse-u3FE}.  Following the paper, $b(\,\cdot\,)$ denotes
-an arbitrary $1$-bounded function of the displayed variables and may change
-from one occurrence to the next.
-
-This first stage turns the analytic assumption on $f$ into coherent
-first-order Fourier structure.  Indeed, the recursive identity for the
-Gowers norms,
+For the remainder, $G,f,\eta$ are as in Theorem~\ref{thm:inverse-u3FE}, and
+$b(\,\cdot\,)$ denotes a changing $1$-bounded function.  The identity
 \[
  \|f\|_{U^3(G)}^8
  =\mathbb{E}_{h\in G}\|\Delta_hf\|_{U^2(G)}^4,
  \qquad \Delta_hf(x)=f(x+h)\overline{f(x)},
 \]
-implies that many multiplicative derivatives have large $U^2$ norm.  Fourier
-analysis therefore attaches a significant frequency to each of many
-increments $h$; the point of the following statement is that these initially
-unrelated frequencies can be organised into one locally linear map.
+shows that for many increments $h$ there is a frequency
+$\xi_h\in\widehat G$ such that
+\[
+ \left|\mathbb{E}_{x\in G}
+ \Delta_hf(x)e(-\xi_h\cdot x)\right|\gg\eta^{O(1)}.
+\]
+We call such increments $h$ \emph{good}.  The next lemma organises their
+frequencies into one locally linear map.
 
 \begin{lemma}[Locally linear frequency map, Lemma~2.5 of
 \cite{JamneshanTaoFE}]\label{lem:frequency-mapFE}
@@ -340,47 +270,32 @@ $M:\operatorname{Bohr}(S,2\rho)\to\widehat G$, such that
 \]
 \end{lemma}
 
-Here is how the additive-combinatorial input is used.  Choosing a large
-Fourier coefficient $\xi_h$ of $\Delta_hf$ for each good $h$ gives a set
-\[
- \Gamma=\{(h,\xi_h)\}\subset G\times\widehat G.
-\]
-Repeated Cauchy--Schwarz and Fourier inversion show that $\Gamma$ contains
-many additive quadruples \cite[Proposition~5.1]{GreenTaoFE}.  The
-Balog--Szemer\'edi--Gowers theorem extracts a large subset $\Gamma'$ whose
-doubling is small, and Pl\"unnecke's inequalities then control all bounded
-iterated sumsets and difference sets of $\Gamma'$; see
-\cite[Theorems~5.2--5.3 and Proposition~5.4]{GreenTaoFE}.  A further
-refinement gives a subgraph $\Gamma''$ for which
-$4\Gamma''-4\Gamma''$ is still a graph, rather than a multivalued relation
-\cite[Proposition~9.1]{GreenTaoFE}.
+For each good increment $h$, choose a frequency $\xi_h$ at which
+$\Delta_hf$ has a large Fourier coefficient.  The graph
+$\Gamma=\{(h,\xi_h)\}\subset G\times\widehat G$ records how this frequency
+depends on the direction $h$.  An additive quadruple in $\Gamma$ says that
+the selected frequencies satisfy the same additive relation as their
+directions, so many such quadruples suggest that $h\mapsto\xi_h$ behaves like
+an approximate affine map.
 
-The Bogolyubov lemma then places a bounded-rank Bohr set inside the
-set $2H''-2H''$ of first coordinates
-\cite[Lemma~6.3]{GreenTaoFE}.  Because $2\Gamma''-2\Gamma''$ is a graph,
-every $h$ in this Bohr set has a unique frequency $M(h)$; the graph property
-for $4\Gamma''-4\Gamma''$ gives the local linearity of $M$.
-Finally, regularising the Bohr set and pigeonholing a translate transfer the
-original derivative correlations to this $M$, with fixed shifts and
-frequencies absorbed into the functions $b$.  This is the content of
-\cite[Proposition~9.3]{GreenTaoFE}.  Jamneshan and Tao make one essential
-arbitrary-torsion modification: they write the graph directly as
-$\{(h,M(h))\}$, instead of dividing its frequency coordinate by $2$ as in
-the odd-order argument.  The finite-field model may also be found in
-\cite{GreenFE}.  In fact, the regular radius at this stage can be chosen in
-$[1/16,1/8]$; this is the meaning of $1\ll\rho\leq1/8$ in the statement.
-
-This lemma is used in the next section by regarding
-$(h,k)\mapsto M(h)\cdot k$ as a locally bilinear form.  Before it can be
-integrated to a quadratic map, however, it must be made symmetric.
+Cauchy--Schwarz supplies these quadruples.  The theorem of Balog,
+Szemer\'edi and Gowers isolates a large piece of the graph, and Pl\"unnecke's
+inequalities control its iterated sums and differences.  After a refinement,
+$4\Gamma''-4\Gamma''$ is still a graph
+\cite[Propositions~5.1, 5.4, and~9.1]{GreenTaoFE}.  Bogolyubov places a
+bounded-rank Bohr set in the projection of $2\Gamma''-2\Gamma''$
+\cite[Lemma~6.3]{GreenTaoFE}.  The graph property gives each point of this
+Bohr set a unique frequency $M(h)$ and forces $M$ to be locally linear.
+Regularisation and pigeonholing then recover the displayed correlation
+\cite[Proposition~9.3]{GreenTaoFE}.  For arbitrary torsion, Jamneshan and Tao
+avoid the factor $2$ used in the odd-order argument.
 
 \subsection{Symmetrising the local bilinear form}
 \label{sec:lemma-2-6FE}
 
-The form $(h,k)\mapsto M(h)\cdot k$ is locally bilinear, but it need not be
-symmetric.  Symmetry is indispensable because the second derivative of a
-quadratic map is symmetric.  The next statement preserves the correlation
-obtained above while replacing this form by a symmetric one.
+The form $(h,k)\mapsto M(h)\cdot k$ is locally bilinear but need not be
+symmetric, whereas a quadratic second derivative must be symmetric.  The
+next lemma corrects this while preserving the correlation.
 
 \begin{lemma}[Symmetric locally bilinear form, Lemma~2.6 of
 \cite{JamneshanTaoFE}]\label{lem:symmetric-formFE}
@@ -401,85 +316,43 @@ such that
 \]
 \end{lemma}
 
-The symmetry argument of \cite[Lemma~9.4]{GreenTaoFE}, applied without the
-factor of $2$ needed in the earlier odd-order formulation, first shows that
-the antisymmetric part is controlled by the Bohr norm:
-\[
- \bigl\|M(x)\cdot z-M(z)\cdot x\bigr\|_{\mathbb{R}/\mathbb{Z}}
- \ll \eta^{-O(1)}\|x\|_S.
-\]
-On a sufficiently smaller regular Bohr set this difference has a unique
-small representative.  One can consequently take its midpoint, defining
-$B$ and a small error $\Delta$ by
-\[
- M(x)\cdot z=B(x,z)+\Delta(x,z),\qquad
- M(z)\cdot x=B(x,z)-\Delta(x,z).
-\]
-The map $B$ is symmetric by construction, and the local linearity of $M$
-shows that it is locally bilinear.
-
-To retain the correlation, average the conclusion of
-Lemma~\ref{lem:frequency-mapFE} over small shifts $y,z$ and expand
-$M(h+y)\cdot(x+z)$ using local linearity.  Every term depending on only one
-of the displayed variables is absorbed into a $1$-bounded function $b$; the
-only coupled phase left is $M(y)\cdot z$.  Since $\Delta(y,z)$ is uniformly
-small, the triangle inequality permits replacing this phase by $B(y,z)$.
-A change of variables followed by pigeonholing gives exactly the correlation
-in Lemma~\ref{lem:symmetric-formFE}.  Thus this section supplies the symmetric
-input required by Lemma~\ref{lem:integratingFE}.
+The symmetry argument of \cite[Lemma~9.4]{GreenTaoFE}, with the odd-order
+factor $2$ omitted, makes $M(x)\cdot z-M(z)\cdot x$ uniformly small on a
+smaller regular Bohr set.  Taking its midpoint with $M(z)\cdot x$ defines a
+symmetric locally bilinear $B$.  Averaging the preceding correlation over
+small shifts and expanding $M$ leaves the coupled phase $M(y)\cdot z$; it may
+be replaced by $B(y,z)$ at small cost, while one-variable factors are absorbed
+into $b$.  Pigeonholing gives the stated correlation, now ready for
+integration.
 
 \subsection{From bilinear structure to quadratic correlation}
 \label{sec:theorem-1-6FE}
 
-We now assemble the argument.  Apply Lemma~\ref{lem:integratingFE} to the
-symmetric locally bilinear form $B$ obtained above, shrinking to a regular
-Bohr set when necessary.  This produces a locally quadratic map $\phi$ with
+We now have exactly the object needed to recover a quadratic phase.  After
+shrinking to a regular Bohr set, Lemma~\ref{lem:integratingFE} lifts $B$ to
+$G_S$, integrates it there, and descends the result to a locally quadratic
+map $\phi$ satisfying
 \[
  B(y,z)=\phi(y+z)-\phi(y)-\phi(z).
 \]
-The globalising lemma is what makes this integration valid in arbitrary
-torsion: inside the proof of Lemma~\ref{lem:integratingFE}, $B$ is lifted to
-$G_S$, integrated globally there, and then descended to the displayed local
-identity on $G$.
+The lift is precisely what removes any restriction on the torsion of $G$.
 
-Next, use regularity to average the correlation in
-Lemma~\ref{lem:symmetric-formFE} over a small change of variables
-$(h,k)\mapsto(h+y+z,k-y)$.  Bilinearity and the preceding identity give
-\begin{align*}
- B(h+y+z,k-y)
-  ={}&B(h,k)-B(h,y)+B(y+z,k)-B(y,y)\\
-     &-\phi(y+z)+\phi(y)+\phi(z).
-\end{align*}
-All terms except $\phi(z)$ can be absorbed into the auxiliary functions
-$b$.  After setting $x'=x+h+k$ and pigeonholing in $h,k$, one obtains, on
-suitably chosen regular Bohr sets,
+It remains to expose $\phi$ in the correlation.  Choose a still smaller
+regular Bohr set and average Lemma~\ref{lem:symmetric-formFE} after the change
+$(h,k)\mapsto(h+y+z,k-y)$; regularity makes the resulting error negligible.
+Local bilinearity separates all terms in $B(h+y+z,k-y)$ except $B(y,z)$.
+The separated phases are absorbed into the changing functions $b$, while
+the identity above converts $B(y,z)$ into quadratic phases.  After setting
+$x'=x+h+k$ and pigeonholing $h,k$, one obtains a large trilinear average
+whose integrand is
 \[
- \left|
- \mathbb{E}_{\substack{x'\in G\\y,z}}
- b(x',y+z)b(x',y)f(x'+z)e\bigl(-\phi(z)\bigr)
- \right|\gg\eta^{O(1)}.
+ b(x',y+z)b(x',y)f(x'+z)e(-\phi(z)).
 \]
-Here $y$ ranges over a controlled Bohr set and $z$ over a smaller one; the
-precise radii retain the bounds in Theorem~\ref{thm:inverse-u3FE}.
-
-The last step is local Fourier analysis.  For a positive proportion
-$\gg\eta^{O(1)}$ of the base points $x'$, the inner $(y,z)$-average above is
-large.  The large-trilinear-form lemma
-\cite[Lemma~4.4]{GreenTaoFE} then selects a frequency
-$\xi(x')\in\widehat G$ such that
-\[
- \left|
-  \mathbb{E}_{z\in\operatorname{Bohr}(S,\rho_*)}
-  f(x'+z)e\bigl(-\phi(z)-\xi(x')\cdot z\bigr)
- \right|\gg\eta^{O(1)}
-\]
-for a regular radius
-$\exp(-\eta^{-O(1)})\ll\rho_*\leq1/100$.  Define $\xi$ arbitrarily at the
-remaining base points and average in $x'$.  This gives the conclusion of
-Theorem~\ref{thm:inverse-u3FE}: the combinatorial argument constructs a
-locally linear derivative, symmetrisation turns it into an integrable
-bilinear form, lifting and integration produce the quadratic phase, and
-local Fourier analysis supplies the remaining linear twist.
+For many base points $x'$, the corresponding $(y,z)$-average is large.  The
+local Fourier lemma
+\cite[Lemma~4.4]{GreenTaoFE} then supplies a frequency $\xi(x')$ for which
+$f(x'+z)e(-\phi(z)-\xi(x')\cdot z)$ has large mean on the Bohr set.
+Averaging over $x'$ gives Theorem~\ref{thm:inverse-u3FE}.
 
 \begin{thebibliography}{GT}
 
@@ -489,13 +362,6 @@ W.~T. Gowers,
 length four},
 \href{https://doi.org/10.1007/s000390050065}{Geom. Funct. Anal.}
 \textbf{8} (1998), no.~3, 529--551.
-
-\bibitem[G]{GreenFE}
-B. Green,
-\href{https://arxiv.org/abs/math/0604089}{\emph{Montr\'eal lecture notes on
-quadratic Fourier analysis}},
-in \emph{Additive Combinatorics}, CRM Proceedings \& Lecture Notes,
-vol.~43, American Mathematical Society, 2007, pp.~69--102.
 
 \bibitem[GT]{GreenTaoFE}
 B. Green and T. Tao,
