@@ -102,7 +102,7 @@
 \talktitle{The inverse theorem for the \texorpdfstring{$U^3$}{U3} Gowers
 uniformity norm\texorpdfstring{\\}{} on arbitrary finite abelian groups: Fourier-analytic approach}
 \talkafter{A. Jamneshan and T. Tao}~\cite{JamneshanTaoFE}
-\talkspeaker{Ferran Espuña}{UAM--ICMAT}
+\talkspeaker{Ferran Espuña}{UAM}
 
 \setcounter{equation}{0}
 \setcounter{theorem}{0}
@@ -282,10 +282,30 @@ Cauchy--Schwarz supplies these quadruples.  The theorem of Balog,
 Szemer\'edi and Gowers isolates a large piece of the graph, and Pl\"unnecke's
 inequalities control its iterated sums and differences.  After a refinement,
 $4\Gamma''-4\Gamma''$ is still a graph
-\cite[Propositions~5.1, 5.4, and~9.1]{GreenTaoFE}.  Bogolyubov places a
-bounded-rank Bohr set in the projection of $2\Gamma''-2\Gamma''$
-\cite[Lemma~6.3]{GreenTaoFE}.  The graph property gives each point of this
-Bohr set a unique frequency $M(h)$ and forces $M$ to be locally linear.
+\cite[Propositions~5.1, 5.4, and~9.1]{GreenTaoFE}.  Here
+\[
+ 4\Gamma''-4\Gamma''
+ =\{\gamma_1+\cdots+\gamma_4-\gamma_5-\cdots-\gamma_8:
+     \gamma_i\in\Gamma''\}.
+\]
+Saying that this set is a graph means that projection onto $G$ is injective:
+if two such signed sums have the same first coordinate, then they also have
+the same frequency coordinate.  Thus the resulting frequency depends only
+on the combined increment, not on how that increment is represented.
+
+Bogolyubov places a bounded-rank Bohr set in the projection of
+$2\Gamma''-2\Gamma''$ \cite[Lemma~6.3]{GreenTaoFE}.  Consequently, each $h$
+in this Bohr set has a unique frequency $M(h)$ with
+$(h,M(h))\in2\Gamma''-2\Gamma''$.  If $h_1,h_2,h_1+h_2$ all lie in the Bohr
+set, then
+\[
+ (h_1,M(h_1))+(h_2,M(h_2))
+ \quad\text{and}\quad
+ (h_1+h_2,M(h_1+h_2))
+\]
+may both be viewed as elements of $4\Gamma''-4\Gamma''$ with the same first
+coordinate.  The graph property therefore gives
+$M(h_1+h_2)=M(h_1)+M(h_2)$, which is precisely local linearity.
 Regularisation and pigeonholing then recover the displayed correlation
 \cite[Proposition~9.3]{GreenTaoFE}.  For arbitrary torsion, Jamneshan and Tao
 avoid the factor $2$ used in the odd-order argument.
@@ -385,7 +405,7 @@ Computing}, \href{https://doi.org/10.1145/1250790.1250864}{ACM}, New York,
 
 \end{thebibliography}
 
-\noindent \textsc{Ferran Espuña, UAM--ICMAT}\\
+\noindent \textsc{Ferran Espuña, UAM}\\
 \textit{email:} \texttt{ferranespuna@gmail.com}
 
 % \newpage
