@@ -329,8 +329,21 @@ $\widetilde B$ may also be chosen symmetric.
 
 The lift is essential: even for a cyclic group, a locally bilinear form need
 not extend to $G$ \cite[Example~2.3]{JamneshanTaoFE}.
-Lemma~\ref{lem:globalisingFE} extends $B$ on $G_S$ without changing its local
-values, making the obstruction integrable.
+Apply Lemma~\ref{lem:globalisingFE} to the form above, with
+$H=\mathbb{R}/\mathbb{Z}$ and $2\rho$ as the input radius, and set
+$\rho_0=\exp(-C|S|^C)\rho$.  For
+$h\in\operatorname{Bohr}(S,\rho_0)$, let
+$\widetilde h=(h,\theta_h)\in G_S$ be its canonical small lift, so that
+$\|\theta_h\|_{\mathbb{R}^S}<\rho_0$.  The conclusion is a symmetric globally
+bilinear map $\widetilde B:G_S^2\to\mathbb{R}/\mathbb{Z}$ satisfying
+\[
+ \widetilde B(\widetilde h,\widetilde k)=B(h,k)
+ \qquad
+ (h,k\in\operatorname{Bohr}(S,\rho_0)).
+\]
+Thus, on the smaller Bohr set, the phase $e(-B(h,k))$ is literally the
+restriction of the global bilinear phase $e(-\widetilde B)$ on $G_S$.
+Global bilinearity is what allows the next lemma to integrate the obstruction.
 
 \subsection{From bilinear structure to quadratic correlation}
 \label{sec:theorem-1-6FE}
@@ -361,9 +374,9 @@ Let $G$ be a finitely generated abelian group.
 \end{enumerate}
 \end{lemma}
 
-Part~(ii) packages globalisation, part~(i) on $G_S$, and restriction back.
-Applied to Lemma~\ref{lem:symmetric-formFE}, it rewrites the obstruction as
-the second derivative of a locally quadratic map $\phi$:
+Part~(ii) records exactly this lift--integrate--restrict argument.  Applied to
+Lemma~\ref{lem:symmetric-formFE}, it rewrites the obstruction as the second
+derivative of a locally quadratic map $\phi$:
 \[
  B(y,z)=\phi(y+z)-\phi(y)-\phi(z).
 \]
