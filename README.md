@@ -49,10 +49,30 @@ the audience deck needed for the printable notes. Close external viewers
 of those PDFs before running the script. If the old recipe is still active, run
 **Developer: Reload Window** and build again.
 
+## Standalone mathematical exposition
+
+[`exposition.tex`](exposition.tex) is a normal LaTeX article explaining the
+entire proof at the same level of detail as the presentation notes. It includes
+the definitions and full statements, detailed proofs of Lemmas 2.5 and 2.6,
+Example 2.3 and its lifting diagram, the final Fourier argument, a finite-field
+comparison, and an appendix deriving the local Bogolyubov input. Black boxes
+are identified and referenced.
+
+The source is self-contained: it does not load the slide sources or require
+any previously generated PDF. Build it in LaTeX Workshop or run:
+
+```bash
+python scripts/build.py --exposition-only
+```
+
+The resulting document is `out/exposition.pdf`. It is also included in the
+default build and release archive.
+
 ## Automated PDF build
 
-GitHub Actions builds the summary, presentation, and notes on every push and
-publishes the four PDFs and a source archive in the branch's `pdf-build-*` release.
+GitHub Actions builds the summary, presentation, notes, and standalone exposition
+on every push and publishes the five PDFs and a source archive in the branch's
+`pdf-build-*` release.
 
 Build locally with:
 

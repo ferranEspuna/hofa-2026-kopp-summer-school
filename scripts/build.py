@@ -9,7 +9,7 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-SOURCES = ("espuna", "presentation", "presentation-screen", "presenter-notes")
+SOURCES = ("espuna", "presentation", "presentation-screen", "presenter-notes", "exposition")
 BUILD_DIR = PROJECT_ROOT / "build"
 OUT_DIR = PROJECT_ROOT / "out"
 DIST_DIR = PROJECT_ROOT / "dist"
@@ -85,10 +85,15 @@ def package_release(pdf_paths: list[Path]) -> Path:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build the summary, slides, and presenter notes.")
-    parser.add_argument(
+    parser = argparse.ArgumentParser(description="Build the summary, slides, notes, and exposition.")
+    selection = parser.add_mutually_exclusive_group()
+    selection.add_argument(
         "--presentation-only", action="store_true",
         help="Build the audience deck, two-screen deck, and print-friendly notes only.",
+    )
+    selection.add_argument(
+        "--exposition-only", action="store_true",
+        help="Build only the standalone mathematical exposition.",
     )
     parser.add_argument("--package", action="store_true", help="Create a release zip.")
     parser.add_argument("--clean", action="store_true", help="Clean before building.")
@@ -105,7 +110,12 @@ def main() -> None:
     if args.clean_only:
         return
 
-    sources = SOURCES[1:] if args.presentation_only else SOURCES
+    if args.exposition_only:
+        sources = ("exposition",)
+    elif args.presentation_only:
+        sources = SOURCES[1:4]
+    else:
+        sources = SOURCES
     # The notes include thumbnails from out/presentation.pdf, so keep this order.
     pdf_paths = [build_pdf(stem) for stem in sources]
     if args.package:
