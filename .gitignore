@@ -12,3 +12,7 @@ __pycache__/
 *.out
 *.synctex.gz
 *.toc
+*.nav
+*.snm
+*.vrb
+.vscode/

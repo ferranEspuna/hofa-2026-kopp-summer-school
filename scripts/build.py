@@ -9,11 +9,10 @@ from pathlib import Path
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-SOURCE = PROJECT_ROOT / "espuna.tex"
+SOURCES = ("espuna", "presentation", "presentation-screen", "presenter-notes")
 BUILD_DIR = PROJECT_ROOT / "build"
 OUT_DIR = PROJECT_ROOT / "out"
 DIST_DIR = PROJECT_ROOT / "dist"
-OUTPUT = OUT_DIR / "espuna.pdf"
 GENERATED_DIRS = {
     ".git",
     ".venv",
@@ -36,38 +35,44 @@ def clean() -> None:
             shutil.rmtree(path)
 
 
-def build_pdf() -> Path:
-    if shutil.which("latexmk") is None:
+def build_pdf(stem: str) -> Path:
+    if shutil.which("pdflatex") is None:
         raise SystemExit(
-            "Required executable 'latexmk' was not found. Install a TeX "
-            "distribution with latexmk and pdflatex available on PATH."
+            "Required executable 'pdflatex' was not found. Install a TeX "
+            "distribution with Beamer, TikZ, and Latin Modern fonts."
         )
 
-    target_build_dir = BUILD_DIR / "latex" / "espuna"
+    target_build_dir = BUILD_DIR / "latex" / stem
     target_build_dir.mkdir(parents=True, exist_ok=True)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    run(
-        [
-            "latexmk",
-            "-pdf",
-            "-interaction=nonstopmode",
-            "-halt-on-error",
-            "-file-line-error",
-            f"-outdir={target_build_dir}",
-            SOURCE.name,
-        ],
-        cwd=PROJECT_ROOT,
-    )
-    shutil.copy2(target_build_dir / "espuna.pdf", OUTPUT)
-    print(f"Wrote {OUTPUT.relative_to(PROJECT_ROOT)}")
-    return OUTPUT
+    # MiKTeX exposes latexmk.exe even when its required Perl engine is absent.
+    # These documents need no BibTeX or external graphics-generation passes.
+    if shutil.which("latexmk") and shutil.which("perl"):
+        run(
+            ["latexmk", "-pdf", "-interaction=nonstopmode", "-halt-on-error",
+             "-file-line-error", f"-outdir={target_build_dir}", f"{stem}.tex"],
+            cwd=PROJECT_ROOT,
+        )
+    else:
+        for _ in range(2):
+            run(
+                ["pdflatex", "-interaction=nonstopmode", "-halt-on-error",
+                 "-file-line-error", f"-output-directory={target_build_dir}",
+                 f"{stem}.tex"],
+                cwd=PROJECT_ROOT,
+            )
+    output = OUT_DIR / f"{stem}.pdf"
+    shutil.copy2(target_build_dir / f"{stem}.pdf", output)
+    print(f"Wrote {output.relative_to(PROJECT_ROOT)}")
+    return output
 
 
-def package_release(pdf_path: Path) -> Path:
+def package_release(pdf_paths: list[Path]) -> Path:
     DIST_DIR.mkdir(parents=True, exist_ok=True)
     zip_path = DIST_DIR / f"{PROJECT_ROOT.name}-release.zip"
     with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
-        archive.write(pdf_path, Path("pdfs") / pdf_path.name)
+        for pdf_path in pdf_paths:
+            archive.write(pdf_path, Path("pdfs") / pdf_path.name)
         for path in PROJECT_ROOT.rglob("*"):
             if not path.is_file():
                 continue
@@ -80,7 +85,11 @@ def package_release(pdf_path: Path) -> Path:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Build the LaTeX PDF.")
+    parser = argparse.ArgumentParser(description="Build the summary, slides, and presenter notes.")
+    parser.add_argument(
+        "--presentation-only", action="store_true",
+        help="Build the audience deck, two-screen deck, and print-friendly notes only.",
+    )
     parser.add_argument("--package", action="store_true", help="Create a release zip.")
     parser.add_argument("--clean", action="store_true", help="Clean before building.")
     parser.add_argument(
@@ -96,9 +105,11 @@ def main() -> None:
     if args.clean_only:
         return
 
-    pdf_path = build_pdf()
+    sources = SOURCES[1:] if args.presentation_only else SOURCES
+    # The notes include thumbnails from out/presentation.pdf, so keep this order.
+    pdf_paths = [build_pdf(stem) for stem in sources]
     if args.package:
-        package_release(pdf_path)
+        package_release(pdf_paths)
 
 
 if __name__ == "__main__":

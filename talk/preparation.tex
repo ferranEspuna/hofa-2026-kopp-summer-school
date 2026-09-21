@@ -1,0 +1,364 @@
+\section*{Preparation appendix: the arguments behind the notes}
+This appendix is for rehearsal and questions. The timed talk is complete
+at slide 27. The proof below uses the source notation only where useful;
+in particular $M$ is never defined by dividing a character by two.
+
+\subsection*{1. Source map and scope of the black boxes}
+\begin{center}\small
+\begin{tabular}{>{\raggedright\arraybackslash}p{.29\linewidth}>{\raggedright\arraybackslash}p{.35\linewidth}>{\raggedright\arraybackslash}p{.27\linewidth}}
+Input & Exact source & Treatment\\\hline
+Derivative frequencies and graph energy & \GT{Proposition 5.1} & Proved, slides 7--8\\
+BSG and Pl\"unnecke & \GT{Theorems 5.2--5.3} & Stated black boxes, slide 9\\
+Separation and graph refinement & \GT{Lemmas 8.3, 9.2} & Explained, slide 10\\
+Global Bogolyubov & \GT{Lemma 6.3} & Stated, slide 11; proof in backup\\
+Recovering correlation & \GT{Propositions 9.1, 9.3}; \JT{Lemma 2.5} & Proved, slides 11--12\\
+Regular-radius existence & \GT{Lemma 8.2} & Stated black box, backup 1\\
+Regularity shift estimates & \GT{Lemma 4.2} & Boundary proof in backup 1\\
+Local Fourier decay & \GT{Lemma 8.4} & Proof, slide 15 notes / backup 4\\
+Local Bogolyubov & \GT{Lemma 8.8} & Stated combinatorial input, slide 15; derivation below\\
+Symmetry & \GT{Lemma 9.4}; \JT{Lemma 2.6} & Proved, slides 14--17\\
+Lift and integrate & \JT{Lemmas 2.2, 2.4} & Stated algebraic black boxes, slides 21--23\\
+Final Fourier coefficient & \GT{Lemma 4.4} & Proved, slide 26\\
+Finite-field comparison & \Green{Propositions 2.5--2.6, Lemma 2.8} & Optional model, backup 2
+\end{tabular}\end{center}
+Here [JT] is arXiv:2112.13759v3 (2023); [GT] is arXiv:math/0503014v4
+(December 2023); [Green] is arXiv:math/0604089v2 (2007). The bibliography
+slide gives publication information and clickable links. The numbering in
+this presentation is the main paper's numbering: the frequency-map result
+is \emph{Lemma} 2.5, not Theorem 2.5. Green's notes have a different
+Proposition 2.5.
+
+\subsection*{2. The Cauchy--Schwarz calculation in slide 8}
+Extend $\xi_h$ arbitrarily outside $H$ and put $F_k(h)=\mathbf1_H(h)e(\xi_h\cdot k)$.
+For $a_h(x)=f(x+h)\overline{f(x)}$, squaring the Fourier coefficient gives
+\[
+|\widehat a_h(\xi_h)|^2
+=\E_{x,k}f(x+h)\overline{f(x+h+k)}\overline{f(x)}f(x+k)e(\xi_h\cdot k).
+\]
+Thus, with $u(x,k)=f(x)\overline{f(x+k)}$ and
+$v(x,k)=\overline{f(x)}f(x+k)$,
+\[
+\delta_0:=\E_h\mathbf1_H(h)|\widehat a_h(\xi_h)|^2
+=\E_{x,h,k}u(x+h,k)v(x,k)F_k(h)\geq\eta^{16}/4.
+\]
+Since $|v|\leq1$, Cauchy--Schwarz gives
+\[
+\delta_0^2\leq
+\E_{x,k}\abs{\E_hu(x+h,k)F_k(h)}^2
+=\E_{y,a,k}u(y,k)\overline{u(y+a,k)}
+       \E_hF_k(h)\overline{F_k(h+a)}.
+\]
+Here $y=x+h$ and $a$ is the difference of the two copies of $h$.
+The right side is real and nonnegative before rearrangement. Since the
+bounded factor is independent of $h$, a second Cauchy--Schwarz yields
+\[
+\delta_0^4\leq
+\E_{a,k}\abs{\E_hF_k(h)\overline{F_k(h+a)}}^2
+=\E_{h,a,b,k}F_k(h)\overline{F_k(h+a)}
+                  \overline{F_k(h+b)}F_k(h+a+b).
+\]
+Average over $k$ using character orthogonality. The result is exactly the
+normalised count of parallelograms in $H$ whose four frequencies obey the
+same alternating relation. It is at least $\eta^{64}/256$. There are
+$|G|^3$ ordered base parallelograms, proving the energy estimate with the
+correct normalisation. This argument works for complex 1-bounded $f$ and
+does not need the real-valued Samorodnitsky identity used in Green's notes.
+
+\subsection*{3. Why the graph refinement has polynomial cost}
+After BSG and Pl\"unnecke, enlarge $K\ll\eta^{-O(1)}$ until
+$|\Gamma'|\geq |G|/K$ and $|9\Gamma'-8\Gamma'|\leq K|G|$.
+Define
+\[V=\{v\in\Gh:(0,v)\in8\Gamma'-8\Gamma'\}.\]
+For each first coordinate of $\Gamma'$, adding all of $V$ produces
+$|V|$ different points. Therefore
+\[|\Gamma'||V|=|\Gamma'+(\{0\}\times V)|\leq K|G|,
+\qquad |V|\leq K^2.\]
+Characters on $\Gh$ are evaluations at elements of $G$, by finite
+Pontryagin duality. If $v\ne0$, a uniformly random character $s$ of
+$\Gh$ has $s(v)$ uniform on a nontrivial finite cyclic subgroup of
+$\T$. At most two thirds of that subgroup lies in $(-1/4,1/4)$.
+Successively choose a character leaving at most two thirds of the surviving
+nonzero elements of $V$. After $O(\log(2|V|))$ choices,
+\[V\cap\{v:\norm{s(v)}_\T<1/4\text{ for every chosen }s\}=\{0\}.\]
+Let $m$ be the number of tests and $\Psi:\Gh\to\T^m$ their product.
+Partition the torus into $128^m$ cubes of side $1/128$, using
+representatives in $[0,1)^m$. Choose a cube containing at least this
+fraction of the frequencies of $\Gamma'$ and call the resulting graph
+$\Gamma''$. Since $m=O(\log K)$, its size is at least
+$K^{-O(1)}|G|$.
+
+If $(0,v)\in8\Gamma''-8\Gamma''$, then $v\in V$. In each tested
+coordinate the eight positive and eight negative cube origins cancel;
+the remaining real sum has magnitude below $16/128<1/4$.
+Thus $v=0$. If two points of $4\Gamma''-4\Gamma''$ share a first
+coordinate, their difference is such a vertical vector, so the two
+points coincide. This proves injectivity of projection on that sumset.
+We do \emph{not} claim that $8\Gamma''-8\Gamma''$ itself is a graph;
+only its zero fibre is trivial.
+
+\subsection*{4. From uniqueness of lifts to the full local-linearity condition}
+Let $H''=\pi_G\Gamma''$ and choose $S$ by global Bogolyubov so that
+$U_0=\Bohr(S,1/4)\subseteq2H''-2H''$. Define $M$ by the unique
+lift $(h,M(h))\in2\Gamma''-2\Gamma''$ for $h\in U_0$.
+For $h_1,h_2,h_3,h_4\in U_0$ with $h_1+h_2=h_3+h_4$, compare the
+two sums of lifts in $4\Gamma''-4\Gamma''$. They have the same first
+coordinate and hence the same second coordinate:
+\[M(h_1)+M(h_2)=M(h_3)+M(h_4).\]
+This is precisely the vanishing of all second differences. The
+three-point additivity identity alone on an arbitrary subset would not
+automatically imply this stronger four-point statement, so it is useful
+to prove the latter directly. Also $M(0)=0$. The regular radius
+$\rho\in[1/16,1/8]$ ensures $\Bohr(S,2\rho)\subseteq U_0$.
+
+To get back to $f$, choose $x_0$ so the set
+$A=\{h\in\Bohr(S,\rho):x_0+h\in H''\}$ has relative density
+at least $|H''|/|G|$. Then $\xi_{x_0+h}=\xi_0+M(h)$ on $A$.
+Write
+\[c_h=\E_xf(x+x_0+h)\overline{f(x)}e(-[\xi_0+M(h)]\cdot x),\]
+and choose $\lambda_h$ with $|\lambda_h|=1$ and
+$\lambda_hc_h=|c_h|$ (choose $1$ if $c_h=0$). After $u=x+x_0$,
+the explicit bounded factors can be taken as
+\[
+b_1(h)=\mathbf1_A(h)\lambda_h e((\xi_0+M(h))\cdot x_0),
+\qquad b_2(u)=\overline{f(u-x_0)}e(-\xi_0\cdot u).
+\]
+This verifies both the size and the exact variable dependencies in
+Lemma 2.5. No replacement of $f$ by an uncontrolled function is needed.
+
+\subsection*{5. Symmetry: the algebra inside the Cauchy--Schwarz step}
+After averaging translates, the Lemma 2.5 correlation gives
+\[
+\abs{\E_{h\in P,x\in U}a(h)c(x+h)b(x)e(-M(h)\cdot x)}\geq\delta,
+\]
+where $P$ is the original regular Bohr set, $U$ is much smaller and
+regular, and $\delta\gg\eta^{O(1)}$. All points used below lie in the
+original doubled domain of $M$. Squaring in $h$ introduces $x,y\in U$
+and the phase $M(h)\cdot(y-x)$. Put $w=x+y+h$ and expand:
+\[
+\begin{aligned}
+M(w-x-y)\cdot(y-x)
+={}&M(w)\cdot y-M(w)\cdot x\\
+&+M(x)\cdot x-M(y)\cdot y-D(x,y).
+\end{aligned}
+\]
+Everything except $-D(x,y)$ is a sum of a function of $(w,x)$ and
+a function of $(w,y)$. The factors $c(x+h)$ and
+$\overline{c(y+h)}$ become $c(w-y)$ and $\overline{c(w-x)}$,
+which have the same separated dependencies. Replace $P+x+y$ by $P$
+using regularity, losing $O(d\,\operatorname{rad}(U)/\operatorname{rad}(P))$.
+Fix $w$ by averaging and, if necessary, interchange $x,y$. Then
+\[\abs{\E_{x,y\in U}u(x)v(y)e(D(x,y))}\geq\delta_1,
+\qquad\delta_1\gg\eta^{O(1)}.\]
+One more Cauchy--Schwarz gives
+\[\E_{y,y'\in U}\abs{\E_{x\in U}e(D(x,y-y'))}\geq\delta_1^2.\]
+There is a $y_0$ and a subset $A\subseteq U$ of relative density
+$\gg\delta_1^2$ for which each inner absolute value with $y'=y_0$
+is $\gg\delta_1^2$. Apply local Fourier decay to obtain
+\[\norm{D(t,y_0-y)}_\T\ll\eta^{-O(1)}\norm{t}_S
+\quad(t\in U,\ y\in A).\]
+For $z=a_1+a_2-a_3-a_4\in2A-2A$, write
+\[z=(y_0-a_3)+(y_0-a_4)-(y_0-a_1)-(y_0-a_2).\]
+Bilinearity and the triangle inequality yield the same estimate with a
+factor four. The ambient Bohr set was chosen sufficiently small that all
+partial sums needed here lie in the original domain.
+
+Local Bogolyubov now produces $S_*=S\cup T$ of polynomial size and a
+radius $r_*\gg\eta^{O(1)}$ such that
+$\Bohr(S_*,r_*)\subseteq U\cap(2A-2A)$. Consequently
+\[\norm{D(t,z)}_\T\leq L\norm{t}_{S_*},\qquad L\ll\eta^{-O(1)},\]
+for both variables in that Bohr set. Shrink to $2r\leq\varepsilon/L$
+and $2r\leq r_*$, with $r$ regular and $\varepsilon$ a sufficiently
+small power of $\eta$. This makes the real-midpoint argument valid on
+the whole doubled Bohr set needed in Lemma 2.6.
+
+\subsection*{6. Why local Bogolyubov has polynomial parameters}
+This is the extra additive-combinatorial ingredient in the symmetry
+step. Here is the mechanism of \GT{Lemma 8.8}, with constants suppressed
+but the density dependence retained.
+
+Let $U=\Bohr(S,r)$ be regular, $d=\max(1,|S|)$,
+$A\subseteq U$, and $|A|=\delta|U|$. Take a regular
+$U'=\Bohr(S,r')$ with $r'\asymp\delta r/d$, sufficiently small that
+the regularity error is at most $\delta/2$. Averaging over translates
+$x+U'$, $x\in U$, gives some $x_0$ for which
+\[A'=A\cap(x_0+U'),\qquad |A'|\geq(\delta/2)|U'|.\]
+Use $\beta=|U|/|G|$, $\beta'=|U'|/|G|$ and normalised convolution.
+The function $\mathbf1_A*\mathbf1_{A'}$ is supported in
+$x_0+U+U'$, of size at most $2|U|$. Cauchy--Schwarz and Parseval give
+\[
+F(0):=\sum_\xi|\widehat{\mathbf1_A}(\xi)|^2
+                         |\widehat{\mathbf1_{A'}}(\xi)|^2
+\geq\frac{\delta^4\beta(\beta')^2}{8}.
+\]
+The function
+$F=\mathbf1_A*\mathbf1_{A'}*\mathbf1_{-A}*\mathbf1_{-A'}$
+is supported in $2A-2A$. Define
+\[R=\{\xi:|\widehat{\mathbf1_{A'}}(\xi)|\geq
+                       (\delta^{3/2}/8)\beta'\}.\]
+The Fourier mass outside $R$ is at most
+$\delta^4\beta(\beta')^2/64$. Therefore, whenever
+$\norm{\xi\cdot x}_\T<1/10$ for every $\xi\in R$,
+\[
+F(x)\geq\tfrac12F(0)-2\sum_{\xi\notin R}
+|\widehat{\mathbf1_A}(\xi)|^2|\widehat{\mathbf1_{A'}}(\xi)|^2>0.
+\]
+It remains to enforce these possibly numerous frequency constraints with
+only polynomially many new characters. That is the role of the local
+Bessel inequality.
+
+\textbf{Local Bessel input, exact claim.}
+If $V=\Bohr(S,s)$ is regular, $E\subseteq V$, and
+\[\mathcal R=\{\xi:|\widehat{\mathbf1_E}(\xi)|\geq t|V|/|G|\},\]
+then, for $0<\theta,t\leq1$, there exist at most $2/t^2$ frequencies
+$\xi_1,\ldots,\xi_m$ such that each $\xi\in\mathcal R$ satisfies
+\[\sup_{x\in\Bohr(S,\theta s)}
+\norm{(\xi-\xi_j)\cdot x}_\T\leq2^{16}\theta d/t^4
+\quad\text{for some }j.\]
+This is \GT{Corollary 8.7}. To see its proof, choose a maximal set of
+frequencies separated by $q=2^{16}\theta d/t^4$ in this seminorm.
+Local Fourier decay (applied to differences of characters) bounds the
+off-diagonal inner products on $V$ by
+$2^6(\theta d/q)^{1/2}\leq t^2/4$.
+Choose phases aligning the correlations with $\mathbf1_E$.
+Cauchy--Schwarz gives
+\[t^2m^2\leq\E_{x\in V}\abs{\sum_{j=1}^m c_j e(\xi_j\cdot x)}^2
+\leq m+\tfrac12t^2m^2.\]
+Hence $m\leq2/t^2$. Maximality ensures that these frequencies cover
+the large spectrum in the displayed seminorm. This derives the input
+from the local Fourier-decay lemma, rather than invoking an additional
+structural theorem.
+
+Apply it to $E=A'-x_0\subseteq U'$; translation preserves Fourier
+magnitudes. With $t=\delta^{3/2}/8$, there are
+$m=O(\delta^{-3})$ representative frequencies. Set
+$\theta=c\delta^6/d$ sufficiently small that the approximation error
+is below $1/20$. On a Bohr set enforcing $\norm{\xi_j\cdot x}<1/20$
+and the old constraints at radius $\theta r'$, every frequency in $R$
+has circle norm below $1/10$. Thus the positive-convolution argument
+puts this Bohr set inside $2A-2A$.
+
+Since $r'\asymp\delta r/d$, this elementary tracking yields the slightly
+weaker but fully sufficient radius $c\delta^7r/d^2$, with
+$O(\delta^{-3})$ new characters. \GT{Lemma 8.8} states the sharper
+$c\delta^6r/d$ radius quoted on slide 15. The talk may use that stated
+black box; the derivation here proves a polynomial-radius version from
+scratch, which is all the symmetry argument needs. In particular, no
+global density such as $|A|/|G|$ enters the rank bound.
+
+\subsection*{7. The midpoint is exactly bilinear, not approximately so}
+On the small doubled domain, choose $d(y,z)\in(-\varepsilon,\varepsilon)$
+lifting $D(y,z)$, with $\varepsilon<1/10$. Whenever $y_1,y_2,y_1+y_2,z$
+are in the domain,
+\[d(y_1+y_2,z)-d(y_1,z)-d(y_2,z)\in\Z\cap(-3\varepsilon,3\varepsilon)=\{0\}.\]
+The same holds in $z$, and $d(z,y)=-d(y,z)$. Therefore
+\[B(y,z)=M(y)\cdot z-\tfrac12d(y,z)\pmod1\]
+is symmetric and locally bilinear. Furthermore
+\[|e(-M(y)\cdot z)-e(-B(y,z))|
+=|e(-d(y,z)/2)-1|\leq\pi\varepsilon.\]
+Choose $\varepsilon$ below a small fixed fraction of the current
+correlation lower bound. The phase replacement then loses at most half
+that bound. The fact that $d$ is a small \emph{real} lift is indispensable:
+there is no globally consistent half-map on $\T$.
+
+\subsection*{8. Lifting and integration: check the local domains}
+For $r<1/2$, each $x\in\Bohr(S,r)$ has a unique lift
+$\widetilde x=(x,\theta_x)$ with $\norm{\theta_x}_\infty<r$.
+If $x,y,x+y$ lie in this set and $3r<1$, the integer vector
+$\theta_x+\theta_y-\theta_{x+y}$ has norm below one, hence vanishes.
+Similarly, if all four vertices of a parallelogram lie in the set and
+$4r<1$, their lifts satisfy the same parallelogram relation. On any cube
+lying there, the lifted vertices consequently form an affine cube.
+Restricting a global quadratic on $G_S$ therefore gives a locally
+quadratic map in the full cube sense.
+
+The sequence $0\to\Z^S\to G_S\to G\to0$ proves finite generation:
+lift a finite generating set of $G$ and append the coordinate generators
+of $\Z^S$. There may still be a finite torsion subgroup upstairs.
+Lemma 2.4(i) applies without any torsion-free assumption.
+
+For the cyclic example the cover is precisely $\Z$, and
+$\widetilde B(n,m)=\alpha nm$ is real-valued. Reducing modulo one and
+integrating gives $\widetilde\phi(n)=\alpha n^2/2\pmod1$.
+For a genuinely nontrivial circle-valued local obstruction on $\Z/17\Z$,
+one may take $\alpha=\sqrt2$, so that $17\alpha\notin\Z$.
+
+\subsection*{9. The final phase bookkeeping and Fourier normalisation}
+The expansion in slide 25 is worth checking once. Symmetry gives
+\[
+B(h+y+z,k-y)=B(h,k)-B(h,y)+B(y+z,k)-B(y,y)-B(y,z).
+\]
+Use $B(y,z)=\phi(y+z)-\phi(y)-\phi(z)$. With the minus sign in the
+exponential, one can assign the factors explicitly:
+\[
+\begin{aligned}
+a_{x,h,k}(y+z)&=b_1(x,h+y+z)e(-B(y+z,k)+\phi(y+z)),\\
+b_{x,h,k}(y)&=b_2(x,k-y)e(B(h,y)+B(y,y)-\phi(y)-B(h,k)).
+\end{aligned}
+\]
+The remaining factor is exactly $f(x+h+k+z)e(-\phi(z))$.
+Thus no unwanted function depending only on $z$ is hidden in $b$.
+After $x'=x+h+k$ and pigeonholing $h,k$, the desired factorisation holds.
+
+For the final Fourier lemma let $p=|P|/|G|$, $q=|Q|/|G|$ and
+$r=|P+Q|/|G|$. Extend
+$F=g\mathbf1_Q$, $B=b\mathbf1_P$, $A=a\mathbf1_{P+Q}$ by zero.
+Then, with the normalised transform convention,
+\[
+I:=\E_{y\in P,z\in Q}b(y)a(y+z)g(z)
+=\frac1{pq}\sum_\xi\widehat F(\xi)\widehat B(\xi)\widehat A(-\xi).
+\]
+Cauchy--Schwarz and Parseval yield
+\[
+|I|\leq\frac{\sup_\xi|\widehat F(\xi)|}{pq}\sqrt{pr}
+=\sqrt{r/p}\sup_\xi\abs{\E_{z\in Q}g(z)e(-\xi\cdot z)}.
+\]
+Since $r\geq p$, this implies the weaker factor $p/r$ stated in
+\GT{Lemma 4.4}. Apply to $P=\bb_1$, $Q=\bb_2$ for each $x$.
+If the previous joint average has magnitude $\geq\delta$, then
+\[\E_x\sup_\xi\abs{\E_{z\in\bb_2}g_x(z)e(-\xi\cdot z)}
+\geq\tfrac12\E_x|I_x|\geq\delta/2.\]
+Choose a maximizer $\xi(x)$ (the dual group is finite). This avoids
+an unnecessary extra pigeonhole step and proves the exact conclusion.
+
+\subsection*{10. Reading cautions and quantitative bookkeeping}
+The following are mathematical clarifications for preparation, not
+digressions to deliver in the talk.
+\begin{itemize}
+\item In the printed \JT{Example 2.3}, an integer representative map
+is described as a homomorphic section. For $N>1$, a homomorphism
+$\Z/N\Z\to\Z$ is zero, so no such section exists. Use the unique
+small representative locally, or an arbitrary set-theoretic section
+globally. The example and the lifting argument then work exactly as
+illustrated.
+\item \GT{Propositions 9.1 and 9.3} write the graph as $(h,2M(h))$;
+the implicit odd-order assumption is explicitly identified and removed
+in \JT{Lemma 2.5, footnote 6}. We construct $(h,M(h))$ directly.
+The final doubling manoeuvre in \GT{Lemma 9.4} is likewise omitted.
+\item In \GT{Proposition 9.1}, the lift belongs to
+$2\Gamma''-2\Gamma''$, not $2H''-2H''$; JT footnote 7 flags this
+typo. The comparison of two pair sums requires the already proved
+graph property of $4\Gamma''-4\Gamma''$, not a claim that
+$8\Gamma''-8\Gamma''$ is a graph.
+\item The last Fourier display in the printed JT proof uses the
+$\rho_1$ label, although the extracted variable $z$ is averaged over
+$\Bohr(S,\rho_2)$ in the preceding trilinear form. The application of
+\GT{Lemma 4.4} gives the coefficient on the latter set, which satisfies
+all the bounds required by the theorem. The slides use $\bb_2$
+consistently.
+\item The December 2023 correction on the
+\href{https://arxiv.org/abs/math/0503014}{Green--Tao arXiv record}
+concerns Proposition 3.2, a global extension claim. It is not used here.
+The needed algebraic extension is the explicitly stated JT Lemma 2.2
+on the lifted group.
+\end{itemize}
+Every rank enlargement and correlation loss in Lemmas 2.5--2.6 is
+polynomial in $1/\eta$. Before integration, all radii have polynomial
+lower bounds. The exponential shrink in Lemma 2.4(ii) is compatible
+with the target radius because $|S|\ll\eta^{-O(1)}$.
+Choose the later radii with fixed safety margins so all shifted
+variables remain in doubled domains and all regularity errors are
+smaller than the retained correlation. Products and compositions of
+finitely many polynomial bounds are still polynomial; multiplying
+the exponential lower radius by a polynomial does not change its
+allowed form. This is the extent of constant bookkeeping appropriate
+for a 45-minute talk.

@@ -1,0 +1,138 @@
+\Backup{regular Bohr sets and translation errors}{}{
+\begin{block}{Regularity and regular radii}
+Write $d=\max(1,|S|)$. A Bohr set $P=\Bohr(S,r)$ is regular if
+\[(1-100d|\kappa|)|P|\leq|\Bohr(S,(1+\kappa)r)|
+\leq(1+100d|\kappa|)|P|\]
+for $|\kappa|\leq1/(100d)$. For every $0<\varepsilon<1$ there
+exists $r\in[\varepsilon,2\varepsilon]$ with $\Bohr(S,r)$ regular.
+\end{block}
+\small If $P$ is regular, $|F|\leq1$, and $\norm{t}_S\leq\varepsilon r$
+with $\varepsilon\leq1/(100d)$, then
+\[\abs{\E_{x\in P}F(x+t)-\E_{x\in P}F(x)}\leq200d\varepsilon.\]
+\source{\GT{Definition 2.6, Lemmas 8.2 and 4.2}. Existence of regular radii is a standard black box.}
+}{
+The case $S=\varnothing$ is trivial: the Bohr set is $G$. Otherwise the
+definition agrees with the paper. The regular-radius existence theorem is
+the auxiliary geometric input we use without proof.
+
+The translation estimate follows directly: both $P$ and $P+t$ contain
+$\Bohr(S,(1-\varepsilon)r)$ and are contained in
+$\Bohr(S,(1+\varepsilon)r)$. Thus the symmetric difference has size
+at most $200d\varepsilon|P|$. Dividing by $|P|$ proves the inequality.
+For a small Bohr set $Q=\Bohr(S,s)$, the inclusion
+$P+Q\subseteq\Bohr(S,r+s)$ also gives $|P+Q|\leq2|P|$ when
+$s/r\leq1/(100d)$. These are precisely the boundary estimates used
+in the symmetry and final Fourier steps.
+}
+
+\Backup{the finite-field model for Lemma 2.5}{}{
+\small Take $G=\F_5^n$ and identify $\Gh$ with $\F_5^n$.
+\begin{center}
+\begin{tikzpicture}[node distance=6mm]
+\node[box,text width=10cm] (a) {BSG: a large graph subset $\Gamma'$ has small doubling};
+\node[box,text width=10cm,below=of a] (b) {Finite-field Freiman: $\Gamma'\subseteq W\leq\F_5^{2n}$,\quad $|W|\leq C_\eta|G|$};
+\node[box,text width=10cm,below=of b] (c) {Split $W=\ker\pi\oplus W_0$; one coset of $W_0$ captures many graph points};
+\draw[arr] (a)--(b);\draw[arr] (b)--(c);
+\end{tikzpicture}
+\end{center}
+\[\pi|_{W_0}\text{ injective}\quad\Longrightarrow\quad
+\xi_h=Lh+\xi_0\text{ on a large subset}.\]
+\source{\Green{Proposition 1.14 and Proposition 2.6}. This qualitative shortcut is a model, not the quantitative proof above.}
+}{
+Green's notes offer a simpler finite-field route. The input finite-field
+Freiman theorem says: for fixed $p$ and $K$, a finite nonempty
+$A\subseteq\F_p^m$ with $|A+A|\leq K|A|$ is contained in a subspace
+of size at most $C_{p,K}|A|$. We apply it to $\Gamma'$ in $\F_5^{2n}$.
+The projection of the resulting subspace $W$ contains a set of size
+$c_\eta|G|$, so $|\ker(\pi|_W)|=|W|/|\pi W|\leq C_\eta$.
+
+Choose a vector-space complement $W_0$ to this kernel. Projection is
+injective on each coset of $W_0$; there are only $C_\eta$ cosets inside
+$W$. One therefore contains many points of $\Gamma'$. Its inverse
+projection is affine, giving $\xi_h=Lh+\xi_0$ on that subset. Extend
+$L$ from its subspace to all of $G$ using a basis if needed.
+
+This clarifies the geometry, but these qualitative constants do not
+establish the polynomial correlation bound needed in the main theorem.
+For those bounds use the graph-refinement/Bogolyubov route, even in
+finite fields. Also, a small-radius Bohr set in $\F_p^n$ is an intersection
+of kernels, so the corresponding local map is an ordinary linear map.
+}
+
+\Backup{Bogolyubov in four Fourier lines}{}{
+\small Let $|A|=\delta|G|$, and use normalised convolution.
+\[F:=\mathbf1_A*\mathbf1_A*\mathbf1_{-A}*\mathbf1_{-A},
+\qquad\supp F\subseteq2A-2A.\]
+\[F(x)=\sum_{\xi\in\Gh}|\widehat{\mathbf1_A}(\xi)|^4 e(\xi\cdot x).\]
+\[S:=\{\xi:|\widehat{\mathbf1_A}(\xi)|\geq\delta^{3/2}/\sqrt2\},
+\qquad |S|\leq2\delta^{-2}.\]
+\[x\in\Bohr(S,1/4)\quad\Longrightarrow\quad
+F(x)\geq\delta^4-\frac{\delta^3}{2}\sum_\xi|\widehat{\mathbf1_A}(\xi)|^2
+=\frac{\delta^4}{2}>0.\]
+\tagline{Positive convolution $\Longrightarrow$ an additive representation.}
+\source{\GT{Lemma 6.3}.}
+}{
+This is the proof of the global Bogolyubov statement used in Lemma 2.5.
+The transform of the fourfold convolution is the nonnegative fourth power
+of the transform magnitude. The zero frequency contributes $\delta^4$.
+For every other large frequency, a point in the Bohr set makes the real
+part of its character nonnegative. The remaining frequencies have total
+fourth-power mass at most $(\delta^3/2)\delta$, by Parseval. The resulting
+strictly positive value implies that $x$ has a representation as a sum
+of two elements of $A$ minus two others. Parseval also bounds the number
+of large frequencies, giving the rank estimate. The subtle local version
+in slide 15 replaces global Parseval counting with a local Bessel estimate;
+the preparation appendix spells out that replacement.
+}
+
+\Backup{local Fourier decay}{}{
+\begin{block}{Green--Tao, Lemma 8.4}
+Let $U=\Bohr(S,r)$ be regular, $d=\max(1,|S|)$, and
+$\ell:\Bohr(S,2r)\to\T$ satisfy
+$\ell(x+y)=\ell(x)+\ell(y)$ for $x,y\in U$.
+If $|\E_{x\in U}e(\ell(x))|\geq\tau>0$, then
+\[\norm{\ell(t)}_{\T}\leq\frac{2^{12}d}{r\tau^2}\norm{t}_S
+\qquad(t\in U).\]
+\end{block}
+\[L\asymp\frac{\tau r}{d\norm{t}_S},\qquad
+\frac\tau2\leq\abs{\E_{|j|\leq L}e(j\ell(t))}
+\ll\frac1{L\norm{\ell(t)}_{\T}}.\]
+\source{\GT{Lemma 8.4}. Regularity gives the first inequality; a geometric series gives the second.}
+}{
+Take $L$ to be the largest integer with
+$L\norm{t}_S\leq\tau r/(400d)$. If $L=0$, the stated bound is trivial
+because the right side already exceeds the possible circle distance.
+Otherwise the shifts $jt$, $|j|\leq L$, change the mean by at most
+$\tau/2$. Local additivity gives
+$\ell(x+jt)=\ell(x)+j\ell(t)$, with every intermediate multiple
+remaining in the allowed domain. Factor the shifted average and use
+that the original mean has magnitude at most one. The normalised
+geometric sum in $j$ must have magnitude at least $\tau/2$.
+Its usual upper bound gives the displayed conclusion. If
+$\norm{t}_S=0$, arbitrary $L$ are allowed, which forces
+$\ell(t)=0$ in $\T$. This handles the kernel of the Bohr seminorm.
+}
+
+\Backup{integrating on a cyclic group of any order}{}{
+\small If $B:(\Z/N\Z)^2\to\T$ is globally bilinear, then
+\[B([n],[m])=\frac{a nm}{N}\pmod1\qquad(a\in\Z).\]
+\[\boxed{\phi([n])=\frac{a\,n(n-N)}{2N}\pmod1.}\]
+\[\phi(n+N)-\phi(n)=an\in\Z\]
+\[\phi(n+m)-\phi(n)-\phi(m)=\frac{a nm}{N}\pmod1.\]
+\tagline{The linear correction enforces periodicity, even when $N$ is even.}
+\source{\JT{proof of Lemma 2.4(i)}, rewritten from its binomial-coefficient formula.}
+}{
+This optional calculation explains the algebra behind the integration
+black box on cyclic groups. Bilinearity forces $B(1,1)$ to be
+$N$-torsion in $\T$, so it equals $a/N$. The displayed primitive is
+$an^2/(2N)-an/2$. The linear term does not affect the polarisation,
+but makes the primitive $N$-periodic: replacing $n$ by $n+N$ adds
+the integer $an$. This works for both odd and even $N$.
+
+For $\Z$, use $\alpha n^2/2$. For a product of groups, sum the
+primitives on individual factors and add one cross term for each pair
+of distinct factors. Symmetry makes this polarise to the full bilinear
+form. The structure theorem for finitely generated abelian groups then
+proves Lemma 2.4(i). This derivation is for preparation or questions;
+the assignment allows the lemma itself to be black-boxed in the talk.
+}

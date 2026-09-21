@@ -57,7 +57,7 @@ jobs:
 
           title="Automated PDF (${GITHUB_REF_NAME})"
           notes="Automated build for ${GITHUB_SHA}."
-          assets=(out/espuna.pdf dist/hofa-2026-kopp-summer-school-release.zip)
+          assets=(out/espuna.pdf out/presentation.pdf out/presentation-screen.pdf out/presenter-notes.pdf dist/hofa-2026-kopp-summer-school-release.zip)
 
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "${assets[@]}" --clobber

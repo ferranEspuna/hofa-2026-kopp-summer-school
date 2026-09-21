@@ -1,0 +1,68 @@
+% Print-friendly notes; build presentation.pdf first.
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=22mm]{geometry}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={Presenter notes: the U3 inverse theorem},pdfauthor={Ferran Espuna Bertomeu}}
+\input{talk/notation}
+\usepackage{enumitem}
+\usepackage{array}
+\setlist{nosep}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\newcounter{talkslide}
+\newcommand{\Slide}[4]{%
+  \clearpage\stepcounter{talkslide}
+  \section*{\arabic{talkslide}. #1}
+  \textcolor{teal}{\textbf{Target time: #2}}\par
+  \begin{center}\fbox{\includegraphics[page=\arabic{talkslide},width=.79\linewidth]{out/presentation.pdf}}\end{center}
+  #4}
+\newcommand{\Backup}[4]{\Slide{Backup: #1}{optional}{#3}{#4}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Presenter notes}\par\vspace{5mm}
+{\Large The $U^3$ inverse theorem on arbitrary finite abelian groups}\par\vspace{3mm}
+Ferran Espu\~na Bertomeu\quad Kopp, October 4--9, 2026
+\end{center}
+The audience deck follows the assigned Fourier-analytic proof of \JT{Theorem 1.6}.
+The numbered notes below are the spoken route; the preparation appendix supplies
+derivations and source checks for rehearsal and questions. It is not additional
+material to deliver in the 45-minute slot.
+
+\textbf{Pacing.} The 27 substantive slides total 40 minutes 45 seconds, leaving
+4 minutes 15 seconds for pauses and questions. The references slide and five
+backup slides have no scheduled speaking time.
+
+\begin{center}
+\begin{tabular}{lll}
+Slides & Topic & Cumulative target\\\hline
+1--5 & Statement and proof route & 5:30\\
+6--12 & Lemma 2.5: organising frequencies & 17:00\\
+13--17 & Lemma 2.6: symmetry & 25:00\\
+18--24 & Example 2.3; lifting and integration & 34:30\\
+25--27 & Finish Theorem 1.6 & 40:45
+\end{tabular}
+\end{center}
+
+\textbf{If running late.} On slide 10 give the collision-removal idea and omit
+the cardinality calculation (save 45 seconds). On slide 15 state local
+Bogolyubov and give the three-arrow argument (save 45 seconds). On slide 24
+use only the parabola, leaving the $\Z/2\Z$ check for questions (save 30 seconds).
+Keep the theorem statements, the graph-to-$M$ argument, the real midpoint,
+and the final Fourier step.
+
+\textbf{Conventions.} $e(t)=\exp(2\pi it)$, all averages are normalised,
+$\widehat f(\xi)=\E_x f(x)e(-\xi\cdot x)$, and $b$ denotes changing
+1-bounded functions of exactly the displayed arguments. Polynomial losses
+are always in $\eta$, independent of $G$. A locally linear map means vanishing
+second differences on every parallelogram in its domain; the constructed $M$
+also satisfies $M(0)=0$.
+
+\input{talk/slides}
+\input{talk/backup}
+\clearpage
+\input{talk/preparation}
+\end{document}

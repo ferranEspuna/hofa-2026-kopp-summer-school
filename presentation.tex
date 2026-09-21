@@ -1,0 +1,35 @@
+% Audience deck. For notes alongside the slides compile presentation-screen.tex.
+\documentclass[aspectratio=169,11pt]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\input{talk/notation}
+\usepackage{pgfpages}
+\hypersetup{pdftitle={The U3 inverse theorem on arbitrary finite abelian groups},pdfauthor={Ferran Espuna Bertomeu}}
+\pdfstringdefDisableCommands{\def\translate#1{#1}}
+\setbeamercolor{normal text}{fg=ink,bg=white}
+\setbeamercolor{structure}{fg=teal}
+\setbeamercolor{alerted text}{fg=coral}
+\setbeamercolor{frametitle}{fg=ink}
+\setbeamercolor{block title}{fg=teal,bg=mist}
+\setbeamercolor{block body}{fg=ink,bg=mist!55}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamerfont{block title}{size=\normalsize,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+\setbeamersize{text margin left=9mm,text margin right=9mm}
+\setbeamertemplate{footline}{\hspace{9mm}\textcolor{muted}{\scriptsize Ferran Espu\~na\enspace /\enspace Kopp 2026}\hfill\textcolor{muted}{\scriptsize\insertframenumber}\hspace{9mm}\vspace{3mm}}
+\setbeamertemplate{note page}{\vspace{1mm}\textcolor{teal}{\footnotesize\bfseries\insertframetitle}\par\smallskip\scriptsize\raggedright\insertnote}
+\ifdefined\SpeakerView
+  \setbeameroption{show notes on second screen=right}
+\else
+  \setbeameroption{hide notes}
+\fi
+\newcommand{\source}[1]{\par\vspace{1.5mm}{\scriptsize\color{muted}#1}}
+\newcommand{\tagline}[1]{\par\medskip{\color{teal}\bfseries #1}}
+\newcommand{\Slide}[4]{\begin{frame}[t]{#1}#3\note{\textbf{Time: #2.}\par\smallskip #4}\end{frame}}
+\newcommand{\Backup}[4]{\Slide{Backup: #1}{optional}{#3}{#4}}
+\begin{document}
+\input{talk/slides}
+\appendix
+\input{talk/backup}
+\end{document}
