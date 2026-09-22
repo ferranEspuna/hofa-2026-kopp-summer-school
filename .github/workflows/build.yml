@@ -26,6 +26,7 @@ jobs:
           sudo apt-get install -y --no-install-recommends \
             cm-super \
             latexmk \
+            lmodern \
             texlive-fonts-extra \
             texlive-fonts-recommended \
             texlive-lang-european \
