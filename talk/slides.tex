@@ -192,44 +192,107 @@ $\xi_{h+k}=\xi_h+\xi_k$. We next use that all these coefficients arise from
 derivatives of the same function. No combinatorial theorem has been used yet.
 }
 
-\Slide{Cauchy--Schwarz detects parallelograms}{2:00}{
+\Slide{Cauchy--Schwarz detects parallelograms (I)}{1:15}{
+\small
+\[
+\delta_0:=\E_h\mathbf1_H(h)|\widehat{\Delta_hf}(\xi_h)|^2
+\geq\frac{\eta^8}{2}\frac{\eta^8}{2}=\frac{\eta^{16}}4.
+\]
+\[
+\delta_0=\E_{\textcolor{teal}{x,k}}\textcolor{coral}{\underbrace{\overline{f(x)}f(x+k)}_{|\cdot|\leq1}}
+\Bigl[\E_h f(x+h)\overline{f(x+h+k)}\mathbf1_H(h)e(\xi_h\cdot k)\Bigr].
+\]
+\vspace{1mm}
+\[
+\begin{aligned}
+\delta_0^2
+&\overset{\textcolor{teal}{\mathrm{C.S.}\ (x,k)}}{\leq}
+\E_{\textcolor{teal}{x,k}}\left|\E_h f(x+h)\overline{f(x+h+k)}\mathbf1_H(h)e(\xi_h\cdot k)\right|^2\\[4mm]
+&\overset{\substack{h'=h+a\\y=x+h}}{=}
+\E_{\textcolor{teal}{y,a,k}}\textcolor{coral}{\underbrace{f(y)\overline{f(y+k)}\,\overline{f(y+a)}f(y+a+k)}_{|\cdot|\leq1}}\\[1mm]
+&\hspace{18mm}\cdot\E_h\mathbf1_H(h)\mathbf1_H(h+a)
+e\bigl((\xi_h-\xi_{h+a})\cdot k\bigr).
+\end{aligned}
+\]
+}{
+The density of $H$ and the squared Fourier coefficient on $H$ are each at
+least $\eta^8/2$, giving $\delta_0\geq\eta^{16}/4$.
+With the negative-sign Fourier convention, expanding the square gives
+$\E_{x,y}\Delta_hf(x)\overline{\Delta_hf(y)}e(\xi_h\cdot(y-x))$.
+Set $y=x+k$: the character is $e(\xi_h\cdot k)$, with a plus sign.
+Extend $\xi_h$ arbitrarily outside $H$; the indicators remove those terms.
+
+Apply Cauchy--Schwarz only in the outer variables $(x,k)$, treating the
+entire $h$-average as one function of $(x,k)$. Thus we get the square of
+that average. Applying it in $(x,k,h)$ would also be valid but would lose
+the frequency information. Expanding the square introduces independent
+$h,h'$, so the characters do not cancel: their product is
+$e((\xi_h-\xi_{h'})\cdot k)$.
+Set $h'=h+a$ and then $y=x+h$. These changes of variables preserve the
+normalised averages. The four $f$ factors now depend only on $(y,a,k)$,
+so the $h$-average of the indicators and character factors out. The full expression is real
+and nonnegative because it equals the preceding average of a square.
+}
+
+\Slide{Cauchy--Schwarz detects parallelograms (II)}{0:45}{
+\small
+\setlength{\abovedisplayskip}{4pt}
+\setlength{\belowdisplayskip}{4pt}
+\[
+\begin{aligned}
+\delta_0^4&\overset{\textcolor{teal}{\mathrm{C.S.}\ (y,a,k)}}{\leq}
+\E_{\textcolor{teal}{a,k}}\left|\E_h\mathbf1_H(h)\mathbf1_H(h+a)
+e\bigl((\xi_h-\xi_{h+a})\cdot k\bigr)\right|^2\\[1mm]
+&\overset{h'=h+b}{=}\E_{h,a,b}\mathbf1_H(h)\mathbf1_H(h+a)\mathbf1_H(h+b)\mathbf1_H(h+a+b)\\[-1mm]
+&\hspace{16mm}\cdot\textcolor{gold}{\E_k e\bigl((\xi_h-\xi_{h+a}-\xi_{h+b}+\xi_{h+a+b})\cdot k\bigr)}\\[1mm]
+&=
+\E_{h,a,b}\mathbf1_H(h)\mathbf1_H(h+a)\mathbf1_H(h+b)\mathbf1_H(h+a+b)\\[-1mm]
+&\hspace{16mm}\cdot\textcolor{gold}{\mathbf1_{\{\xi_h-\xi_{h+a}-\xi_{h+b}+\xi_{h+a+b}=0\}}}
+\;=\;\frac{E(\Gamma)}{|G|^3}.
+\end{aligned}
+\]
 \begin{columns}[c]
-\column{.43\textwidth}
-\begin{tikzpicture}[scale=.83]
+\column{.40\textwidth}
+\centering
+\begin{tikzpicture}[scale=.72]
 \coordinate (a) at (0,0);\coordinate (b) at (3,0);
 \coordinate (c) at (.7,2);\coordinate (d) at (3.7,2);
 \draw[teal,thick] (a)--(b)--(d)--(c)--cycle;
 \foreach \v in {a,b,c,d}{\node[dot] at (\v) {};}
 \node[below] at (a) {$h$};\node[below] at (b) {$h+a$};
 \node[above] at (c) {$h+b$};\node[above] at (d) {$h+a+b$};
-\node[align=center] at (1.85,.95) {same relation\\in $G$ and $\Gh$};
+\node[align=center,font=\scriptsize] at (1.85,.95) {same relation\\in $G$ and $\Gh$};
 \end{tikzpicture}
-\column{.56\textwidth}
+\column{.60\textwidth}
+\centering
 \[\Gamma:=\{(h,\xi_h):h\in H\}\]
-\[\xi_h+\xi_{h+a+b}=\xi_{h+a}+\xi_{h+b}\]
-\begin{center}\small for $\gg\eta^{64}|G|^3$ parallelograms in $H$\end{center}
-\[\boxed{E(\Gamma)\gg\eta^{64}|G|^3}\]
-\small $E(\Gamma)=\#\{\gamma_1+\gamma_2=\gamma_3+\gamma_4\}$.
+\[
+\boxed{E(\Gamma)\geq\eta^{64}|G|^3/256}.
+\]
 \end{columns}
-\tagline{Square correlation $\to$ two Cauchy--Schwarz steps $\to$ orthogonality.}
 \source{\GT{Proposition 5.1, equations (5.4)--(5.8)}.}
 }{
-Write $a_h(x)=\Delta_h f(x)$. Squaring its Fourier coefficient introduces
-a displacement $k$:
-$|\widehat a_h(\xi_h)|^2=\E_{x,k}a_h(x)\overline{a_h(x+k)}e(\xi_h\cdot k)$.
-The product of the four $f$ factors separates as $u(x+h,k)v(x,k)$,
-with both functions 1-bounded. Averaging over good $h$ gives a trilinear
-average of size at least $\eta^{16}/4$.
+Apply Cauchy--Schwarz to the last expression on the preceding slide in
+$(y,a,k)$. The four $f$ factors have modulus at most one. The remaining
+$h$-average is independent of $y$, so its squared modulus is averaged only
+over $(a,k)$, as displayed.
+Since $\delta_0^2$ is bounded by that nonnegative expression, squaring
+gives the stated $\delta_0^4$ bound.
 
-Apply Cauchy--Schwarz to eliminate $v(x,k)$, introducing a second increment
-$h+a$. Change variables to $y=x+h$; the remaining bounded factors no
-longer depend on $h$. A second Cauchy--Schwarz removes them and introduces
-$h+b$. What remains is the phase with frequency
-$\xi_h-\xi_{h+a}-\xi_{h+b}+\xi_{h+a+b}$, with the four indicators of $H$.
-Averaging in $k$ gives exactly the indicator that this frequency is zero.
-The lower bound has been squared twice, giving $\eta^{64}/256$.
-This proves the energy claim, not just an analogy with a quadratic.
-The preparation appendix gives the complete two-line Cauchy--Schwarz calculation.
+Expand the square of the $h$-average using a second copy $h'=h+b$.
+This gives the four indicators and the alternating frequency sum displayed.
+The indicators do not depend on $k$, so separate the $k$-average from
+the average over $(h,a,b)$. The matching gold terms show character
+orthogonality applied inside the inequality chain.
+Character orthogonality in $k$ counts exactly the triples $(h,a,b)$ for
+which all four vertices lie in $H$ and the same parallelogram relation
+holds for their frequencies.
+Here $E(\Gamma)=\#\{(\gamma_1,\gamma_2,\gamma_3,\gamma_4)\in\Gamma^4:
+\gamma_1+\gamma_2=\gamma_3+\gamma_4\}$.
+The ordered vertices $(h,h+a+b,h+a,h+b)$ parametrise every such quadruple
+uniquely. There are $N^3$ possible triples, so the normalised average is
+$E(\Gamma)/N^3$, not $N^3E(\Gamma)$. Finally
+$\delta_0^4\geq(\eta^{16}/4)^4=\eta^{64}/256$.
 }
 
 \Slide{The combinatorial input: what each theorem supplies}{1:30}{
