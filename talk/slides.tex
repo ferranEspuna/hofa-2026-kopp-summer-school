@@ -326,9 +326,18 @@ the next slide, not mysterious structural constants.
 }
 
 \Slide{Remove the vertical collisions}{2:00}{
+\small
+\setlength{\abovedisplayskip}{3pt}\setlength{\belowdisplayskip}{3pt}
+\begin{block}{Separation lemma (GT, Lemma 8.3; constants suppressed)}
+For a finite abelian group $H$ and $0\in A\subseteq H$, there is
+$T\subseteq\widehat H$ with
+\[|T|\ll\log(2|A|),\qquad
+A\cap\Bohr(T,1/4)=\{0\}.\]
+\end{block}
 \begin{columns}[c]
-\column{.42\textwidth}
-\begin{tikzpicture}[scale=.85]
+\column{.32\textwidth}
+\centering
+\begin{tikzpicture}[scale=.65]
 \draw[->,ink!60] (0,0)--(4.4,0) node[right] {$G$};
 \draw[->,ink!60] (0,0)--(0,3.4) node[above] {$\Gh$};
 \foreach \x/\y in {.7/.7,1.7/1.3,2.7/1.7,3.7/2.1}{\fill[teal] (\x,\y) circle(3pt);}
@@ -336,22 +345,37 @@ the next slide, not mysterious structural constants.
 \draw[<->,coral,thick] (2.7,1.8)--node[right] {$v$}(2.7,2.7);
 \node[align=center,smalllabel] at (2.1,-.8) {two points above $h$\\give a vertical difference $(0,v)$};
 \end{tikzpicture}
-\column{.57\textwidth}
-\[V:=\{v:(0,v)\in8\Gamma'-8\Gamma'\},\qquad |V|\leq K^2.\]
-\small Choose $O(\log K)$ characters separating $V\setminus\{0\}$.
-Keep frequencies in one small torus cube.
-\[\Gamma''\subseteq\Gamma',\qquad |\Gamma''|\geq K^{-O(1)}|G|\]
-\[\boxed{(8\Gamma''-8\Gamma'')\cap(\{0\}\times\Gh)=\{(0,0)\}.}\]
-\tagline{$4\Gamma''-4\Gamma''$ is a graph.}
+\par\medskip
+\textcolor{teal}{$4\Gamma''-4\Gamma''$ is a graph.}
+\column{.67\textwidth}
+\[V:=\{v\in\Gh:(0,v)\in8\Gamma'-8\Gamma'\}.\]
+The graph property makes all sums $\gamma+(0,v)$ distinct:
+\[\begin{aligned}
+|\Gamma'||V|&=|\Gamma'+(\{0\}\times V)|\\
+&\leq|9\Gamma'-8\Gamma'|\leq K|G|.
+\end{aligned}\]
+Since $|\Gamma'|\geq|G|/K$, we get $\boxed{|V|\leq K^2}$.
+\par\smallskip
+Separate $V\subseteq\Gh$ with $O(\log(2K))$ tests;
+keep one cube of side $1/128$:
+\[|\Gamma''|\geq K^{-O(1)}|G|,\qquad
+(8\Gamma''-8\Gamma'')\cap(\{0\}\times\Gh)=\{0\}.\]
 \end{columns}
-\source{\GT{Lemma 9.2; separation lemma 8.3}.}
+\source{\GT{Lemmas 8.3 and 9.2}. Counting, separation and cube argument: final three backups.}
 }{
 Let $V$ be the possible vertical differences. Since $\Gamma'$ is a graph,
-all $|\Gamma'||V|$ sums in $\Gamma'+(\{0\}\times V)$ are distinct. This set
-lies inside $9\Gamma'-8\Gamma'$, so $|V|\leq K^2$.
+write its points as $(h,\xi_h)$. Equality
+$(h,\xi_h+v)=(h',\xi_{h'}+v')$ first gives $h=h'$, then
+$\xi_h=\xi_{h'}$, and finally $v=v'$. Thus all $|\Gamma'||V|$
+sums are distinct. Their set lies inside $9\Gamma'-8\Gamma'$,
+so $|V|\leq K|G|/|\Gamma'|\leq K^2$, using
+$|\Gamma'|\geq|G|/K$ from the preceding slide.
 
 Use $O(\log(2|V|))$ characters on $\Gh$ to ensure that the only
 $v\in V$ with all character values within $1/4$ of zero is $v=0$.
+Here the ambient group in the lemma is $H=\Gh$, so the tests belong to
+$\widehat{\Gh}\cong G$: they are evaluations $v\mapsto v\cdot x$.
+Also $0\in V$ since $\Gamma'$ is nonempty.
 Why possible? A random character excludes at least a third of the remaining
 nonzero points on average; iterate. Partition the resulting torus into
 half-open cubes of side $1/128$. One cube captures a polynomial proportion
@@ -961,7 +985,7 @@ Discrete Analysis 2023:11.
 \emph{An inverse theorem for the Gowers $U^3(G)$ norm.}\par
 Proc. Edinb. Math. Soc. (2) 51 (2008), 73--153.
 \href{https://arxiv.org/abs/math/0503014}{arXiv:math/0503014v4}.\par
-\textcolor{teal}{\S5: energy and BSG; \S9: graph and symmetry; Lemmas 4.4, 6.3, 8.4, 8.8.}\par
+\textcolor{teal}{\S5: energy and BSG; \S9: graph and symmetry; Lemmas 4.4, 6.3, 8.3, 8.4, 8.8.}\par
 \medskip
 \textbf{[Green] B. Green.}\par
 \emph{Montr\'eal lecture notes on quadratic Fourier analysis.}

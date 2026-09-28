@@ -301,10 +301,22 @@ After BSG and Pl\"unnecke, enlarge $K\ll\eta^{-O(1)}$ until
 $|\Gamma'|\geq |G|/K$ and $|9\Gamma'-8\Gamma'|\leq K|G|$.
 Define
 \[V=\{v\in\Gh:(0,v)\in8\Gamma'-8\Gamma'\}.\]
-For each first coordinate of $\Gamma'$, adding all of $V$ produces
-$|V|$ different points. Therefore
-\[|\Gamma'||V|=|\Gamma'+(\{0\}\times V)|\leq K|G|,
+Write $\Gamma'=\{(h,\xi_h):h\in H'\}$. The map
+$((h,\xi_h),v)\mapsto(h,\xi_h+v)$ from $\Gamma'\times V$ is injective:
+equality of images first forces equality of $h$, then of $\xi_h$ (the
+graph property), and finally of $v$. Its image is contained in
+$\Gamma'+(8\Gamma'-8\Gamma')=9\Gamma'-8\Gamma'$. Hence
+\[\frac{|G|}{K}|V|\leq|\Gamma'||V|
+=|\Gamma'+(\{0\}\times V)|\leq|9\Gamma'-8\Gamma'|\leq K|G|,
 \qquad |V|\leq K^2.\]
+
+\paragraph{Separation lemma (\GT{Lemma 8.3}; form used here).}
+If $H$ is a finite abelian group and $0\in A\subseteq H$, there exists
+$T\subseteq\widehat H$ with $|T|\ll\log(2|A|)$ such that
+\[A\cap\Bohr(T,1/4)=\{0\}.\]
+Apply this with $H=\Gh$ and $A=V$; indeed $0\in V$ because $\Gamma'$
+is nonempty. This gives $O(\log(2K))$ tests. Here is a proof of the
+logarithmic bound sufficient for our application.
 Characters on $\Gh$ are evaluations at elements of $G$, by finite
 Pontryagin duality. If $v\ne0$, a uniformly random character $s$ of
 $\Gh$ has $s(v)$ uniform on a nontrivial finite cyclic subgroup of
@@ -316,7 +328,7 @@ Let $m$ be the number of tests and $\Psi:\Gh\to\T^m$ their product.
 Partition the torus into $128^m$ cubes of side $1/128$, using
 representatives in $[0,1)^m$. Choose a cube containing at least this
 fraction of the frequencies of $\Gamma'$ and call the resulting graph
-$\Gamma''$. Since $m=O(\log K)$, its size is at least
+$\Gamma''$. Since $m=O(\log(2K))$, its size is at least
 $K^{-O(1)}|G|$.
 
 If $(0,v)\in8\Gamma''-8\Gamma''$, then $v\in V$. In each tested

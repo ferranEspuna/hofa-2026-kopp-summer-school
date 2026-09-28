@@ -15,7 +15,7 @@ python scripts/build.py --presentation-only
 
 The build creates:
 
-- `out/presentation.pdf`: audience slides (28 timed slides, references, five backups).
+- `out/presentation.pdf`: audience slides (28 timed slides, references, eight backups).
 - `out/presentation-screen.pdf`: the same slides with notes on the right, for a
   PDF presenter that supports a two-screen layout.
 - `out/presenter-notes.pdf`: printable notes with slide thumbnails, timing,
