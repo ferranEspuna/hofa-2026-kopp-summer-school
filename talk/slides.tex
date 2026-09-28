@@ -257,8 +257,8 @@ e\bigl((\xi_h-\xi_{h+a})\cdot k\bigr)\right|^2\\[1mm]
 \begin{tikzpicture}[scale=.72]
 \coordinate (a) at (0,0);\coordinate (b) at (3,0);
 \coordinate (c) at (.7,2);\coordinate (d) at (3.7,2);
-\draw[teal,thick] (a)--(b)--(d)--(c)--cycle;
-\foreach \v in {a,b,c,d}{\node[dot] at (\v) {};}
+\draw[gold,thick] (a)--(b)--(d)--(c)--cycle;
+\foreach \v in {a,b,c,d}{\node[dot,fill=gold] at (\v) {};}
 \node[below] at (a) {$h$};\node[below] at (b) {$h+a$};
 \node[above] at (c) {$h+b$};\node[above] at (d) {$h+a+b$};
 \node[align=center,font=\scriptsize] at (1.85,.95) {same relation\\in $G$ and $\Gh$};
