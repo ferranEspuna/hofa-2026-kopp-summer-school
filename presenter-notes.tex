@@ -14,11 +14,14 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
 \newcounter{talkslide}
+\newcommand{\SlidePage}[2]{\expandafter\def\csname slidepage#1\endcsname{#2}}
+\InputIfFileExists{out/presentation.slidepages}{}{%
+  \PackageError{presenter-notes}{Missing slide page map}{Run python3 scripts/build.py --presentation-only first.}}
 \newcommand{\Slide}[4]{%
   \clearpage\stepcounter{talkslide}
   \section*{\arabic{talkslide}. #1}
   \textcolor{teal}{\textbf{Target time: #2}}\par
-  \begin{center}\fbox{\includegraphics[page=\arabic{talkslide},width=.79\linewidth]{out/presentation.pdf}}\end{center}
+  \begin{center}\fbox{\includegraphics[page=\csname slidepage\arabic{talkslide}\endcsname,width=.79\linewidth]{out/presentation.pdf}}\end{center}
   #4}
 \newcommand{\Backup}[4]{\Slide{Backup: #1}{optional}{#3}{#4}}
 \begin{document}
@@ -32,8 +35,9 @@ The numbered notes below are the spoken route; the preparation appendix supplies
 derivations and source checks for rehearsal and questions. It is not additional
 material to deliver in the 45-minute slot.
 
-\textbf{Pacing.} The 28 substantive slides total 40 minutes 45 seconds, leaving
-4 minutes 15 seconds for pauses and questions. The references slide and eight
+\textbf{Pacing.} The 24 substantive slides total 35 minutes 15 seconds, leaving
+9 minutes 45 seconds for pauses, an optional blackboard sketch, and questions.
+The references slide and twelve
 backup slides have no scheduled speaking time.
 
 \begin{center}
@@ -42,17 +46,25 @@ Slides & Topic & Cumulative target\\\hline
 1--5 & Statement and proof route & 5:30\\
 6--13 & Lemma 2.5: organising frequencies & 17:00\\
 14--18 & Lemma 2.6: symmetry & 25:00\\
-19--25 & Example 2.3; lifting and integration & 34:30\\
-26--28 & Finish Theorem 1.6 & 40:45
+19--21 & Lifting and integration & 29:00\\
+22--24 & Finish Theorem 1.6 & 35:15
 \end{tabular}
 \end{center}
 
 \textbf{If running late.} On slide 11 give the collision-removal idea and omit
 the cardinality calculation (save 45 seconds). On slide 16 state local
-Bogolyubov and give the three-arrow argument (save 45 seconds). On slide 25
-use only the parabola, leaving the $\Z/2\Z$ check for questions (save 30 seconds).
+Bogolyubov and give the three-arrow argument (save 45 seconds).
+Skip the optional blackboard sketch if needed.
 Keep the theorem statements, the graph-to-$M$ argument, the real midpoint,
 and the final Fourier step.
+
+\textbf{Reveals and blackboard.} Advance at each new definition, proof step,
+or conclusion; let the audience read before continuing. The thumbnails below
+show the final overlay of each slide. Before slide 19, optionally sketch
+Example 2.3: a short arc in $\Z/N\Z$ lifts to an interval in $\Z$;
+$B(n,m)=\alpha nm$ becomes globally bilinear upstairs and integrates to
+$\alpha n^2/2$. Allow about 1--2 minutes within the spare time. The four
+illustrated slides are preserved as backups 9--12.
 
 \textbf{Conventions.} $e(t)=\exp(2\pi it)$, all averages are normalised,
 $\widehat f(\xi)=\E_x f(x)e(-\xi\cdot x)$, and $b$ denotes changing

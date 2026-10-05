@@ -34,7 +34,9 @@ combinatorial input from Talks 3--5, but explains exactly how it is applied.
 \end{tikzpicture}
 \column{.59\textwidth}
 \[\Delta_h f(x):=f(x+h)\overline{f(x)}\]
+\pause
 \[f=e(q)\quad\Longrightarrow\quad\Delta_h f(x)=e(q(x+h)-q(x))\]
+\pause
 \[\boxed{\norm{f}_{U^3}^8=\E_h\norm{\Delta_h f}_{U^2}^4}\]
 \tagline{Large $U^3$ $\Rightarrow$ many linear derivatives.}
 \end{columns}
@@ -63,12 +65,14 @@ be defined by $\partial_h q(x)=q(x+h)-q(x)$.
 \column{.63\textwidth}
 \[\norm{x}_S:=\max_{\xi\in S}\norm{\xi\cdot x}_{\T},\qquad
 \bb_\rho:=\Bohr(S,\rho).\]
+\pause
 \begin{block}{Local polynomial}
 A map $q:U\to\T$ is locally quadratic if every third additive
 difference vanishes whenever all eight vertices lie in $U$.
 \end{block}
 \small
 Locally linear: every second difference vanishes.\par\medskip
+\pause
 Regularity: $|\bb_{(1+\kappa)\rho}|=(1+O(|S||\kappa|))|\bb_\rho|$.
 \tagline{Small shifts change averages only slightly.}
 \end{columns}
@@ -95,10 +99,12 @@ regular-radius proof.
 \begin{block}{Theorem 1.6 (Jamneshan--Tao)}
 Let $G$ be a finite abelian group, $0<\eta\leq\tfrac12$, and
 $f:G\to\C$ satisfy $|f|\leq1$ and $\norm{f}_{U^3(G)}\geq\eta$.
+\pause
 There exist a regular Bohr set $\bb_\rho=\Bohr(S,\rho)$ with
 \[|S|\ll\ipoly,\qquad \exp(-\ipoly)\ll\rho\leq\tfrac1{100},\]
 a locally quadratic map $\phi:\bb_\rho\to\T$, and a map
 $\xi:G\to\Gh$ such that
+\pause
 \[\boxed{\E_{x\in G}\abs{\E_{h\in\bb_\rho}
 f(x+h)e(-\phi(h)-\xi(x)\cdot h)}\gg\poly.}\]
 \end{block}
@@ -124,15 +130,16 @@ are normalised.
 \centering\vspace{3mm}
 \begin{tikzpicture}[node distance=10mm]
 \node[box,text width=9cm] (a) {\textbf{Lemma 2.5}\quad frequencies $\xi_h$ $\longrightarrow$ local linear map $M$};
-\node[box,text width=9cm,below=of a] (b) {\textbf{Lemma 2.6}\quad $M(h)\cdot k$ $\longrightarrow$ symmetric $B(h,k)$};
-\node[box,text width=9cm,below=of b] (c) {\textbf{Lemmas 2.2 and 2.4}\quad lift $B$ $\longrightarrow$ integrate to $\phi$};
-\node[below=8mm of c,text=teal] (d) {local Fourier extraction $\longrightarrow$ Theorem 1.6};
-\draw[arr] (a)--(b);\draw[arr] (b)--(c);\draw[arr] (c)--(d);
+\node[box,text width=9cm,below=of a,visible on=<2->] (b) {\textbf{Lemma 2.6}\quad $M(h)\cdot k$ $\longrightarrow$ symmetric $B(h,k)$};
+\node[box,text width=9cm,below=of b,visible on=<3->] (c) {\textbf{Lemmas 2.2 and 2.4}\quad lift $B$ $\longrightarrow$ integrate to $\phi$};
+\node[below=8mm of c,text=teal,visible on=<4->] (d) {local Fourier extraction $\longrightarrow$ Theorem 1.6};
+\draw[arr,visible on=<2->] (a)--(b);\draw[arr,visible on=<3->] (b)--(c);\draw[arr,visible on=<4->] (c)--(d);
 \end{tikzpicture}
 }{
 This is the whole route. We prove the analytic steps, state the precise
-combinatorial inputs, and illustrate the two algebraic black boxes using
-Example 2.3. The graph construction is the longest part to explain because
+combinatorial inputs, and state the two algebraic black boxes. Example 2.3
+is optional blackboard material, with the illustrations in backups 9--12.
+The graph construction is the longest part to explain because
 it is where independent Fourier coefficients become an algebraic object.
 }
 
@@ -142,9 +149,11 @@ Under the hypotheses of Theorem 1.6, there exist a regular Bohr set
 $\bb_\rho=\Bohr(S,\rho)$ with $|S|\ll\ipoly$ and
 $c\leq\rho\leq\tfrac18$ for an absolute $c>0$, a locally linear map
 $M:\bb_{2\rho}\to\Gh$, and 1-bounded functions $b_1,b_2$ such that
+\pause
 \[\abs{\E_{\substack{x\in G\\h\in\bb_\rho}}
 b_1(h)b_2(x)f(x+h)e(-M(h)\cdot x)}\gg\poly.\]
 \end{block}
+\pause
 \vspace{3mm}
 \centering
 \begin{tikzpicture}
@@ -168,9 +177,11 @@ $\Gh$ is not available for arbitrary groups.
 \Slide{Differentiate, then use ordinary Fourier analysis}{1:30}{
 \[\eta^8\leq\E_h\norm{\Delta_hf}_{U^2}^4
 =\E_h\sum_{\xi\in\Gh}|\widehat{\Delta_h f}(\xi)|^4\]
+\pause
 \[\sum_\xi|\widehat{\Delta_h f}(\xi)|^2\leq1
 \quad\Longrightarrow\quad
 \norm{\Delta_hf}_{U^2}^4\leq\max_\xi|\widehat{\Delta_hf}(\xi)|^2.\]
+\pause
 \begin{block}{Many good increments}
 There are $H\subseteq G$ with $|H|\geq\eta^8|G|/2$ and frequencies
 $\xi_h\in\Gh$ such that, for every $h\in H$,
@@ -198,20 +209,22 @@ derivatives of the same function. No combinatorial theorem has been used yet.
 \delta_0:=\E_h\mathbf1_H(h)|\widehat{\Delta_hf}(\xi_h)|^2
 \geq\frac{\eta^8}{2}\frac{\eta^8}{2}=\frac{\eta^{16}}4.
 \]
+\pause
 \[
 \delta_0=\E_{\textcolor{teal}{x,k}}\textcolor{coral}{\underbrace{\overline{f(x)}f(x+k)}_{|\cdot|\leq1}}
 \Bigl[\E_h f(x+h)\overline{f(x+h+k)}\mathbf1_H(h)e(\xi_h\cdot k)\Bigr].
 \]
+\pause
 \vspace{1mm}
 \[
 \begin{aligned}
 \delta_0^2
 &\overset{\textcolor{teal}{\mathrm{C.S.}\ (x,k)}}{\leq}
 \E_{\textcolor{teal}{x,k}}\left|\E_h f(x+h)\overline{f(x+h+k)}\mathbf1_H(h)e(\xi_h\cdot k)\right|^2\\[4mm]
-&\overset{\substack{h'=h+a\\y=x+h}}{=}
-\E_{\textcolor{teal}{y,a,k}}\textcolor{coral}{\underbrace{f(y)\overline{f(y+k)}\,\overline{f(y+a)}f(y+a+k)}_{|\cdot|\leq1}}\\[1mm]
-&\hspace{18mm}\cdot\E_h\mathbf1_H(h)\mathbf1_H(h+a)
-e\bigl((\xi_h-\xi_{h+a})\cdot k\bigr).
+&\uncover<4->{\overset{\substack{h'=h+a\\y=x+h}}{=}
+\E_{\textcolor{teal}{y,a,k}}\textcolor{coral}{\underbrace{f(y)\overline{f(y+k)}\,\overline{f(y+a)}f(y+a+k)}_{|\cdot|\leq1}}}\\[1mm]
+&\uncover<4->{\hspace{18mm}\cdot\E_h\mathbf1_H(h)\mathbf1_H(h+a)
+e\bigl((\xi_h-\xi_{h+a})\cdot k\bigr).}
 \end{aligned}
 \]
 }{
@@ -243,14 +256,15 @@ and nonnegative because it equals the preceding average of a square.
 \delta_0^4&\overset{\textcolor{teal}{\mathrm{C.S.}\ (y,a,k)}}{\leq}
 \E_{\textcolor{teal}{a,k}}\left|\E_h\mathbf1_H(h)\mathbf1_H(h+a)
 e\bigl((\xi_h-\xi_{h+a})\cdot k\bigr)\right|^2\\[1mm]
-&\overset{h'=h+b}{=}\E_{h,a,b}\mathbf1_H(h)\mathbf1_H(h+a)\mathbf1_H(h+b)\mathbf1_H(h+a+b)\\[-1mm]
-&\hspace{16mm}\cdot\textcolor{gold}{\E_k e\bigl((\xi_h-\xi_{h+a}-\xi_{h+b}+\xi_{h+a+b})\cdot k\bigr)}\\[1mm]
-&=
-\E_{h,a,b}\mathbf1_H(h)\mathbf1_H(h+a)\mathbf1_H(h+b)\mathbf1_H(h+a+b)\\[-1mm]
-&\hspace{16mm}\cdot\textcolor{gold}{\mathbf1_{\{\xi_h-\xi_{h+a}-\xi_{h+b}+\xi_{h+a+b}=0\}}}
-\;=\;\frac{E(\Gamma)}{|G|^3}.
+&\uncover<2->{\overset{h'=h+b}{=}\E_{h,a,b}\mathbf1_H(h)\mathbf1_H(h+a)\mathbf1_H(h+b)\mathbf1_H(h+a+b)}\\[-1mm]
+&\uncover<2->{\hspace{16mm}\cdot\textcolor{gold}{\E_k e\bigl((\xi_h-\xi_{h+a}-\xi_{h+b}+\xi_{h+a+b})\cdot k\bigr)}}\\[1mm]
+&\uncover<3->{=
+\E_{h,a,b}\mathbf1_H(h)\mathbf1_H(h+a)\mathbf1_H(h+b)\mathbf1_H(h+a+b)}\\[-1mm]
+&\uncover<3->{\hspace{16mm}\cdot\textcolor{gold}{\mathbf1_{\{\xi_h-\xi_{h+a}-\xi_{h+b}+\xi_{h+a+b}=0\}}}
+\;=\;\frac{E(\Gamma)}{|G|^3}.}
 \end{aligned}
 \]
+\uncover<4->{%
 \begin{columns}[c]
 \column{.40\textwidth}
 \centering
@@ -270,6 +284,7 @@ e\bigl((\xi_h-\xi_{h+a})\cdot k\bigr)\right|^2\\[1mm]
 \boxed{E(\Gamma)\geq\eta^{64}|G|^3/256}.
 \]
 \end{columns}
+}
 \source{\GT{Proposition 5.1, equations (5.4)--(5.8)}.}
 }{
 Apply Cauchy--Schwarz to the last expression on the preceding slide in
@@ -302,10 +317,12 @@ $E(A)\geq |A|^3/K$, $K\geq1$, then some $A'\subseteq A$ satisfies
 $|A'|\geq cK^{-C}|A|$ and $|A'-A'|\leq CK^C|A'|$,
 for absolute constants $c,C>0$.
 \end{block}
+\pause
 \begin{block}{Pl\"unnecke [black box]}
 If $|A-A|\leq L|A|$ for a finite nonempty set $A$ in an abelian group,
 then $|kA-\ell A|\leq L^{k+\ell}|A|$ for all integers $k,\ell\geq1$.
 \end{block}
+\pause
 \[E(\Gamma)\text{ large}\quad\Longrightarrow\quad
 \boxed{|\Gamma'|\geq |G|/K,\quad |9\Gamma'-8\Gamma'|\leq K|G|,\quad K\ll\ipoly.}\]
 \source{\GT{Theorems 5.2--5.3 and Proposition 5.4}. These are inputs from Talks 3--5.}
@@ -334,6 +351,7 @@ $T\subseteq\widehat H$ with
 \[|T|\ll\log(2|A|),\qquad
 A\cap\Bohr(T,1/4)=\{0\}.\]
 \end{block}
+\pause
 \begin{columns}[c]
 \column{.32\textwidth}
 \centering
@@ -346,9 +364,10 @@ A\cap\Bohr(T,1/4)=\{0\}.\]
 \node[align=center,smalllabel] at (2.1,-.8) {two points above $h$\\give a vertical difference $(0,v)$};
 \end{tikzpicture}
 \par\medskip
-\textcolor{teal}{$4\Gamma''-4\Gamma''$ is a graph.}
+\uncover<4->{\textcolor{teal}{$4\Gamma''-4\Gamma''$ is a graph.}}
 \column{.67\textwidth}
 \[V:=\{v\in\Gh:(0,v)\in8\Gamma'-8\Gamma'\}.\]
+\pause
 The graph property makes all sums $\gamma+(0,v)$ distinct:
 \[\begin{aligned}
 |\Gamma'||V|&=|\Gamma'+(\{0\}\times V)|\\
@@ -356,12 +375,13 @@ The graph property makes all sums $\gamma+(0,v)$ distinct:
 \end{aligned}\]
 Since $|\Gamma'|\geq|G|/K$, we get $\boxed{|V|\leq K^2}$.
 \par\smallskip
+\pause
 Separate $V\subseteq\Gh$ with $O(\log(2K))$ tests;
 keep one cube of side $1/128$:
 \[|\Gamma''|\geq K^{-O(1)}|G|,\qquad
 (8\Gamma''-8\Gamma'')\cap(\{0\}\times\Gh)=\{0\}.\]
 \end{columns}
-\source{\GT{Lemmas 8.3 and 9.2}. Counting, separation and cube argument: final three backups.}
+\source{\GT{Lemmas 8.3 and 9.2}. Counting, separation and cube argument: backups 6--8.}
 }{
 Let $V$ be the possible vertical differences. Since $\Gamma'$ is a graph,
 write its points as $(h,\xi_h)$. Equality
@@ -395,9 +415,11 @@ If $A\subseteq G$ has density $\delta>0$ in a finite abelian group,
 there is $S\subseteq\Gh$ with $|S|\leq2\delta^{-2}$ such that
 $\Bohr(S,\tfrac14)\subseteq 2A-2A$.
 \end{block}
+\pause
 \small Apply to $H''=\pi_G(\Gamma'')$, with $\delta\gg\poly$.
 \[\bb_{1/4}\subseteq 2H''-2H'',\qquad
 (h,M(h))\in2\Gamma''-2\Gamma''\quad(h\in\bb_{1/4}).\]
+\pause
 \begin{tikzpicture}
 \node[box] (a) {$(h_1,M(h_1))+(h_2,M(h_2))$};
 \node[box,right=7mm of a] (b) {$(h_3,M(h_3))+(h_4,M(h_4))$};
@@ -428,8 +450,10 @@ recover correlation with $f$.
 \Slide{Recover the correlation: an affine patch}{1:30}{
 \small Choose regular $\rho\in[1/16,1/8]$ and $x_0$ with
 $A:=\{h\in\bb_\rho:x_0+h\in H''\}$ of relative density $\gg\poly$.
+\pause
 \[\xi_{x_0+h}-\xi_{x_0+h'}=M(h-h')=M(h)-M(h')\]
 \[\boxed{\xi_{x_0+h}=\xi_0+M(h)\qquad(h\in A).}\]
+\pause
 \[\E_{h\in\bb_\rho}\mathbf1_A(h)
 \abs{\E_x f(x+x_0+h)\overline{f(x)}e(-[\xi_0+M(h)]\cdot x)}\gg\poly.\]
 \tagline{Align phases in $h$\quad$+$\quad shift $x$\quad$=$\quad Lemma 2.5.}
@@ -459,9 +483,11 @@ $\bb_\rho=\Bohr(S,\rho)$ with $|S|\ll\ipoly$ and
 $\poly\ll\rho\leq\tfrac18$, a symmetric locally bilinear map
 $B:\bb_{2\rho}\times\bb_{2\rho}\to\T$, and 1-bounded functions
 $b_1,b_2$ such that
+\pause
 \[\abs{\E_{\substack{x\in G\\h,k\in\bb_\rho}}
 b_1(x,h)b_2(x,k)f(x+h+k)e(-B(h,k))}\gg\poly.\]
 \end{block}
+\pause
 \[D(y,z):=M(y)\cdot z-M(z)\cdot y\]
 \tagline{Control the antisymmetric defect $D$, then take a real midpoint.}
 \source{\JT{Lemma 2.6}; symmetry argument adapted from \GT{Lemma 9.4}.}
@@ -481,8 +507,10 @@ the symmetry argument and the fourth transfers the correlation.
 \Slide{Symmetry starts with one more Cauchy--Schwarz}{2:00}{
 \small Localise $x$ to a small regular Bohr set $U$; write $P$ for the larger one.
 \[\abs{\E_{h\in P,\,x\in U} b(h)b(x+h)b(x)e(-M(h)\cdot x)}\gg\poly\]
+\pause
 \begin{center}\textcolor{teal}{$\downarrow$\quad Cauchy--Schwarz in $h$; put $w=x+y+h$}\end{center}
 \[\abs{\E_{x,y\in U}u(x)v(y)e(D(x,y))}\gg\poly\]
+\pause
 \begin{center}\textcolor{teal}{$\downarrow$\quad Cauchy--Schwarz; average in $y_0$}\end{center}
 \[\boxed{\abs{\E_{x\in U}e(D(x,y_0-y))}\geq\tau
 \quad(y\in A),\qquad |A|\geq\tau|U|,\quad\tau\gg\poly.}\]
@@ -516,13 +544,14 @@ where $c,C>0$ are absolute constants.
 \end{block}
 \begin{center}
 \begin{tikzpicture}[node distance=5mm]
-\node[box] (a) {large mean of\\$e(D(x,y_0-y))$};
-\node[box,right=of a] (b) {small $D(t,z)$\\for $z\in2A-2A$};
-\node[box,right=of b] (c) {small $D$ on\\a Bohr set};
-\draw[arr] (a)--(b);\draw[arr] (b)--(c);
+\node[box,visible on=<2->] (a) {large mean of\\$e(D(x,y_0-y))$};
+\node[box,right=of a,visible on=<3->] (b) {small $D(t,z)$\\for $z\in2A-2A$};
+\node[box,right=of b,visible on=<4->] (c) {small $D$ on\\a Bohr set};
+\draw[arr,visible on=<3->] (a)--(b);\draw[arr,visible on=<4->] (b)--(c);
+\path[use as bounding box] (a.north west) rectangle (c.south east);
 \end{tikzpicture}
 \end{center}
-\[\norm{D(t,z)}_{\T}\ll\ipoly\norm{t}_{S\cup T}.\]
+\uncover<4->{\[\norm{D(t,z)}_{\T}\ll\ipoly\norm{t}_{S\cup T}.\]}
 \source{Local Fourier decay: \GT{Lemma 8.4}. Local Bogolyubov: \GT{Lemma 8.8}.}
 }{
 The elementary analytic fact is this: if a locally additive phase $\ell$ on
@@ -561,8 +590,11 @@ appendix explains its Fourier proof and the local Bessel input.
 \column{.62\textwidth}
 \small On a sufficiently small doubled Bohr set:
 \[D(y,z)=d(y,z)\pmod1,\qquad |d(y,z)|<\varepsilon<\tfrac1{10}.\]
+\pause
 \[\boxed{B(y,z):=M(y)\cdot z-\tfrac12d(y,z).}\]
+\pause
 \[B(y,z)=B(z,y),\qquad B\ \text{locally bilinear}.\]
+\pause
 \[|e(-M(y)\cdot z)-e(-B(y,z))|\leq\pi\varepsilon.\]
 \end{columns}
 \source{\JT{Lemma 2.6, equation (25)}.}
@@ -591,8 +623,10 @@ set is still in this small-defect domain.
 \[M(h+y)\cdot(x+z)
 =\underbrace{M(h)\cdot x+M(h)\cdot z+M(y)\cdot x}_{\text{absorbed into separate bounded factors}}
 +\underbrace{M(y)\cdot z}_{\text{coupled}}.\]
+\pause
 \[\abs{\E_{x,h,y,z}b(x,h,y)b(x,h,z)
 f(x+h+y+z)e(-M(y)\cdot z)}\gg\poly\]
+\pause
 \begin{center}\textcolor{teal}{$\downarrow$\quad replace by $B(y,z)$; put $x'=x+h$; fix $h$}\end{center}
 \[\boxed{\abs{\E_{x',y,z}b(x',y)b(x',z)f(x'+y+z)e(-B(y,z))}\gg\poly.}\]
 \source{\JT{proof of Lemma 2.6}. All shifted domains lie in the available doubled Bohr sets.}
@@ -613,133 +647,10 @@ The new radius is polynomially small, and its doubled set was reserved
 when choosing the small-defect domain.
 }
 
-\Slide{Example 2.3: a local multiplication table}{1:30}{
-\small $G=\Z/17\Z$, \quad $\xi([n])=n/17\pmod1$, \quad $\rho=1/5$.
-\begin{columns}[c]
-\column{.43\textwidth}
-\begin{tikzpicture}[scale=.94]
-\draw[ink!25,thick] (0,0) circle (2.1);
-\draw[teal!25,line width=12pt] ({90-360*3/17}:2.1) arc ({90-360*3/17}:{90+360*3/17}:2.1);
-\foreach \n in {-8,...,8}{
-\ifnum\n>-4\ifnum\n<4\def\pointcolor{teal}\else\def\pointcolor{ink!30}\fi\else\def\pointcolor{ink!30}\fi
-\fill[\pointcolor] ({90-360*\n/17}:2.1) circle(3pt);
-\node[font=\scriptsize,text=\pointcolor] at ({90-360*\n/17}:2.55) {$\n$};}
-\node[align=center] at (0,0) {$\bb_\rho$\\$\{-3,\ldots,3\}$};
-\end{tikzpicture}
-\column{.56\textwidth}
-\[B([n],[m])=\alpha nm\in\R\qquad(|n|,|m|<17\rho).\]
-\centering
-\begin{tikzpicture}[scale=.48]
-\foreach \i in {-3,...,3}{\foreach \j in {-3,...,3}{
-\pgfmathtruncatemacro{\val}{\i*\j}
-\pgfmathtruncatemacro{\shade}{8+6*abs(\val)}
-\ifnum\val<0\fill[coral!\shade] (\i,\j) rectangle +(1,1);\else\fill[teal!\shade] (\i,\j) rectangle +(1,1);\fi
-\node[font=\scriptsize] at (\i+.5,\j+.5) {$\val$};}}
-\draw[ink!40] (-3,-3) rectangle (4,4);
-\foreach \n in {-3,...,3}{
-\node[font=\scriptsize,text=muted] at (\n+.5,4.55) {$\n$};
-\node[font=\scriptsize,text=muted] at (-3.6,\n+.5) {$\n$};}
-\node[text=teal] at (.5,5.4) {$m$};
-\node[text=teal] at (-4.45,.5) {$n$};
-\node[below] at (.5,-3.3) {table for $\alpha=1$};
-\end{tikzpicture}
-\end{columns}
-\source{\JT{Example 2.3}, using the unique small integer representatives.}
-}{
-Specialise the paper's example to seventeen points so that the picture is
-literal. The Bohr set consists of residues with unique representatives
-$-3,-2,-1,0,1,2,3$. Define the real-valued form by multiplying these
-representatives; the table shows $\alpha=1$. It is symmetric and locally
-bilinear.
-
-Why is it locally additive? If $[n_1],[n_2],[n_1+n_2]$ all lie in this
-small arc, their chosen representatives satisfy the same integer sum:
-the possible error is a multiple of $17$ of absolute value less than
-$3\rho\,17<17$. Thus it is zero. More generally this works with
-$\rho<1/4$ and $G=\Z/N\Z$.
-
-Use a representative map only on the small arc. The printed example's
-description of a global homomorphic section $\Z/N\Z\to\Z$ cannot be
-literal: no such section exists for $N>1$. Our notation avoids that error.
-The table is real-valued as in the example; reduction modulo one will
-connect it with Lemma 2.4 later.
-}
-
-\Slide{Carry-over prevents a global extension}{1:15}{
-\begin{columns}[c]
-\column{.40\textwidth}
-\begin{tikzpicture}[scale=.88]
-\draw[ink!25,thick] (0,0) circle (1.9);
-\foreach \n in {-8,...,8}{\fill[ink!30] ({90-360*\n/17}:1.9) circle(2pt);}
-\fill[coral] ({90-360*8/17}:1.9) circle(4pt);
-\fill[coral] ({90+360*8/17}:1.9) circle(4pt);
-\draw[->,coral,line width=2pt] ({90-360*8/17}:2.05) arc ({90-360*8/17}:{90-360*9/17}:2.05);
-\node[right] at ({90-360*8/17}:2.15) {$8$};
-\node[left] at ({90+360*8/17}:2.15) {$-8$};
-\node[below,text=coral] at (0,-2.4) {$8+1\equiv-8\pmod{17}$};
-\node[above] at (0,1.95) {$0$};
-\end{tikzpicture}
-\column{.59\textwidth}
-\small Extending the representative formula would require
-\[\begin{aligned}
-B([8]+[1],[1])&=-8\alpha,\\
-B([8],[1])+B([1],[1])&=9\alpha.
-\end{aligned}\]
-\medskip
-\small In fact, any global bilinear $C:G^2\to\R$ satisfies
-\[17C([1],[1])=C([0],[1])=0.\]
-\tagline{$\alpha\ne0$ $\Longrightarrow$ no real-valued global extension.}
-\end{columns}
-}{
-The local formula cannot just be used with balanced representatives
-everywhere. Crossing the cut from eight to minus eight changes the
-integer sum by seventeen. The proposed multiplication formula therefore
-fails the displayed additivity identity. These points lie outside the
-local arc, so this does not contradict the local bilinearity just proved.
-
-There is also a decisive argument against any real-valued extension,
-not just this particular formula. A homomorphism from a finite group to
-$\R$ is zero; bilinearity gives $17C(1,1)=C(0,1)=0$. But the local form
-has $B(1,1)=\alpha$. For a $\T$-valued version the obstruction is instead
-$17\alpha\notin\Z$. Do not use $\alpha=1$ modulo one as a nontrivial
-counterexample: it would be the zero form. This is why the real-valued
-example is useful.
-}
-
-\Slide{Unroll the circle and record the carry}{1:15}{
-\[G_S=\{([n],n/17):n\in\Z\}\cong\Z.\]
-\centering
-\begin{tikzpicture}[x=.33cm,y=1cm]
-\draw[->,thick,ink!60] (-5,0)--(23,0) node[right] {$n$};
-\draw[teal!20,line width=10pt] (-3,0)--(3,0);
-\foreach \n in {-4,...,22}{\fill[ink!50] (\n,0) circle(1.6pt);}
-\foreach \n in {0,17}{\fill[teal] (\n,0) circle(3.5pt);}
-\foreach \n in {-3,0,3,8,9,17}{\node[above=3pt] at (\n,0) {$\n$};}
-\draw[arr] (0,-.3)--(0,-1.4);\draw[arr] (17,-.3)--(17,-1.4);
-\node[box] at (0,-1.85) {$[0]$};\node[box] at (17,-1.85) {$[0]$};
-\node[smalllabel] at (8.5,-1.5) {projection modulo $17$};
-\node[teal] at (0,.9) {$([0],0)$};\node[teal] at (17,.9) {$([0],1)$};
-\end{tikzpicture}
-\[([8],8/17)+([1],1/17)=([-8],9/17)\ne([-8],-8/17).\]
-\[\widetilde B\bigl(([n],n/17),([m],m/17)\bigr)=\alpha nm.\]
-\source{\JT{Example 2.3}. The second coordinate remembers the integer lift.}
-}{
-Replace a residue by the pair consisting of the residue and a real lift
-of its character value. The resulting group is an infinite cyclic group,
-parameterised by integers $n$. The points zero and seventeen have the
-same projection, but second coordinates zero and one distinguish them.
-
-Now eight plus one is the integer nine upstairs. It projects to minus
-eight, but its height is nine-seventeenths, not minus eight-seventeenths.
-The missing carry has been recorded. Multiplication $\alpha nm$ is a
-globally bilinear form on this integer group. On the small highlighted
-interval the canonical lift has no carry, so it agrees with the original
-local form. This is the entire geometric idea of Lemma 2.2.
-}
-
 \Slide{Black box 1: globalise on the lifted group}{1:30}{
 \[G_S:=\{(x,\theta)\in G\times\R^S:
 \theta_\xi=\xi\cdot x\pmod1\ \ (\xi\in S)\}.\]
+\pause
 \begin{block}{Lemma 2.2 (Jamneshan--Tao)}
 Let $G$ be a finite abelian group, $S\subseteq\Gh$, $0<r<1/2$,
 and $H$ an abelian group. If
@@ -750,9 +661,17 @@ bilinear map $\widetilde B:G_S^2\to H$ such that
 for an absolute $C>0$. If $B$ is symmetric, $\widetilde B$ can be
 chosen symmetric.
 \end{block}
+\pause
 \tagline{A global form upstairs; agreement on a smaller neighbourhood.}
 \source{\JT{Lemma 2.2}. Used as an algebraic black box.}
 }{
+Optional blackboard sketch before this slide (1--2 minutes): draw a short
+arc in $\Z/N\Z$ and lift it to an interval in $\Z$. The local form
+$B(n,m)=\alpha nm$ becomes globally bilinear upstairs, where the integer
+coordinate records carries, and integrates to $\alpha n^2/2$.
+The illustrated version of Example 2.3 is in backups 9--12; skip the
+sketch if time is tight.
+
 Read the precise statement: the codomain can be any abelian group, and
 symmetry is preserved. The price is an exponential shrink in the rank,
 which is where the exponential radius in the final theorem originates.
@@ -765,7 +684,7 @@ torsion upstairs. We only need finite generation for the next lemma.
 When $\norm{x}_S<r<1/2$, there is a unique lift with each real coordinate
 in $(-r,r)$. On a sufficiently small neighbourhood these canonical
 lifts preserve the finite sums used in local identities.
-Example 2.3 explicitly constructed this extension; the general
+Example 2.3 in the backup illustrates this extension; the general
 construction is the assigned black box.
 }
 
@@ -775,8 +694,10 @@ Let $A$ be a finitely generated abelian group. If
 $\widetilde B:A\times A\to\T$ is symmetric and globally bilinear,
 there exists a globally quadratic map $\widetilde\phi:A\to\T$
 such that, for every $u,v\in A$,
+\pause
 \[\boxed{\widetilde\phi(u+v)=\widetilde\phi(u)+\widetilde\phi(v)+\widetilde B(u,v).}\]
 \end{block}
+\pause
 \vspace{4mm}
 \centering
 \begin{tikzpicture}
@@ -790,8 +711,8 @@ Apply this lemma to the finitely generated group $A=G_S$ from the
 previous slide. It gives a quadratic primitive for every symmetric
 bilinear form with values in the circle. The primitive is normalised
 at zero by the identity itself. No division by two in the group is
-assumed. We are black-boxing existence, as requested; the next two
-slides explain the local consequence and show concrete primitives.
+assumed. We are black-boxing existence; the next slide explains the
+local consequence. Concrete primitives are in backups 5 and 12.
 Do not replace this lemma by the formula $B(x,x)/2$ in $\T$: that
 expression is ambiguous and can fail to respect torsion relations.
 }
@@ -804,10 +725,12 @@ there exist $r'$ with $\exp(-|S|^{O(1)})r\ll r'\leq r$ and
 a locally quadratic map $\phi:\Bohr(S,r')\to\T$ such that
 \[\phi(x+y)=\phi(x)+\phi(y)+B(x,y)
 \quad(x,y\in\Bohr(S,r'/2)).\]
+\pause
 Moreover, $\phi$ has a globally quadratic lift
 $\widetilde\phi:G_S\to\T$ agreeing with $\phi(x)$ whenever
 $(x,\theta)\in G_S$ and $\norm{\theta}_\infty<r'$.
 \end{block}
+\pause
 \[B\ \xrightarrow{\;2.2\;}\ \widetilde B
 \ \xrightarrow{\;2.4(i)\;}\ \widetilde\phi
 \ \xrightarrow{\;\text{small lifts}\;}\ \phi.\]
@@ -831,52 +754,17 @@ Direct restriction could lose an exponential factor. The final proof
 uses small translations of the original averages instead.
 }
 
-\Slide{Example 2.3: the quadratic appears upstairs}{1:30}{
-\begin{columns}[c]
-\column{.44\textwidth}
-\begin{tikzpicture}[x=.55cm,y=.30cm]
-\draw[->,ink!40] (-4.5,0)--(4.7,0) node[right] {$n$};
-\draw[->,ink!40] (0,-.5)--(0,10) node[above] {$n^2/2$};
-\draw[teal,thick,domain=-4:4,samples=50] plot (\x,{\x*\x/2});
-\foreach \n in {-4,...,4}{\fill[teal] (\n,{\n*\n/2}) circle(3pt);}
-\node[below] at (0,-1) {quadratic on $G_S\cong\Z$};
-\end{tikzpicture}
-\column{.55\textwidth}
-\[\widetilde\phi(n)=\frac{\alpha n^2}{2}\pmod1\]
-\[\widetilde\phi(n+m)-\widetilde\phi(n)-\widetilde\phi(m)=\alpha nm.\]
-\medskip
-\small A torsion check: $A=\Z/2\Z$, $B(1,1)=1/2$.
-\[\phi(0)=0,\qquad\phi(1)=1/4.\]
-\[0=1/4+1/4+1/2\pmod1.\]
-\end{columns}
-\source{Illustrations of \JT{Example 2.3 and Lemma 2.4}. The parabola shows the real lift with $\alpha=1$.}
-}{
-On the integer cover, the primitive is the familiar real parabola
-$\alpha n^2/2$, reduced modulo one. Its second difference is exactly
-$\alpha nm$. Restrict to the short integer interval to obtain the
-desired local quadratic downstairs. The plotted parabola is a real lift
-with $\alpha=1$; it illustrates integration, not a nontrivial
-modulo-one bilinear obstruction.
-
-The two-element example isolates the even-torsion issue. The symmetric
-form with $B(1,1)=1/2$ has a quadratic primitive taking value $1/4$ at
-one. Check the only nontrivial addition relation: one plus one is zero,
-and the displayed sum is zero modulo one. Fourth roots of unity are
-natural even though the group has exponent two. This is why the
-codomain $\T$ and the correct integration lemma handle cases that a
-naive field-valued quadratic formula misses. The general cyclic formula
-is on a backup slide if asked.
-}
-
 \Slide{Finish the proof: move the quadratic into $f$}{2:30}{
 \small Choose regular $\bb_2\ll\bb_1\ll\bb_\rho$, where
 $\bb_i=\Bohr(S,r_i)$ and $r_2\asymp\poly\,r_1$.
 \[(h,k)\mapsto(h+y+z,k-y),\qquad y\in\bb_1,\ z\in\bb_2.\]
+\pause
 \[\begin{aligned}
 B(h+y+z,k-y)
 ={}&B(h,k)-B(h,y)+B(y+z,k)-B(y,y)\\
 &-\phi(y+z)+\phi(y)+\phi(z).
 \end{aligned}\]
+\pause
 \small Put $x'=x+h+k$, absorb terms in $y$ or $y+z$, and fix $h,k$:
 \[\boxed{\abs{\E_{\substack{x'\in G\\y\in\bb_1,\ z\in\bb_2}}
 a(x',y+z)b(x',y)\underbrace{f(x'+z)e(-\phi(z))}_{g_{x'}(z)}}\gg\poly.}\]
@@ -912,8 +800,10 @@ $g:G\to\C$, and $a,b:G\to\C$ be 1-bounded. Then
 \geq\frac{|P|}{|P+Q|}
 \abs{\E_{y\in P,\,z\in Q}a(y+z)b(y)g(z)}.\]
 \end{block}
+\pause
 \small Use $P=\bb_1$, $Q=\bb_2$, $g(z)=f(x+z)e(-\phi(z))$.
 Regularity gives $|\bb_1+\bb_2|\leq2|\bb_1|$.
+\pause
 \[\boxed{\E_x\abs{\E_{z\in\bb_2}f(x+z)e(-\phi(z)-\xi(x)\cdot z)}\gg\poly.}\]
 \source{\GT{Lemma 4.4}. Fourier expansion and Cauchy--Schwarz prove the stated inequality.}
 }{
@@ -947,8 +837,10 @@ display of the printed proof.
 \draw[arr] (a)--(b);\draw[arr] (b)--(c);\draw[arr] (c)--(d);
 \end{tikzpicture}
 \vspace{3mm}
+\pause
 \[\E_x\abs{\E_{h\in\Bohr(S,r_2)}f(x+h)e(-\phi(h)-\xi(x)\cdot h)}\gg\poly.\]
 \vspace{1mm}
+\pause
 \begin{tabular}{ll}
 \textcolor{teal}{Rank} & $|S|\ll\eta^{-O(1)}$\\[3mm]
 \textcolor{teal}{Radius} & $\exp(-\eta^{-O(1)})\ll r_2\leq1/100$\\[3mm]

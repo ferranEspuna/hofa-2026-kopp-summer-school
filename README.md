@@ -3,7 +3,8 @@
 ## 45-minute presentation
 
 The Beamer talk proves Jamneshan--Tao Theorem 1.6 through Lemmas 2.5 and
-2.6. It includes a visual treatment of Example 2.3, precise statements and
+2.6. It keeps the visual treatment of Example 2.3 in backup, with an optional
+blackboard sketch in the notes. It includes precise statements and
 references for the black boxes, and detailed notes unpacking the older
 Green--Tao arguments.
 
@@ -15,16 +16,17 @@ python scripts/build.py --presentation-only
 
 The build creates:
 
-- `out/presentation.pdf`: audience slides (28 timed slides, references, eight backups).
+- `out/presentation.pdf`: audience slides (24 timed slides with staged reveals,
+  references, twelve backups).
 - `out/presentation-screen.pdf`: the same slides with notes on the right, for a
   PDF presenter that supports a two-screen layout.
 - `out/presenter-notes.pdf`: printable notes with slide thumbnails, timing,
   and a preparation appendix containing the longer derivations and source checks.
 
-The planned speaking time is **40 minutes 45 seconds**, leaving 4 minutes
-15 seconds for pauses and questions. References and backup slides are not
-part of that schedule. Timing checkpoints and suggested cuts are on the
-first page of the notes.
+The planned speaking time is **35 minutes 15 seconds**, leaving 9 minutes
+45 seconds for pauses, an optional blackboard sketch, and questions.
+References and backup slides are not part of that schedule. Timing checkpoints
+and suggested cuts are on the first page of the notes.
 
 Edit slide content and its matching speaker notes together in
 [`talk/slides.tex`](talk/slides.tex); optional slides are in
@@ -39,6 +41,8 @@ Required: Python 3 and a TeX distribution with `pdflatex`, Beamer, TikZ,
 Latin Modern, `mathtools`, and `enumitem`. The script uses `latexmk` when
 Perl is available, otherwise it runs `pdflatex` twice. Build the audience
 deck before compiling the printable notes, which use its PDF thumbnails.
+The build also writes `out/presentation.slidepages` so each thumbnail uses
+the completed slide, including all reveals.
 
 In VS Code, the workspace configures LaTeX Workshop to run `pdflatex` twice,
 so Perl is not required. Use **Build LaTeX project** (`Ctrl+Alt+B`); the PDF

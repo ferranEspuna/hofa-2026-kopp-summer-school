@@ -245,3 +245,165 @@ then $p-q=(0,v)\in8\Gamma''-8\Gamma''$. We just proved that such a
 difference is zero. This is exactly injectivity of projection on
 $4\Gamma''-4\Gamma''$, the graph property used to define the local map $M$.
 }
+
+% Example 2.3: optional illustrations for the blackboard sketch.
+\Backup{Example 2.3: a local multiplication table}{}{
+\small $G=\Z/17\Z$, \quad $\xi([n])=n/17\pmod1$, \quad $\rho=1/5$.
+\begin{columns}[c]
+\column{.43\textwidth}
+\begin{tikzpicture}[scale=.94]
+\draw[ink!25,thick] (0,0) circle (2.1);
+\draw[teal!25,line width=12pt] ({90-360*3/17}:2.1) arc ({90-360*3/17}:{90+360*3/17}:2.1);
+\foreach \n in {-8,...,8}{
+\ifnum\n>-4\ifnum\n<4\def\pointcolor{teal}\else\def\pointcolor{ink!30}\fi\else\def\pointcolor{ink!30}\fi
+\fill[\pointcolor] ({90-360*\n/17}:2.1) circle(3pt);
+\node[font=\scriptsize,text=\pointcolor] at ({90-360*\n/17}:2.55) {$\n$};}
+\node[align=center] at (0,0) {$\bb_\rho$\\$\{-3,\ldots,3\}$};
+\end{tikzpicture}
+\column{.56\textwidth}
+\[B([n],[m])=\alpha nm\in\R\qquad(|n|,|m|<17\rho).\]
+\centering
+\begin{tikzpicture}[scale=.48]
+\foreach \i in {-3,...,3}{\foreach \j in {-3,...,3}{
+\pgfmathtruncatemacro{\val}{\i*\j}
+\pgfmathtruncatemacro{\shade}{8+6*abs(\val)}
+\ifnum\val<0\fill[coral!\shade] (\i,\j) rectangle +(1,1);\else\fill[teal!\shade] (\i,\j) rectangle +(1,1);\fi
+\node[font=\scriptsize] at (\i+.5,\j+.5) {$\val$};}}
+\draw[ink!40] (-3,-3) rectangle (4,4);
+\foreach \n in {-3,...,3}{
+\node[font=\scriptsize,text=muted] at (\n+.5,4.55) {$\n$};
+\node[font=\scriptsize,text=muted] at (-3.6,\n+.5) {$\n$};}
+\node[text=teal] at (.5,5.4) {$m$};
+\node[text=teal] at (-4.45,.5) {$n$};
+\node[below] at (.5,-3.3) {table for $\alpha=1$};
+\end{tikzpicture}
+\end{columns}
+\source{\JT{Example 2.3}, using the unique small integer representatives.}
+}{
+Specialise the paper's example to seventeen points so that the picture is
+literal. The Bohr set consists of residues with unique representatives
+$-3,-2,-1,0,1,2,3$. Define the real-valued form by multiplying these
+representatives; the table shows $\alpha=1$. It is symmetric and locally
+bilinear.
+
+Why is it locally additive? If $[n_1],[n_2],[n_1+n_2]$ all lie in this
+small arc, their chosen representatives satisfy the same integer sum:
+the possible error is a multiple of $17$ of absolute value less than
+$3\rho\,17<17$. Thus it is zero. More generally this works with
+$\rho<1/4$ and $G=\Z/N\Z$.
+
+Use a representative map only on the small arc. The printed example's
+description of a global homomorphic section $\Z/N\Z\to\Z$ cannot be
+literal: no such section exists for $N>1$. Our notation avoids that error.
+The table is real-valued as in the example; reduction modulo one will
+connect it with Lemma 2.4 later.
+}
+
+\Backup{Carry-over prevents a global extension}{}{
+\begin{columns}[c]
+\column{.40\textwidth}
+\begin{tikzpicture}[scale=.88]
+\draw[ink!25,thick] (0,0) circle (1.9);
+\foreach \n in {-8,...,8}{\fill[ink!30] ({90-360*\n/17}:1.9) circle(2pt);}
+\fill[coral] ({90-360*8/17}:1.9) circle(4pt);
+\fill[coral] ({90+360*8/17}:1.9) circle(4pt);
+\draw[->,coral,line width=2pt] ({90-360*8/17}:2.05) arc ({90-360*8/17}:{90-360*9/17}:2.05);
+\node[right] at ({90-360*8/17}:2.15) {$8$};
+\node[left] at ({90+360*8/17}:2.15) {$-8$};
+\node[below,text=coral] at (0,-2.4) {$8+1\equiv-8\pmod{17}$};
+\node[above] at (0,1.95) {$0$};
+\end{tikzpicture}
+\column{.59\textwidth}
+\small Extending the representative formula would require
+\[\begin{aligned}
+B([8]+[1],[1])&=-8\alpha,\\
+B([8],[1])+B([1],[1])&=9\alpha.
+\end{aligned}\]
+\medskip
+\small In fact, any global bilinear $C:G^2\to\R$ satisfies
+\[17C([1],[1])=C([0],[1])=0.\]
+\tagline{$\alpha\ne0$ $\Longrightarrow$ no real-valued global extension.}
+\end{columns}
+}{
+The local formula cannot just be used with balanced representatives
+everywhere. Crossing the cut from eight to minus eight changes the
+integer sum by seventeen. The proposed multiplication formula therefore
+fails the displayed additivity identity. These points lie outside the
+local arc, so this does not contradict the local bilinearity just proved.
+
+There is also a decisive argument against any real-valued extension,
+not just this particular formula. A homomorphism from a finite group to
+$\R$ is zero; bilinearity gives $17C(1,1)=C(0,1)=0$. But the local form
+has $B(1,1)=\alpha$. For a $\T$-valued version the obstruction is instead
+$17\alpha\notin\Z$. Do not use $\alpha=1$ modulo one as a nontrivial
+counterexample: it would be the zero form. This is why the real-valued
+example is useful.
+}
+
+\Backup{Unroll the circle and record the carry}{}{
+\[G_S=\{([n],n/17):n\in\Z\}\cong\Z.\]
+\centering
+\begin{tikzpicture}[x=.33cm,y=1cm]
+\draw[->,thick,ink!60] (-5,0)--(23,0) node[right] {$n$};
+\draw[teal!20,line width=10pt] (-3,0)--(3,0);
+\foreach \n in {-4,...,22}{\fill[ink!50] (\n,0) circle(1.6pt);}
+\foreach \n in {0,17}{\fill[teal] (\n,0) circle(3.5pt);}
+\foreach \n in {-3,0,3,8,9,17}{\node[above=3pt] at (\n,0) {$\n$};}
+\draw[arr] (0,-.3)--(0,-1.4);\draw[arr] (17,-.3)--(17,-1.4);
+\node[box] at (0,-1.85) {$[0]$};\node[box] at (17,-1.85) {$[0]$};
+\node[smalllabel] at (8.5,-1.5) {projection modulo $17$};
+\node[teal] at (0,.9) {$([0],0)$};\node[teal] at (17,.9) {$([0],1)$};
+\end{tikzpicture}
+\[([8],8/17)+([1],1/17)=([-8],9/17)\ne([-8],-8/17).\]
+\[\widetilde B\bigl(([n],n/17),([m],m/17)\bigr)=\alpha nm.\]
+\source{\JT{Example 2.3}. The second coordinate remembers the integer lift.}
+}{
+Replace a residue by the pair consisting of the residue and a real lift
+of its character value. The resulting group is an infinite cyclic group,
+parameterised by integers $n$. The points zero and seventeen have the
+same projection, but second coordinates zero and one distinguish them.
+
+Now eight plus one is the integer nine upstairs. It projects to minus
+eight, but its height is nine-seventeenths, not minus eight-seventeenths.
+The missing carry has been recorded. Multiplication $\alpha nm$ is a
+globally bilinear form on this integer group. On the small highlighted
+interval the canonical lift has no carry, so it agrees with the original
+local form. This is the entire geometric idea of Lemma 2.2.
+}
+
+\Backup{Example 2.3: the quadratic appears upstairs}{}{
+\begin{columns}[c]
+\column{.44\textwidth}
+\begin{tikzpicture}[x=.55cm,y=.30cm]
+\draw[->,ink!40] (-4.5,0)--(4.7,0) node[right] {$n$};
+\draw[->,ink!40] (0,-.5)--(0,10) node[above] {$n^2/2$};
+\draw[teal,thick,domain=-4:4,samples=50] plot (\x,{\x*\x/2});
+\foreach \n in {-4,...,4}{\fill[teal] (\n,{\n*\n/2}) circle(3pt);}
+\node[below] at (0,-1) {quadratic on $G_S\cong\Z$};
+\end{tikzpicture}
+\column{.55\textwidth}
+\[\widetilde\phi(n)=\frac{\alpha n^2}{2}\pmod1\]
+\[\widetilde\phi(n+m)-\widetilde\phi(n)-\widetilde\phi(m)=\alpha nm.\]
+\medskip
+\small A torsion check: $A=\Z/2\Z$, $B(1,1)=1/2$.
+\[\phi(0)=0,\qquad\phi(1)=1/4.\]
+\[0=1/4+1/4+1/2\pmod1.\]
+\end{columns}
+\source{Illustrations of \JT{Example 2.3 and Lemma 2.4}. The parabola shows the real lift with $\alpha=1$.}
+}{
+On the integer cover, the primitive is the familiar real parabola
+$\alpha n^2/2$, reduced modulo one. Its second difference is exactly
+$\alpha nm$. Restrict to the short integer interval to obtain the
+desired local quadratic downstairs. The plotted parabola is a real lift
+with $\alpha=1$; it illustrates integration, not a nontrivial
+modulo-one bilinear obstruction.
+
+The two-element example isolates the even-torsion issue. The symmetric
+form with $B(1,1)=1/2$ has a quadratic primitive taking value $1/4$ at
+one. Check the only nontrivial addition relation: one plus one is zero,
+and the displayed sum is zero modulo one. Fourth roots of unity are
+natural even though the group has exponent two. This is why the
+codomain $\T$ and the correct integration lemma handle cases that a
+naive field-valued quadratic formula misses. The general cyclic formula
+is on a backup slide if asked.
+}

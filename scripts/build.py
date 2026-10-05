@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import shutil
 import subprocess
 import zipfile
@@ -63,6 +64,17 @@ def build_pdf(stem: str) -> Path:
             )
     output = OUT_DIR / f"{stem}.pdf"
     shutil.copy2(target_build_dir / f"{stem}.pdf", output)
+    if stem == "presentation":
+        # Printed notes need the completed overlay, not the frame number as a page.
+        navigation = (target_build_dir / f"{stem}.nav").read_text(encoding="utf-8")
+        frame_pages = re.findall(r"\\beamer@framepages\s*\{\d+\}\s*\{(\d+)\}", navigation)
+        if not frame_pages:
+            raise RuntimeError("No slide page ranges found in presentation.nav")
+        (OUT_DIR / "presentation.slidepages").write_text(
+            "".join(f"\\SlidePage{{{frame}}}{{{page}}}\n"
+                    for frame, page in enumerate(frame_pages, 1)),
+            encoding="utf-8",
+        )
     print(f"Wrote {output.relative_to(PROJECT_ROOT)}")
     return output
 
