@@ -448,17 +448,42 @@ recover correlation with $f$.
 }
 
 \Slide{Recover the correlation: an affine patch}{1:30}{
-\small Choose regular $\rho\in[1/16,1/8]$ and $x_0$ with
-$A:=\{h\in\bb_\rho:x_0+h\in H''\}$ of relative density $\gg\poly$.
+\small
+\setlength{\abovedisplayskip}{2pt}\setlength{\belowdisplayskip}{2pt}
+\setlength{\abovedisplayshortskip}{2pt}\setlength{\belowdisplayshortskip}{2pt}
+\begin{block}{What we have}
+$\bb_{1/4}=\Bohr(S,1/4)\subseteq2H''-2H''$, with
+$|S|\ll\ipoly$ and $|H''|/|G|\gg\poly$.
+\par
+$M:\bb_{1/4}\to\Gh$ is locally linear, with $M(0)=0$.
+\[\abs{\widehat{\Delta_t f}(\xi_t)}
+=\abs{\E_x f(x+t)\overline{f(x)}e(-\xi_t\cdot x)}
+\geq\eta^4/\sqrt2\qquad(t\in H'').\]
+\end{block}
 \pause
-\[\xi_{x_0+h}-\xi_{x_0+h'}=M(h-h')=M(h)-M(h')\]
-\[\boxed{\xi_{x_0+h}=\xi_0+M(h)\qquad(h\in A).}\]
+Choose regular $\rho\in[1/16,1/8]$ and $x_0$ so
+$A:=(H''-x_0)\cap\bb_\rho$ has density $\gg\poly$ in $\bb_\rho$.
 \pause
-\[\E_{h\in\bb_\rho}\mathbf1_A(h)
-\abs{\E_x f(x+x_0+h)\overline{f(x)}e(-[\xi_0+M(h)]\cdot x)}\gg\poly.\]
-\tagline{Align phases in $h$\quad$+$\quad shift $x$\quad$=$\quad Lemma 2.5.}
+\[\begin{gathered}
+\xi_{x_0+h}-\xi_{x_0+h'}=M(h-h')=M(h)-M(h')\qquad(h,h'\in A),\\[3pt]
+\boxed{\xi_{x_0+h}=\xi_0+M(h)\qquad(h\in A).}
+\end{gathered}\]
+\pause
+\par\smallskip
+\textcolor{teal}{\textbf{Conclusion of Lemma 2.5.}}
+Align phases in $h$ and put $u=x+x_0$:
+\[\abs{\E_{u\in G,\,h\in\bb_\rho}
+b_1(h)b_2(u)f(u+h)e(-M(h)\cdot u)}\gg\poly.\]
+Here $b_1,b_2$ are 1-bounded; $M$ is defined on $\bb_{2\rho}\subseteq\bb_{1/4}$.
 \source{\GT{end of Proposition 9.1 and Proposition 9.3}; \JT{Lemma 2.5}.}
 }{
+Recall the three inputs: the Bohr set supplied by Bogolyubov, the locally
+linear map $M$ with $M(0)=0$, and the original derivative correlations
+retained on $H''$. Choosing regular $\rho\in[1/16,1/8]$ gives
+$\bb_{2\rho}\subseteq\bb_{1/4}$, so $M$ is defined on the doubled
+domain required in Lemma 2.5. The remaining conclusion is the displayed
+correlation with separate 1-bounded factors in $h$ and $u$.
+
 Averaging $\mathbf1_{H''}(x_0+h)$ over $x_0$ gives the global density of
 $H''$, so some translate contains a polynomial relative density of good
 increments. For $h,h'\in A$, the pair
@@ -466,7 +491,10 @@ $(h-h',\xi_{x_0+h}-\xi_{x_0+h'})$ belongs to $\Gamma''-\Gamma''$.
 Uniqueness of the lift and local linearity give the first display. Fixing
 $h'$ shows that the original frequencies agree with $\xi_0+M(h)$ on $A$.
 
-All these frequencies still have their original large Fourier coefficients.
+Substitute the affine identity into the original derivative correlation:
+\[\E_{h\in\bb_\rho}\mathbf1_A(h)
+\abs{\E_x f(x+x_0+h)\overline{f(x)}e(-[\xi_0+M(h)]\cdot x)}
+\geq\frac{|A|}{|\bb_\rho|}\frac{\eta^4}{\sqrt2}\gg\poly.\]
 Choose a unit complex number for each $h\in A$ to align its coefficient,
 and zero outside $A$. Finally put $u=x+x_0$. The factor
 $\overline{f(u-x_0)}e(-\xi_0\cdot u)$ depends only on $u$; the factor
