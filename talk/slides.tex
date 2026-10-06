@@ -529,7 +529,7 @@ swap $x,y$.
 The $w$ domain is $P+x+y$. Regularity of $P$ allows us to replace this by
 $P$, since $U$ is much smaller. Fix a $w$ retaining correlation. This gives
 the middle display with two separate bounded functions. Cauchy--Schwarz
-removes $u(x)$, leaving the mean over $y,y'$ of the absolute value of
+removes $u(x)$, leaving the average over $y,y'$ of the absolute value of
 $\E_x e(D(x,y'-y))$. Fix $y'=y_0$, then keep a dense set $A$ where that
 absolute value is large. All losses remain polynomial.
 }
@@ -544,7 +544,7 @@ where $c,C>0$ are absolute constants.
 \end{block}
 \begin{center}
 \begin{tikzpicture}[node distance=5mm]
-\node[box,visible on=<2->] (a) {large mean of\\$e(D(x,y_0-y))$};
+\node[box,visible on=<2->] (a) {large average of\\$e(D(x,y_0-y))$};
 \node[box,right=of a,visible on=<3->] (b) {small $D(t,z)$\\for $z\in2A-2A$};
 \node[box,right=of b,visible on=<4->] (c) {small $D$ on\\a Bohr set};
 \draw[arr,visible on=<3->] (a)--(b);\draw[arr,visible on=<4->] (b)--(c);
@@ -555,11 +555,11 @@ where $c,C>0$ are absolute constants.
 \source{Local Fourier decay: \GT{Lemma 8.4}. Local Bogolyubov: \GT{Lemma 8.8}.}
 }{
 The elementary analytic fact is this: if a locally additive phase $\ell$ on
-$\Bohr(S,2r)$ has mean of magnitude at least $\tau$ on a regular
+$\Bohr(S,2r)$ has average of magnitude at least $\tau$ on a regular
 $U=\Bohr(S,r)$, then
 $\norm{\ell(t)}_{\T}\leq C d\norm{t}_S/(r\tau^2)$ for $t\in U$.
 Brief proof: average small translations $x+nt$; regularity preserves the
-large mean, while local linearity factors off $e(n\ell(t))$. A geometric
+large average, while local linearity factors off $e(n\ell(t))$. A geometric
 sum cannot be large unless $\ell(t)$ is close to an integer.
 
 Apply this to $\ell(x)=D(x,y_0-y)$ for every $y\in A$ from the previous
