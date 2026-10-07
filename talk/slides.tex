@@ -409,22 +409,28 @@ vertical difference. They must therefore coincide. This is the graph
 property we needed. The discarded subset costs only a power of $K$.
 }
 
-\Slide{A Bohr set inside the graph gives $M$}{2:00}{
+\Slide{The difference graph gives $M$}{2:00}{
+\small
+\setlength{\abovedisplayskip}{2pt}\setlength{\belowdisplayskip}{2pt}
+\setlength{\abovedisplayshortskip}{2pt}\setlength{\belowdisplayshortskip}{2pt}
 \begin{block}{Bogolyubov [black box]}
 If $A\subseteq G$ has density $\delta>0$ in a finite abelian group,
 there is $S\subseteq\Gh$ with $|S|\leq2\delta^{-2}$ such that
 $\Bohr(S,\tfrac14)\subseteq 2A-2A$.
 \end{block}
 \pause
-\small Apply to $H''=\pi_G(\Gamma'')$, with $\delta\gg\poly$.
-\[\bb_{1/4}\subseteq 2H''-2H'',\qquad
-(h,M(h))\in2\Gamma''-2\Gamma''\quad(h\in\bb_{1/4}).\]
+Apply to $H''=\pi_G(\Gamma'')$, with $\delta\gg\poly$:
+$\bb_{1/4}\subseteq 2H''-2H''$.
+\[\underbrace{(t,\xi_t)\in\Gamma''}_{\text{original frequencies }(t\in H'')}
+\qquad
+\underbrace{(h,M(h))\in2\Gamma''-2\Gamma''}_{\text{unique lift }(h\in\bb_{1/4})}.\]
 \pause
-\begin{tikzpicture}
-\node[box] (a) {$(h_1,M(h_1))+(h_2,M(h_2))$};
-\node[box,right=7mm of a] (b) {$(h_3,M(h_3))+(h_4,M(h_4))$};
-\node[below=4mm of $(a)!0.5!(b)$,text=teal] {same first coordinate $\Longrightarrow$ same frequency};
-\end{tikzpicture}
+\par\smallskip
+\textcolor{coral}{\textbf{$M(h)$ need not equal $\xi_h$.}}
+For example, if $\xi_t=L(t)+c$ with $L$ linear, then
+\[M(h)=L(h),\qquad\text{since the offset cancels: }c+c-c-c=0.\]
+\pause
+Injectivity on $4\Gamma''-4\Gamma''$ makes $M$ locally linear, with $M(0)=0$:
 \[h_1+h_2=h_3+h_4\quad\Longrightarrow\quad
 M(h_1)+M(h_2)=M(h_3)+M(h_4).\]
 \source{\GT{Lemma 6.3 and Proposition 9.1}, with the factor $2$ removed as in \JT{Lemma 2.5}.}
@@ -433,6 +439,15 @@ Bogolyubov is applied to the projection $H''$, whose density is polynomial
 in $\eta$. This produces a Bohr set of polynomial rank and constant radius.
 Every point $h$ in it has at least one lift to $2\Gamma''-2\Gamma''$;
 the graph property makes that lift unique, defining $M(h)$.
+
+Distinguish the two graphs explicitly. The point $(t,\xi_t)$ belongs to
+the original graph $\Gamma''$, whereas $(h,M(h))$ belongs to its difference
+sumset. If $h=t_1+t_2-t_3-t_4$ with $t_i\in H''$, then
+\[M(h)=\xi_{t_1}+\xi_{t_2}-\xi_{t_3}-\xi_{t_4}.\]
+Uniqueness makes this independent of the representation; it does not
+identify $M(h)$ with an original frequency $\xi_h$. In the affine example
+$\xi_t=L(t)+c$, all four copies of $c$ cancel, leaving $M(h)=L(h)$.
+Thus even where both maps are defined, they can differ by a constant.
 
 Take any four points of the Bohr set with equal pair sums. Both sums of
 their lifts lie in $4\Gamma''-4\Gamma''$. Its graph property forces their
@@ -460,6 +475,9 @@ $M:\bb_{1/4}\to\Gh$ is locally linear, with $M(0)=0$.
 =\abs{\E_x f(x+t)\overline{f(x)}e(-\xi_t\cdot x)}
 \geq\eta^4/\sqrt2\qquad(t\in H'').\]
 \end{block}
+\textcolor{coral}{\textbf{Missing link:}}
+relate the good frequencies $\xi_t$ on $H''$ to $M(h)$ on $\bb_\rho$.
+\par
 \pause
 Choose regular $\rho\in[1/16,1/8]$ and $x_0$ so
 $A:=(H''-x_0)\cap\bb_\rho$ has density $\gg\poly$ in $\bb_\rho$.
@@ -470,16 +488,18 @@ $A:=(H''-x_0)\cap\bb_\rho$ has density $\gg\poly$ in $\bb_\rho$.
 \end{gathered}\]
 \pause
 \par\smallskip
-\textcolor{teal}{\textbf{Conclusion of Lemma 2.5.}}
-Align phases in $h$ and put $u=x+x_0$:
+\textcolor{teal}{\textbf{Lemma 2.5.}}
+Align phases and shift $u=x+x_0$: for some 1-bounded $b_1,b_2$,
 \[\abs{\E_{u\in G,\,h\in\bb_\rho}
 b_1(h)b_2(u)f(u+h)e(-M(h)\cdot u)}\gg\poly.\]
-Here $b_1,b_2$ are 1-bounded; $M$ is defined on $\bb_{2\rho}\subseteq\bb_{1/4}$.
 \source{\GT{end of Proposition 9.1 and Proposition 9.3}; \JT{Lemma 2.5}.}
 }{
 Recall the three inputs: the Bohr set supplied by Bogolyubov, the locally
 linear map $M$ with $M(0)=0$, and the original derivative correlations
-retained on $H''$. Choosing regular $\rho\in[1/16,1/8]$ gives
+retained at $\xi_t$ on $H''$. These do not yet give a correlation involving
+$M$: $\bb_{1/4}\subseteq2H''-2H''$ does not imply
+$\bb_{1/4}\subseteq H''$, and $M(h)$ need not equal $\xi_h$.
+Choosing regular $\rho\in[1/16,1/8]$ gives
 $\bb_{2\rho}\subseteq\bb_{1/4}$, so $M$ is defined on the doubled
 domain required in Lemma 2.5. The remaining conclusion is the displayed
 correlation with separate 1-bounded factors in $h$ and $u$.
@@ -489,7 +509,9 @@ $H''$, so some translate contains a polynomial relative density of good
 increments. For $h,h'\in A$, the pair
 $(h-h',\xi_{x_0+h}-\xi_{x_0+h'})$ belongs to $\Gamma''-\Gamma''$.
 Uniqueness of the lift and local linearity give the first display. Fixing
-$h'$ shows that the original frequencies agree with $\xi_0+M(h)$ on $A$.
+$h'\in A$, define $\xi_0:=\xi_{x_0+h'}-M(h')$. This is a constant
+offset, not necessarily the original frequency at zero. The boxed identity
+now connects the good frequencies to $M$ on a dense subset of $\bb_\rho$.
 
 Substitute the affine identity into the original derivative correlation:
 \[\E_{h\in\bb_\rho}\mathbf1_A(h)
